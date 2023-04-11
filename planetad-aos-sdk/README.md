@@ -1,7 +1,4 @@
-# PlanetAD Android SDK 
-
 ## PlanetAD Android Screen SDK 
-- Development Guide
 > [기본설정](./PlanetAdScreenApp/doc/0_basic.md)
 
 > [일시적비활성화](./PlanetAdScreenApp/doc/1_deactivate.md)
@@ -25,27 +22,27 @@
 
 > [Feed-기본설정](./PlanetAdBenefitApp/doc/1_Feed-basic.md)
 
-> [Feed-고급설정](./PlanetAdScreenApp/doc/2_Feed-advanced.md)
+> [Feed-고급설정](./PlanetAdBenefitApp/doc/2_Feed-advanced.md)
 
-> [Native-기본설정](./PlanetAdScreenApp/doc/3_Native-basic.md)
+> [Native-기본설정](./PlanetAdBenefitApp/doc/3_Native-basic.md)
 
-> [Native-고급설정](./PlanetAdScreenApp/doc/4_Native-advanced.md)
+> [Native-고급설정](./PlanetAdBenefitApp/doc/4_Native-advanced.md)
 
-> [POP-기본설정](./PlanetAdScreenApp/doc/5_POP-basic.md)
+> [POP-기본설정](./PlanetAdBenefitApp/doc/5_POP-basic.md)
 
-> [POP-고급설정](./PlanetAdScreenApp/doc/6_POP-advanced.md)
+> [POP-고급설정](./PlanetAdBenefitApp/doc/6_POP-advanced.md)
 
-> [POP-Customizing](./PlanetAdScreenApp/doc/7_POP-Customizing.md)
+> [POP-Customizing](./PlanetAdBenefitApp/doc/7_POP-Customizing.md)
 
-> [Interstital-기본설정](./PlanetAdScreenApp/doc/8_Interstital-basic.md)
+> [Interstital-기본설정](./PlanetAdBenefitApp/doc/8_Interstital-basic.md)
 
-> [Interstial-고급설정](./PlanetAdScreenApp/doc/9_Interstial-advanced.md)
+> [Interstial-고급설정](./PlanetAdBenefitApp/doc/9_Interstial-advanced.md)
 
-> [Interstial-Customizing](./PlanetAdScreenApp/doc/10_Interstial-Customizing.md)
+> [Interstial-Customizing](./PlanetAdBenefitApp/doc/10_Interstial-Customizing.md)
 
-> [유저액션리스너](./PlanetAdScreenApp/doc/11_Customizing.md)
+> [유저액션리스너](./PlanetAdBenefitApp/doc/11_Customizing.md)
 
-> [WebAndroidSDK연동가이드](./PlanetAdScreenApp/doc/12_Web_Android_SDK.md)
+> [WebAndroidSDK연동가이드](./PlanetAdBenefitApp/doc/12_Web_Android_SDK.md)
 
-> [광고노출과관련한콜백변화](./PlanetAdScreenApp/doc/13_Event_Callback.md)
+> [광고노출과관련한콜백변화](./PlanetAdBenefitApp/doc/13_Event_Callback.md)
 
