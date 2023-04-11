@@ -139,14 +139,14 @@ Feed Type
 리스트 형태의 광고 지면입니다.
 
 
-#### Native
+##### Native
 ![native_default](./resources/native_default.png)
 
 [Native 연동하기](./4.Native-기본설정.md)
 커스텀 광고 지면입니다.
 배너 타입의 광고도 Native 지면으로 연동할 수 있습니다. 지면 크기별 Native 광고 layout 가이드를 참고하시기 바랍니다.
 
-#### Interstitial
+##### Interstitial
 ![interstitial_default](./resources/interstital_default.png)
 
 [Interstitial 연동하기](./8.Interstitial-기본설정.md)
