@@ -21,9 +21,9 @@
 
 ## PlanetAD Android Benefit SDK 
 
-> [기본설정]("https://github.com/PlanetAdDevelopers/skpad-sdk-samples/blob/master/planetad-aos-sdk/PlanetAdScreenApp/doc/0.기본설정.md")
+> [기본설정]("https://github.com/PlanetAdDevelopers/skpad-sdk-samples/blob/master/planetad-aos-sdk/PlanetAdScreenApp/doc/benefit_begin.md")
 
-> [Feed-기본설정](./PlanetAdScreenApp/doc/1.Feed-기본설정.md)
+> [Feed-기본설정](./PlanetAdBenefitApp/doc/benefit_begin.md)
 
 > [Feed-고급설정](./PlanetAdScreenApp/doc/2.Feed-고급설정.md)
 
