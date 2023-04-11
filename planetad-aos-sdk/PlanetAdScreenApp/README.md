@@ -1,6 +1,8 @@
-## 시작하기 전에
+## 기본 설정
 
-### 안내 사항
+### 시작하기 전에
+
+#### 안내 사항
 
 본 문서는 SKP AD Screen SDK를 퍼블리셔의 안드로이드 어플리케이션에 연동하기 위한 가이드입니다. 아래의 안내사항을 숙지 후 연동을 진행해주세요.
 
@@ -12,7 +14,7 @@
 
 서비스 출시 이전에 연동이 완료된 앱의 apk 파일을 SKP빌 BD 매니저에게 전달 후 승인 과정을 거쳐야 합니다.
 
-### Requirements
+#### Requirements
 
 ||항목|세부내용|비고|
 | :- | - | - | - |
@@ -57,7 +59,7 @@ Lockscreen Activity의 특정한 style 설정이 Android OS 8.0 버전에서 크
 
 
 
-### Prerequisites
+#### Prerequisites
 
 항목 세부내용 비고
 
@@ -67,7 +69,7 @@ Lockscreen Activity의 특정한 style 설정이 Android OS 8.0 버전에서 크
 |2|포인트 적립 요청 수신 API|PlanetAD 서버에서 퍼블리셔 서버로 포인트 적립 요청을 보낸 이후, 실제 포인트 지급을 처리할 퍼블리셔의 API 서버||
 |3|연동을 위한 키값|<p>PlanetAD 매니저로부터 발급받은 아래 값들</p><p>app\_key : 퍼블리셔 앱의 키값 unitId : 광고 서빙을 위한 Unit ID||
 
-1. build.gradle , AndroidManifest.xml 설정
+### build.gradle , AndroidManifest.xml 설정
 
 build.gradle 에 아래 코드에 보이는 저장소 및 디펜던시를 추가합니다.
 
@@ -89,11 +91,11 @@ AndroidManifest.xml에 아래 meta data를 추가하고 000000000000 부분에 a
     android:value="app-pub-000000000000" />
 ```
 
-2. 메소드 호출
+### 메소드 호출
 
 연동 단계는 1) 초기화 → 2) 유저 정보 설정 → 3) 잠금화면 제어 설정 의 세 단계를 따라야 합니다.
 
-#### 1) 초기화: init() 및 launch() 호출
+##### 1) 초기화: init() 및 launch() 호출
 
 |항목|코드|호출 위치|세부내용|
 | :- | - | - | - |
@@ -114,7 +116,7 @@ public class App extends Application {
 }
 ```
 
-#### 2) 유저 정보 설정
+##### 2) 유저 정보 설정
 
 연령, 성별, 지역 등 타게팅 정보를 설정하지 않는 경우 타게팅이 설정된 광고가 보이지 않으므로, 유저가 볼 수 있는 전체 광고의 수량이 줄어들게 됩니다. 설정이 불가할 경우 PlanetAD 담당 매니저와 논의 부탁드립니다.
 
@@ -127,7 +129,7 @@ public class App extends Application {
 |유저 지역 권장|```setRegion(String region)```|| "시/도 + 공백 + 시/군/구" 형식으로 설정<li>사용가능한 시/도 및 시/군/구 정보</li><li>예시: "서울특별시 관악구", "제주특별자치도 제주시"</li>|
 이 외 선택|커스텀 타게팅 문서 참고|| 매체사에서 원하는 유저 정보로 타게팅 가능
 
-#### 3) 잠금화면 제어
+##### 3) 잠금화면 제어
 
 |항목|코드|호출 위치|세부내용|
 |:-|-|-|-|
@@ -139,7 +141,7 @@ SKPAdScreen이 화면에서 사라 지는 시간 설정 권장|```SKPAdScreen.ge
 Notification 커스텀 선택|서비스 노티피케이션 문서 참고||SKPAdScreen을 활성화한 후 Notification area 에 생성된 Notification의 icon, text 등을 수정하고자 하는 경우|
 |잠금 화면 광고 할당Callback|'''SKPAdScreen.getInstance().setAllocationListener(OnAllocationListener listener)'''|SKPAdScreen.init() 이후에 호출|<p>잠금화면이 활성화 된 이후 광고 할당이 완료 되는 시점에 호출되는 Callback</p>Callback Instance의 유지 필요
 
-### 3. 기본 보안기능 화면 속성 수정
+### 기본 보안기능 화면 속성 수정
 
 SKPAdScreen.init()된 직후 메소드를 호출하여 보안기능 화면 속성을 수정합니다.
 + backgroundResourceId(int resourceId): Swipe mode 보안화면에 나오는 배경화면을 지정
@@ -151,7 +153,7 @@ SKPAdScreen.init()된 직후 메소드를 호출하여 보안기능 화면 속�
 
 + showDescription(boolean): 유저 액션 안내 텍스트의 노출/미노출을 세팅 (기본값: true)
 
-##### <구현 예시>
+##### Sample Code
 
 ```java
 SKPAdScreen.init("app_key", this, SimpleLockerActivity.class, R.drawable.image_on_fail, Constants.useGDPR? SKPAdScreen.PrivacyPolicy.GDPR :SKPAdScreen.PrivacyPolicy.NONE);
@@ -168,7 +170,7 @@ SKPAdScreen.getInstance().setSecurityConfiguration(
 ```
 
 
-#### 4. "다른 앱 위에 그리기" 권한 얻기
+### "다른 앱 위에 그리기" 권한 얻기
 
 [안드로이드 10부터 변경된 정책](https://developer.android.com/guide/components/activities/background-starts)에 따라, 잠금화면을 띄우기 위해서는 "다른 앱 위에 그리기" 권한 획득이 필요합니다. 따라서 사용자에게 해당 권한 요청에 대한 메시지를 잠금화면과 In-App에서 노출해 권한 획득을 도울 수 기능을 제공합니다.
 
@@ -200,7 +202,7 @@ public class MainActivity extends Activity {
 + 팝업에서 확인 클릭 시 해당 권한을 획득할 수 있는 안드로이드 설정 화면으로 이동하고, 권한 획득시 자동으로 이전 화면으로 전환
 + Android 8 (Oreo) 미만이거나 해당 권한이 이미 획득되어 있는 경우에는 팝업을 보여주지 않음
 
-#### 5. 포인트 적립 포스트백 연동 - Server-to-Server 연동
+### 포인트 적립 포스트백 연동 - Server-to-Server 연동
 
 SKPAdScreen은 포인트 적립이 발생했을 때 직접 유저들에게 포인트를 지급하는 것이 아닙니다. SKPAdScreen 서버에서는 매체사 서버로 포인트 적립 요청을 보낼 뿐이며, 실제 지급은 매체사 서버에서 처리합니다.
 
@@ -210,10 +212,15 @@ SKPAdScreen은 포인트 적립이 발생했을 때 직접 유저들에게 포�
 
 포인트 적립 알림 푸시를 유저에게 보내고 싶은 경우에는 포인트 적립 요청을 받고 매체사에서 직접 푸시를 전송합니다.
 
-#### 6. 포인트 적립 요청 흐름
+#### 포인트 적립 요청 흐름
 ![포인트 적립 요청 흐름](./screen_reward_process.png)
 
 SKPAdScreen의 UI 및 동작을 커스터마이징하고 싶다면 [고급 설정 문서](./5.UI커스터마이징.md)를 참고하여 구현합니다.
+
+
+
+
+
 
 ## 일시적 비활성화
 SKP AD Screen을 일시적으로 비활성화하기 위해 사용할 수 있는 기능입니다.
