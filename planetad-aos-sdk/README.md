@@ -2,50 +2,50 @@
 
 ## PlanetAD Android Screen SDK 
 - Development Guide
-> [기본설정](./PlanetAdScreenApp/doc/0.기본설정.md)
+> [기본설정](./PlanetAdScreenApp/doc/0_basic.md)
 
-> [일시적비활성화](./PlanetAdScreenApp/doc/1.일시적비활성화.md)
+> [일시적비활성화](./PlanetAdScreenApp/doc/1_deactivate.md)
 
-> [서비스노티피케이션](./PlanetAdScreenApp/doc/2.서비스노티피케이션.md)
+> [서비스노티피케이션](./PlanetAdScreenApp/doc/2_service_notification.md)
 
-> [광고컨텐츠설정](./PlanetAdScreenApp/doc/3.광고컨텐츠설정.md)
+> [광고컨텐츠설정](./PlanetAdScreenApp/doc/3_advanced.md)
 
-> [UI커스터마이징](./PlanetAdScreenApp/doc/4.UI커스터마이징.md)
+> [UI커스터마이징](./PlanetAdScreenApp/doc/4_customizing.md)
 
-> [유저액션리스너](./PlanetAdScreenApp/doc/5.유저액션리스너.md)
+> [유저액션리스너](./PlanetAdScreenApp/doc/5_eventListener.md)
 
-> [배터리최적화옵션끄기](./PlanetAdScreenApp/doc/6.배터리최적화옵션끄기.md)
+> [배터리최적화옵션끄기](./PlanetAdScreenApp/doc/6_battery_optimizing.md)
 
 
 
 
 ## PlanetAD Android Benefit SDK 
 
-> [기본설정]("https://github.com/PlanetAdDevelopers/skpad-sdk-samples/blob/master/planetad-aos-sdk/PlanetAdScreenApp/doc/benefit_begin.md")
+> [기본설정](./PlanetAdBenefitApp/doc/0_benefit_begin.md)
 
-> [Feed-기본설정](./PlanetAdBenefitApp/doc/benefit_begin.md)
+> [Feed-기본설정](./PlanetAdBenefitApp/doc/1_Feed-basic.md)
 
-> [Feed-고급설정](./PlanetAdScreenApp/doc/2.Feed-고급설정.md)
+> [Feed-고급설정](./PlanetAdScreenApp/doc/2_Feed-advanced.md)
 
-> [Native-기본설정](./PlanetAdScreenApp/doc/3.Native-기본설정.md)
+> [Native-기본설정](./PlanetAdScreenApp/doc/3_Native-basic.md)
 
-> [Native-고급설정](./PlanetAdScreenApp/doc/4.Native-고급설정.md)
+> [Native-고급설정](./PlanetAdScreenApp/doc/4_Native-advanced.md)
 
-> [POP-기본설정](./PlanetAdScreenApp/doc/5.POP-기본설정.md)
+> [POP-기본설정](./PlanetAdScreenApp/doc/5_POP-basic.md)
 
-> [POP-고급설정](./PlanetAdScreenApp/doc/6.POP-고급설정.md)
+> [POP-고급설정](./PlanetAdScreenApp/doc/6_POP-advanced.md)
 
-> [POP-Customizing](./PlanetAdScreenApp/doc/7.POP-Customizing.md)
+> [POP-Customizing](./PlanetAdScreenApp/doc/7_POP-Customizing.md)
 
-> [Interstital-기본설정](./PlanetAdScreenApp/doc/8.Interstital-기본설정)
+> [Interstital-기본설정](./PlanetAdScreenApp/doc/8_Interstital-basic.md)
 
-> [Interstial-고급설정](./PlanetAdScreenApp/doc/9.Interstial-고급설정)
+> [Interstial-고급설정](./PlanetAdScreenApp/doc/9_Interstial-advanced.md)
 
-> [Interstial-Customizing](./PlanetAdScreenApp/doc/10.Interstial-Customizing.md)
+> [Interstial-Customizing](./PlanetAdScreenApp/doc/10_Interstial-Customizing.md)
 
-> [유저액션리스너](./PlanetAdScreenApp/doc/11.Customizing.md)
+> [유저액션리스너](./PlanetAdScreenApp/doc/11_Customizing.md)
 
-> [WebAndroidSDK연동가이드](./PlanetAdScreenApp/doc/12.WebAndroidSDK연동가이드.md)
+> [WebAndroidSDK연동가이드](./PlanetAdScreenApp/doc/12_Web_Android_SDK.md)
 
-> [광고노출과관련한콜백변화](./PlanetAdScreenApp/doc/13.광고노출과관련한콜백변화.md)
+> [광고노출과관련한콜백변화](./PlanetAdScreenApp/doc/13_Event_Callback.md)
 
