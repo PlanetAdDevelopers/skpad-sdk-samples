@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">PlanetAD Benefit Sample</string>
+
+    <string-array name="interstitial_ad_types">
+        <item>Dialog</item>
+        <item>BottomSheet</item>
+    </string-array>
+
+    <string name="native_ad_title">앱 열자마자 포인트 적립!</string>
+
+    <string name="pop_name">선물상자</string>
+    <string name="pop_notification_title">POP 서비스가 실행 중입니다</string>
+    <string name="pop_notification_text">POP을 사용하고 적립금도 받아가세요</string>
+
+</resources>

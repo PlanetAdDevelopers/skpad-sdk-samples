@@ -1,0 +1,20 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="skpadColorPrimary">@color/samplePrimary</item>
+        <item name="skpadColorPrimaryDark">@color/samplePrimary</item>
+        <item name="skpadCtaViewStyle">@style/SampleDefaultCtaView</item>
+    </style>
+
+    <style name="SampleDefaultCtaView">
+        <item name="skpadCtaBackground">@drawable/sample_benefit_native_bg_cta_button</item>
+        <item name="skpadCtaTextColor">@color/sampleCtaTextColor</item>
+    </style>
+
+</resources>
