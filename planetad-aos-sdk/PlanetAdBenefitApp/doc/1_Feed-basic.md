@@ -6,7 +6,7 @@ Feed 지면은 광고를 리스트 형식으로 제공하는 지면입니다.
 ![Feed Basic](./resources/benefit_feed_basic.png)
 
 ### 준비 사항
-- [시작하기](./0.시작하기.md) 적용 완료
+- [시작하기](./0_benefit_begin.md) 적용 완료
 - Feed 지면에 사용할 Unit ID (이하 YOUR_FEED_UNIT_ID)
 
 
@@ -34,7 +34,7 @@ public class App extends Application {
 }
 ```
 
-FeedConfig를 사용하여 Feed 지면의 기능과 디자인을 변경할 수 있으며, [고급 설정](./feed-고급설정.md)을 참고하여 Feed 지면의 기능과 변경 방법을 확인할 수 있습니다.
+FeedConfig를 사용하여 Feed 지면의 기능과 디자인을 변경할 수 있으며, [고급 설정](./2_Feed-advanced.md)을 참고하여 Feed 지면의 기능과 변경 방법을 확인할 수 있습니다.
 
 ### Feed 지면 표시
 

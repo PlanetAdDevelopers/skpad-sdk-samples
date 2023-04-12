@@ -70,8 +70,6 @@ class YourActivity extends Actvity {
 }
 ```
 
-FeedFragment의 UI도 [Feed 디자인 커스터마이징](./Feed-디자인커스터마이징.md)을 참고하여 변경할 수 있습니다. (단, FeedFragment는 툴바 영역이 없습니다.)
-
 
 ### 툴바 영역 자체 구현
 Feed 툴바 영역의 디자인을 변경할 수 있습니다. 툴바 영역을 UI를 변경하는 방법은 2가지입니다. 아래 2가지 방법 중 하나를 선택하여 연동합니다.

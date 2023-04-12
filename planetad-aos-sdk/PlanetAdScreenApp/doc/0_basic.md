@@ -99,7 +99,7 @@ AndroidManifest.xml에 아래 meta data를 추가하고 000000000000 부분에 a
 
 |항목|코드|호출 위치|세부내용|
 | :- | - | - | - |
-|SKP AD Screen 초기화 필수|```SKPAdScreen.init(String unitId, Context context, Class lockerActivityClass, int imageResourceIdOnFail)```| <li>Application Class 의 onCreate()</li><li>모든 다른 메소드보다 항상 먼저 호출되도록 함</li><li>기존에 사용하던 Application Class가 없이 SKP AD Screen 연동을 위해 처음으로 Application Class를 생성할 경우 반드시 AndroidManifest.xml에 해당 Application Class를 등록해야 합니다.</li>|Parameters<li>unitId : SKPAdScreen SDK 사용을 위한 Unit ID로,SKP AD Screen 어드민에서 확인 가능합니다.</li><li>context : Application context 를 this 로 입력합니다.</li><li>lockerActivityClass : 잠금화면 액티비티 클래스.<ul><li>잠금화면을 커스터마이징하지 않는 경우 SDK 내에서 제공하는 SimpleLockerActivity.class 를 설정합니다.</li><li>커스터마이징을 하는 경우 직접 구현한 액티비티 클래스를 설정합니다. 자세한 사항은 [UI 커스터마이징](UI커스터마이징.md) 문서의 설명을 참조하세요.</li><li>imageResourceIdOnFail : 네트워크 에러 발생 시 혹은 일시적으로 잠금화면에 보여줄 캠페인이 없을 경우 보여주게 되는 이미지를 앱 내 리소스에 포함시켜야 하며, 이 이미지의 리소스 아이디를 설정합니다.</li></ul>|
+|SKP AD Screen 초기화 필수|```SKPAdScreen.init(String unitId, Context context, Class lockerActivityClass, int imageResourceIdOnFail)```| <li>Application Class 의 onCreate()</li><li>모든 다른 메소드보다 항상 먼저 호출되도록 함</li><li>기존에 사용하던 Application Class가 없이 SKP AD Screen 연동을 위해 처음으로 Application Class를 생성할 경우 반드시 AndroidManifest.xml에 해당 Application Class를 등록해야 합니다.</li>|Parameters<li>unitId : SKPAdScreen SDK 사용을 위한 Unit ID로,SKP AD Screen 어드민에서 확인 가능합니다.</li><li>context : Application context 를 this 로 입력합니다.</li><li>lockerActivityClass : 잠금화면 액티비티 클래스.<ul><li>잠금화면을 커스터마이징하지 않는 경우 SDK 내에서 제공하는 SimpleLockerActivity.class 를 설정합니다.</li><li>커스터마이징을 하는 경우 직접 구현한 액티비티 클래스를 설정합니다. 자세한 사항은 [UI 커스터마이징](./4_customizing.md) 문서의 설명을 참조하세요.</li><li>imageResourceIdOnFail : 네트워크 에러 발생 시 혹은 일시적으로 잠금화면에 보여줄 캠페인이 없을 경우 보여주게 되는 이미지를 앱 내 리소스에 포함시켜야 하며, 이 이미지의 리소스 아이디를 설정합니다.</li></ul>|
 SKP AD Screen 시작 필수|```SKPAdScreen.getInstance().launch()```|앱 실행 시 처음 실행되는 액티비티에 추가||
 
 ###### Sample Code
@@ -215,6 +215,6 @@ SKPAdScreen은 포인트 적립이 발생했을 때 직접 유저들에게 포�
 #### 포인트 적립 요청 흐름
 ![포인트 적립 요청 흐름](./screen_reward_process.png)
 
-SKPAdScreen의 UI 및 동작을 커스터마이징하고 싶다면 [고급 설정 문서](./5.UI커스터마이징.md)를 참고하여 구현합니다.
+SKPAdScreen의 UI 및 동작을 커스터마이징하고 싶다면 [고급 설정 문서](./4_customizing.md)를 참고하여 구현합니다.
 
 

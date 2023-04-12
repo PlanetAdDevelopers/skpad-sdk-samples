@@ -6,7 +6,7 @@
 ![Native AD Overview](./resources/benefit_native_ad_basic.png)
 
 ### 준비사항
-- [2. 시작하기](./시작하기.md) 적용 완료
+- [2. 시작하기](./0_benefit_begin.md) 적용 완료
 - Native 지면에 사용할 Unit ID (이하 YOUR_NATIVE_UNIT_ID)
 
 ### 광고 레이아웃 구성
@@ -169,5 +169,5 @@ public void populateAd(final NativeAd nativeAd) {
     view.setNativeAd(nativeAd);
 }
 ```
-광고의 상태별 콜백에 대해 커스터마이즈를 하는 경우에 [광고 노출/클릭/참여와 관련한 콜백 변화](./13.광고노출과관련한콜백변화.md) 문서 참고하여 콜백의 정의 및 동작을 파악할 수 있습니다.
+광고의 상태별 콜백에 대해 커스터마이즈를 하는 경우에 [광고 노출/클릭/참여와 관련한 콜백 변화](./13_Event_Callback.md) 문서 참고하여 콜백의 정의 및 동작을 파악할 수 있습니다.
 

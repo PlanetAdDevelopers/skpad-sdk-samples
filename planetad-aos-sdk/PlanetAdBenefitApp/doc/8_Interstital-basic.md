@@ -8,7 +8,7 @@ Interstitial 지면은 PlanetAd Android SDK에서 제공하는 UI를 사용해 �
 
 
 ### 준비 사항
-- [시작하기](./0.시작하기.md) 적용 완료
+- [시작하기](./0_benefit_begin.md) 적용 완료
 - Interstitial 지면에 사용할 Unit ID (이하 YOUR_INTERSTITIAL_UNIT_ID)
 
 ### 광고 표시

@@ -3,12 +3,12 @@
 ### 개요
 
 본 가이드에서는 SKP Ad Android SDK에서 제공하는 UI의 구성을 지키며 디자인을 변경하기 위한 방법을 안내합니다.<br>
-추가적인 디자인 변경을 원하시는 경우에는 [고급 설정](./POP-고급설정.md)에서 UI를 자체 구현하는 방법으로 진행할 수 있습니다.
+추가적인 디자인 변경을 원하시는 경우에는 [고급 설정](./6_POP-advanced.md)에서 UI를 자체 구현하는 방법으로 진행할 수 있습니다.
 
 ### Pop 배경색 변경
 ![POP_BACKGROUND](./resources/benefit_pop_background.png)
 
-Pop의 배경색은 [테마 적용](./커스터마이징.md)에 따라 변경할 수 있습니다.
+Pop의 배경색은 [테마 적용](./11_Customizing.md)에 따라 변경할 수 있습니다.
 
 ### Pop 아이콘 변경
 ![POP_ICON](./resources/benefit_pop_icon.png)
@@ -56,7 +56,7 @@ rewardReadyIconResId: 적립 가능한 포인트가 있을 때 기본 아이콘�
 
 Pop 활성화 버튼의 디자인은 아래 가이드에 따라 수정할 수 있습니다.
 
-활성화 버튼의 색상과 아이콘은 [테마 적용](./커스터마이징.md)을 통해 변경할 수 있습니다.
+활성화 버튼의 색상과 아이콘은 [테마 적용](./11_Customizing.md)을 통해 변경할 수 있습니다.
 
 활성화 버튼의 문구는 DefaultOptInAndShowPopButtonHandler의 상속 클래스에서 설정합니다. 상속 클래스를 작성하고 FeedConfig에 설정합니다.
 
@@ -93,7 +93,7 @@ PopConfig popConfig = new PopConfig.Builder(context, "YOUR_POP_UNIT_ID")
       .popNotificationConfig(popNotificationConfig)
       .build();
 ```
-UI 레이아웃 혹은 Notification 전체를 수정하기 위해서는 [Pop Service Notification 자체 구현](./POP-고급설정.md)을 참고하시기 바랍니다.
+UI 레이아웃 혹은 Notification 전체를 수정하기 위해서는 [Pop Service Notification 자체 구현](./6_POP-advanced.md)을 참고하시기 바랍니다.
 
 ### 스낵바 및 토스트 메시지 커스터마이징
 ![POP_SNACKBAR](./resources/benefit_pop_snackbar.png)
