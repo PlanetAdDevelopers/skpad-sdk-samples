@@ -34,7 +34,7 @@
 
 > [POP-Customizing](./PlanetAdBenefitApp/doc/7_POP-Customizing.md)
 
-> [Interstital-기본설정](./PlanetAdBenefitApp/doc/8_Interstital-basic.md)
+> [Interstial-기본설정](./PlanetAdBenefitApp/doc/8_Interstital-basic.md)
 
 > [Interstial-고급설정](./PlanetAdBenefitApp/doc/9_Interstial-advanced.md)
 
