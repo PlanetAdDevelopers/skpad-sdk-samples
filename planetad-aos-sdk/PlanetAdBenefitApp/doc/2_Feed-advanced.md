@@ -227,49 +227,12 @@ final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID
     .build();
 ```
 
-### 광고 분류 기능
-
-Feed지면에서는 사용자가 광고를 선택적으로 참여할 수 있도록 탭과 필터 기능을 지원합니다.
-- 탭 기능
-- 필터 기능
-
-#### 탭 기능
-![Feed Header tab Guide](./resources/benefit_header_tab_guide.png)
-
-사용자가 광고를 분류하여 볼 수 있도록 탭과 필터 기능이 기본으로 제공됩니다. 탭은 일반 광고(노출형 및 참여형)와 쇼핑 적립형 광고를 구분하는 역할을 합니다. 기본값은 True입니다.<br>
-다음은 FeedConfig를 수정하여 탭을 비활성화하는 예시입니다.
-
-```
-final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID")
-    .tabUiEnabled(false) // 탭 비활성화
-    .build();
-```
-탭의 디자인을 변경하기 위해서는 탭 UI 변경을 참고하시기 바랍니다.
-
-#### 필터 기능
-![Feed Header filter Guide](./resources/benefit_header_filter_guide.png)
-필터는 광고를 카테고리 별로 보다 세분화합니다. 필터는 탭에 종속되어 있습니다. 따라서, 탭이 비활성화되면 필터도 비활성화됩니다.<br>
-다음은 FeedConfig를 수정하여 필터를 비활성화하는 예시입니다.
-
-```
-final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID")
-    .tabUiEnabled(true) // 탭이 비활성화되면 필터도 비활성화 됩니다.
-    .filterUiEnabled(false) // 필터 비활성화
-    .build();
-```
-
-필터의 디자인을 변경하기 위해서는 필터 UI 변경을 참고하시기 바랍니다.
-
 ### 광고 UI 자체 구현
-SKPAd Android SDK에서 제공하는 광고는 일반 광고와 쇼핑 적립 광고가 있습니다. 각각의 광고에 따라 UI를 변경하는 방법이 상이합니다.<br>일반 광고과 쇼핑 적립 광고의 UI를 모두 변경하기 위해서는 아래 2가지 가이드를 모두 적용해야합니다.
+Feed 지면에서는 사용자가 UI를 변경하는 방법을 제공합니다.
 
-- 일반 광고 UI 자체 구현
-- 쇼핑 적립 광고 UI 자체 구현
-
-#### 일반 광고 UI 자체 구현
 ![Feed normal ad Guide](./resources/benefit_normal_ad_guide.png)
 
-다음은 일반 광고의 디자인을 변경하는 방법을 설명하는 예시입니다.
+다음은 광고의 디자인을 변경하는 방법을 설명하는 예시입니다.
 
 
 ||설명|비고|
@@ -281,7 +244,7 @@ SKPAd Android SDK에서 제공하는 광고는 일반 광고와 쇼핑 적립 �
 필수 CTA 버튼|광고의 참여를 유도하는 버튼|<li>com.skplanet.skpad.benefit.presentation.media.CtaView 사용 필수</li><li>최대 7자</li><li>생략 부호로 일정 길이 이상은 생략 가능</li>
 임의 광고 알림 문구|Sponsored view|예시) "광고", "ad", "스폰서", "Sponsored"
 
-<p>일반 광고용 NativeAdView의 규격에 맞는 레이아웃(your_feed_ad.xml)을 구현합니다.</p>
+<p>광고용 NativeAdView의 규격에 맞는 레이아웃(your_feed_ad.xml)을 구현합니다.</p>
 
 ```xml
 // your_feed_ad.xml
@@ -406,144 +369,6 @@ final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID
     .build();
 ```
 
-#### 쇼핑 적립 광고 UI 자체 구현
-다음은 쇼핑 적립 광고의 디자인을 변경하는 방법을 설명합니다. 쇼핑 적립 광고는 일반 광고에 비해 많은 정보를 제공합니다.
-일반 광고의 커스터마이징도 참고하시기 바랍니다.
-
-![Feed shopping ad Guide](./resources/benefit_shopping_ad_guide.png)
-
-쇼핑 적립 광고용 NativeAdView의 규격에 맞는 레이아웃(your_feed_ad_cps.xml)을 구현합니다.<br>
-일반 광고용 레이아웃에 없는 priceText, originalPriceText, discountPercentageText, categoryText 가 있습니다.
-
-
-
-||설명|비고|
-|-|-|-|
-필수 일반 광고의 필수 컴포넌트|일반 광고에서 정의하는 컴포넌트|Sponsored view는 권장
-필수Category View|상품의 카테고리를 표시합니다.|
-권장OriginalPrice View|상품의 원가를 표시합니다.|
-권장Price View|상품의 할인된 가격을 표시합니다.|
-권장DiscountRate View|상품 가격의 할인율을 표시합니다.|할인율은 원가와 할인가로 비교하여 산출해야 합니다.
-```
-// your_feed_ad_cps.xml
- 
-<?xml version="1.0" encoding="utf-8"?>
-<com.skplanet.skpad.benefit.presentation.nativead.NativeAdView
-    android:id="@+id/native_ad_view"
-    ...생략... >
-    <LinearLayout
-        ...생략... >
-         
-        // MediaView와 CtaView는 NativeAdView의 하위 컴포넌트로 구현해야합니다.
-         
-        <com.skplanet.skpad.benefit.presentation.media.MediaView
-            android:id="@+id/mediaView"
-            ...생략... />
-             
-        ...생략...
-     
-        <TextView
-            android:id="@+id/priceText"
-            ...생략... />
-        <TextView
-            android:id="@+id/originalPriceText"
-            ...생략... />
-        <TextView
-            android:id="@+id/discountPercentageText"
-            ...생략... />
-        <TextView
-            android:id="@+id/categoryText"
-            ...생략... />
-             
-        ...생략...
-         
-    </LinearLayout>
-    ...생략...
-</com.skplanet.skpad.benefit.presentation.nativead.NativeAdView>
-```
-
-AdsAdapter의 상속 클래스를 구현합니다. 구현한 상속 클래스의 onCreateViewHolder에서 your_feed_ad_cps.xml을 사용하여 NativeAdView를 생성합니다. 그리고 FeedConfig에 구현한 YourCPSAdsAdapter를 설정합니다.<br>
-
-CTA 버튼 커스터마이징은 CTA 변경을 참고하시기 바랍니다.
-```
-public class YourCPSAdsAdapter extends AdsAdapter<AdsAdapter.NativeAdViewHolder> {
- 
-    @Override
-    public NativeAdViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        final NativeAdView feedNativeAdView = (NativeAdView) inflater.inflate(R.layout.your_feed_ad_cps, parent, false);
-        return new NativeAdViewHolder(feedNativeAdView);
-    }
- 
-    @Override
-    public void onBindViewHolder(NativeAdViewHolder holder, NativeAd nativeAd) {
-        super.onBindViewHolder(holder, nativeAd);
-         
-        final NativeAdView view = (NativeAdView) holder.itemView;
-        final Ad ad = nativeAd.getAd();
-         
-        // create ad component
-        // ...생략...
-        final TextView priceText = view.findViewById(R.id.discountedPriceText);
-        final TextView originalPriceText = view.findViewById(R.id.originalPriceText);
-        final TextView discountPercentageText = view.findViewById(R.id.discountPercentageText);
-        final TextView categoryText = view.findViewById(R.id.categoryText);
- 
-        // data binding
-        // ...생략...
-        final Product product = ad.getProduct();
-        if (product != null) {
-            if (product.getDiscountedPrice() != null) {
-                // 할인이 있는 쇼핑 광고
-                originalPriceText.setPaintFlags(originalPriceText.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                int percentage = 0;
-                if (product.getPrice() > product.getDiscountedPrice()) {
-                    percentage = Math.round(((product.getPrice() - product.getDiscountedPrice()) / product.getPrice() * 100));
-                }
-                if (percentage > 0) {
-                    priceText.setText(getCommaSeparatedPrice(product.getDiscountedPrice().longValue()));
-                    originalPriceText.setText(getCommaSeparatedPrice((long) product.getPrice()));
-                    discountPercentageText.setText(String.format(Locale.ROOT, "%d%%", percentage));
-                    discountPercentageText.setVisibility(View.VISIBLE);
-                } else {
-                    priceText.setText(getCommaSeparatedPrice((long) product.getPrice()));
-                    originalPriceText.setText("");
-                    discountPercentageText.setVisibility(View.GONE);
-                }
-            } else {
-                // 할인이 없는 쇼핑 광고
-                priceText.setText(getCommaSeparatedPrice((long) product.getPrice()));
-                originalPriceText.setText("");
-                discountPercentageText.setVisibility(View.GONE);
-            }
-            categoryText.setText(product.getCategory());
-            if (!TextUtils.isEmpty(product.getCategory())) {
-                categoryText.setVisibility(View.VISIBLE);
-            }
-        }
- 
-        final Collection<View> clickableViews = new ArrayList<>();
-        clickableViews.add(ctaView);
-        clickableViews.add(mediaView);
-        clickableViews.add(descriptionView);
-         
-        // ...생략...
-         
-        view.setMediaView(mediaView);
-        view.setClickableViews(clickableViews);
-        view.setNativeAd(nativeAd);
-    }
- 
-    private String getCommaSeparatedPrice (long price){
-        return String.format(Locale.getDefault(), "₩%,d", price);
-    }
-}
-```
-```
-final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID")
-      .cpsAdsAdapterClass(YourCPSAdsAdapter.class)
-      .build();
-```
 
 ### 기본 포인트 지급 안내 UI 자체 구현
 ![Feed basic point noti Guide](./resources/benefit_basic_point_noti_guide.png)
