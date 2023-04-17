@@ -36,9 +36,6 @@ public class MainApplication extends Application {
                 .feedHeaderViewAdapterClass(DefaultFeedHeaderViewAdapter.class)
                 .adsAdapterClass(CustomFeedAdsAdapter.class)
                 .articlesEnabled(true)
-                .autoLoadingEnabled(true)
-                .tabUiEnabled(true)
-                .filterUiEnabled(true)
                 .feedFeedbackHandlerClass(CustomFeedFeedbackHandler.class)
                 .build();
 
