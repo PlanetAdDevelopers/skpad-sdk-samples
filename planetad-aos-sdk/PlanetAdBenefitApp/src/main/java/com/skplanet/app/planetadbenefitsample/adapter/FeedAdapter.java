@@ -28,9 +28,6 @@ public class FeedAdapter {
                 .feedHeaderViewAdapterClass(DefaultFeedHeaderViewAdapter.class)
                 .adsAdapterClass(CustomFeedAdsAdapter.class)
                 .articlesEnabled(true)
-                .autoLoadingEnabled(true)
-                .tabUiEnabled(true)
-                .filterUiEnabled(true)
                 .feedFeedbackHandlerClass(CustomFeedFeedbackHandler.class);
 
         return builder.build();
