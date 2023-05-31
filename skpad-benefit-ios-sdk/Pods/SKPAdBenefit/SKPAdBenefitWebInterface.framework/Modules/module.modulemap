@@ -1,0 +1,6 @@
+framework module SKPAdBenefitWebInterface {
+  umbrella header "SKPAdBenefitWebInterface.h"
+
+  export *
+  module * { export * }
+}
