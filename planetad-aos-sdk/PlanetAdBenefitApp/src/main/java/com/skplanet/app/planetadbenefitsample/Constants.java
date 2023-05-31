@@ -17,5 +17,5 @@ public class Constants {
     public static final UserProfile.Gender GENDER = UserProfile.Gender.MALE;
     public static final int BIRTHDAY = 1979;
 
-    public static final String WEB_SDK_TEST_URL = "https://m.skplanet.co.kr/pages/integration/websdk.html";
+    public static final String WEB_SDK_TEST_URL = "https://m.planetad.co.kr/pages/integration/websdk.html";
 }
