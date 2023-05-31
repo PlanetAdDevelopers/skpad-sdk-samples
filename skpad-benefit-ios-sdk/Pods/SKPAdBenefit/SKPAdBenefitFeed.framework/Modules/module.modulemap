@@ -1,0 +1,6 @@
+framework module SKPAdBenefitFeed {
+  umbrella header "SKPAdBenefitFeed.h"
+
+  export *
+  module * { export * }
+}
