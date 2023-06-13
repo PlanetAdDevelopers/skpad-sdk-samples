@@ -17,6 +17,8 @@ import com.skplanet.app.planetadbenefitsample.R;
 import com.skplanet.skpad.benefit.core.ad.AdError;
 import com.skplanet.skpad.benefit.core.models.Ad;
 import com.skplanet.skpad.benefit.core.models.Creative;
+import com.skplanet.skpad.benefit.presentation.guide.InformationView;
+import com.skplanet.skpad.benefit.presentation.guide.InquiryButon;
 import com.skplanet.skpad.benefit.presentation.media.CtaPresenter;
 import com.skplanet.skpad.benefit.presentation.media.CtaView;
 import com.skplanet.skpad.benefit.presentation.media.MediaView;
@@ -65,6 +67,8 @@ public class NativeAdAdapter {
         final TextView descriptionTextView = nativeAdLayout.findViewById(R.id.ad_description_text);
         final ImageView iconImageView = nativeAdLayout.findViewById(R.id.ad_icon_image);
         final CtaView ctaView = nativeAdLayout.findViewById(R.id.ad_cta_view);
+        final InformationView informationView = nativeAdLayout.findViewById(R.id.information);
+        final InquiryButon inquiryButon = nativeAdLayout.findViewById(R.id.inquiryButton);
         cardTitleTextView.setText(R.string.native_ad_title);
         cardTitleTextView.setTextSize(14);
 
@@ -96,6 +100,8 @@ public class NativeAdAdapter {
         nativeAdView.setClickableViews(clickableViews);
         nativeAdView.setNativeAd(nativeAd);
         nativeAdView.enableNativeToFeedOverlay();
+        nativeAdView.setInformationView(informationView);
+        nativeAdView.setInquiryButon(inquiryButon);
 
         mediaView.setVideoEventListener(new VideoEventListener() {
             @Override
