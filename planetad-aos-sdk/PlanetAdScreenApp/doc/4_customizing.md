@@ -5,7 +5,7 @@
 
 ### 레이아웃 - View 구현
 레이아웃에는 필수적으로 시계, 슬라이더가 포함되어 있어야 하며, 캠페인 이미지에 따라 뷰들의 가독성이 떨어지지 않게 하기 위해 배경 그라데이션을 추가하는 것이 좋습니다. 그 외에 커스텀 기능을 위한 뷰 (아래 그림의 카메라 shortcut 등) 를 추가할 수 있습니다.
-![레이아웃 가이드라인](./resources/screen_area_guideline.png)
+![레이아웃 가이드라인](./resources/A_01.png)
 
 시계, 버튼 등의 컴포넌트의 사이즈를 sp로 설정할 경우 유저의 폰트 크기 설정에 따라 잠금화면 레이아웃이 바뀔 수 있습니다. 따라서 sp 사용 시 모든 경우의 해상도를 고려하여 레이아웃을 그려야 하며, 유저의 폰트 크기 설정과 무관하게 화면을 구성하고자 한다면 dp로 사이즈를 명시하는 것을 권장합니다. (참고: [안드로이드 가이드 문서](https://developer.android.com/guide/topics/resources/more-resources?hl=ko#Dimension))
 
@@ -110,7 +110,7 @@ setPageIndicators(
 );
 ```
 
-![레이아웃 가이드라인](./resources/screen_page_arrow.png)
+![레이아웃 가이드라인](./resources/A_02.png)
 
 #### 유저의 액션에 따라 Unlock/Landing 아이콘 바꾸기
 기본적으로 제공되는 SimpleLockerActivity에서 양쪽 슬라이드 아이콘은 사용자 액션에 따라 세개의 다른 아이콘이 보여지도록 설정되어 있습니다. 아래 예시를 참고하여 유저 액션에 따라 아이콘을 바꾸어 보여줄 수 있습니다.
