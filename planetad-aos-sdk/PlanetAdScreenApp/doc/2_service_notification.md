@@ -3,12 +3,7 @@
 #### SKP AD Screen이 동작하기 위해서는 SKP AD Screen 잠금화면 서비스가 [Foreground Service](http://developer.android.com/guide/components/services.html#Foreground)로 실행됩니다. 
 #### Foreground Service 실행 중인 경우는 반드시 서비스 노티피케이션을 보여주도록 되어있기 때문에, 아래와 같이 해당 노티피케이션의 설정을 수정 가능하도록 지원하고 있습니다.
 
-#### 참고) 안드로이드 OS 8.0 버전 이상에서는 백그라운드에서 실행 중인 모든 앱에 대해 시스템 노티피케이션이 노출됩니다.
--  "백그라운드에서 실행 중"이라고 함은 앱 화면에서 벗어나 인터랙션은 없으나 아직 종료하지 않았거나, 앱을 종료하였더라도 백그라운드에서 계속 실행되는 상태를 지칭합니다.
-#### 해당 노티피케이션은 안드로이드 OS 단에서 띄우는 부분이므로 별도로 커스텀이 불가합니다. 다만 유저 단에서 시스템 노티피케이션을 끌 수 있습니다. ([참고 링크](https://android.gadgethacks.com/how-to/android-8-1-oreo-lets-you-hide-running-background-drawing-over-other-apps-notifications-0180752/))
-
-![poster](./resources/screen_notification_sample.png)
-
+![서비스 노티피케이션](./resources/screen_notification_sample.png)
 
 ## Usage
 |항목|코드 & 호출 위치|세부내용|예시|

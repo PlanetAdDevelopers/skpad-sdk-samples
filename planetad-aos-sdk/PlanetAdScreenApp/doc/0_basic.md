@@ -18,7 +18,7 @@
 
 ||항목|세부내용|비고|
 | :- | - | - | - |
-|1|안드로이드 지원 버전|Android 4.0.3 (API Level 15) 이상 Android 10 정식 지원![](Aspose.Words.00b72282-4c74-4740-b5d2-159f6976149c.006.png)||
+|1|안드로이드 지원 버전|Android 4.0.3 (API Level 15) 이상 Android 10 정식 지원||
 |2|[Google Play의 대상 API 레벨 요구사항을 충족](https://developer.android.com/distribute/best-practices/develop/target-sdk)|<p>SKPADScreen SDK의 대응:</p><p>targetSdkVersion 28 사용 compileSdkVersion 29 이상 사용</p>|<p>정책 적용 시점</p><p>신규 앱: 2019년 8월 1일 기존 앱: 2019년 11월 1일</p>|
 |3|AndroidX 적용|[AndroidX 사용하기](https://developer.android.com/jetpack/androidx/migrate?hl=ko) 참조||
 |4|targetSdkVersion 29 지원|SKP AD screen SDK 최신 버전에서는 targetSdkVersion 29 사용 가능||
@@ -213,7 +213,7 @@ SKPAdScreen은 포인트 적립이 발생했을 때 직접 유저들에게 포�
 포인트 적립 알림 푸시를 유저에게 보내고 싶은 경우에는 포인트 적립 요청을 받고 매체사에서 직접 푸시를 전송합니다.
 
 #### 포인트 적립 요청 흐름
-![포인트 적립 요청 흐름](./screen_reward_process.png)
+![포인트 적립 요청 흐름](./resources/screen_reward_process.png)
 
 SKPAdScreen의 UI 및 동작을 커스터마이징하고 싶다면 [고급 설정 문서](./4_customizing.md)를 참고하여 구현합니다.
 

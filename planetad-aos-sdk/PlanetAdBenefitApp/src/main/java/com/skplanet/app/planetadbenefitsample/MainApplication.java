@@ -60,6 +60,7 @@ public class MainApplication extends Application {
                 .popNotificationConfig(buildPopNotificationConfig())
                 .popFeedbackHandlerClass(CustomPopFeedbackHandler.class)
                 .iconResId(R.drawable.skpad_custom_pop_icon)
+                .popUtilityLayoutHandlerClass(null)
                 .rewardReadyIconResId(R.drawable.skpad_custom_pop_icon);
 
         return popConfigBuilder.build();

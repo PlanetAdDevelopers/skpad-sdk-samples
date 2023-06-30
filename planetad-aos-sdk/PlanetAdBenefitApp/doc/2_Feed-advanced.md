@@ -235,14 +235,16 @@ Feed 지면에서는 사용자가 UI를 변경하는 방법을 제공합니다.
 다음은 광고의 디자인을 변경하는 방법을 설명하는 예시입니다.
 
 
-||설명|비고|
-|-|-|-|
-필수 광고 제목|광고의 제목|<li>최대 10자</li><li>생략 부호로 일정 길이 이상은 생략 가능</li>
-필수 광고 소재|이미지, 동영상 등 광고 소재|<li>com.skplanet.skpad.benefit.presentation.media.MediaView 사용 필수</li><li>종횡비 유지 필수</li><li>여백 추가 가능</li><li>이미지 사이즈 1200x627 [px]</li>
-필수 광고 설명|광고에 대한 상세 설명|<li>생략 부호로 일정 길이 이상은 생략 가능</li><li>최대 40자</li>
-필수 광고주 아이콘|광고주 아이콘 이미지|<li>종횡비 유지 필수</li><li>이미지 사이즈 80x80 [px]</li>
-필수 CTA 버튼|광고의 참여를 유도하는 버튼|<li>com.skplanet.skpad.benefit.presentation.media.CtaView 사용 필수</li><li>최대 7자</li><li>생략 부호로 일정 길이 이상은 생략 가능</li>
-임의 광고 알림 문구|Sponsored view|예시) "광고", "ad", "스폰서", "Sponsored"
+|항목|설명|필수여부|비고|
+|-|-|-|-|
+광고 제목|광고의 제목|Mandatory|<li>최대 10자</li><li>생략 부호로 일정 길이 이상은 생략 가능</li>
+광고 소재|이미지, 동영상 등 광고 소재|Mandatory|<li>com.skplanet.skpad.benefit.presentation.media.MediaView 사용 필수</li><li>종횡비 유지 필수</li><li>여백 추가 가능</li><li>이미지 사이즈 1200x627 [px]</li>
+광고 설명|광고에 대한 상세 설명|Mandatory|<li>생략 부호로 일정 길이 이상은 생략 가능</li><li>최대 40자</li>
+광고주 아이콘|광고주 아이콘 이미지|Mandatory|<li>종횡비 유지 필수</li><li>이미지 사이즈 80x80 [px]</li>
+CTA 버튼|광고의 참여를 유도하는 버튼|Mandatory|<li>com.skplanet.skpad.benefit.presentation.media.CtaView 사용 필수</li><li>최대 7자</li><li>생략 부호로 일정 길이 이상은 생략 가능</li>
+맞춤형 광고 정보 버튼|광고 표시 이유에 대한 가이드 기능을 제공|Mandatory|<li>com.skplanet.skpad.benefit.presentation.guide.AdInfoView 사용 필수</li><li>icon Image 교체 가능</li><li>필수 추가 필요</li>
+문의하기 버튼|VOC대응을 위한 Planet AD Report Web Page로 이동하는 기능 제공| Optional |<li>com.skplanet.skpad.benefit.presentation.guide.InquiryView 사용 필수</li><li>icon Image 교체 가능</li>
+광고 알림 문구|Sponsored view| Optional |예시) "광고", "ad", "스폰서", "Sponsored"
 
 <p>광고용 NativeAdView의 규격에 맞는 레이아웃(your_feed_ad.xml)을 구현합니다.</p>
 
@@ -251,7 +253,7 @@ Feed 지면에서는 사용자가 UI를 변경하는 방법을 제공합니다.
 <com.skplanet.skp.benefit.presentation.nativead.NativeAdView
     android:id="@+id/native_ad_view" ...>
  
-    // MediaView와 CtaView는 NativeAdView의 하위 컴포넌트로 구현해야합니다.
+    // AdInfoView, InquiryView, MediaView와 CtaView는 NativeAdView의 하위 컴포넌트로 구현해야합니다.
  
     <LinearLayout ... >
         <com.skplanet.skp.benefit.presentation.media.MediaView
@@ -264,10 +266,17 @@ Feed 지면에서는 사용자가 UI를 변경하는 방법을 제공합니다.
             android:id="@+id/imageIcon" ... />
         <com.skplanet.skp.benefit.presentation.media.CtaView
             android:id="@+id/ctaView" ... />
+
+        <com.skplanet.skpad.benefit.presentation.guide.AdInfoView
+            android:id="@+id/information" ... />
+
+        <com.skplanet.skpad.benefit.presentation.guide.InquiryView
+            android:id="@+id/inquiryButton" ... />
     </LinearLayout>
  
 </com.skplanet.skp.benefit.presentation.nativead.NativeAdView>
 ```
+
 
 AdsAdapter의 상속 클래스를 구현합니다. 구현한 상속 클래스의 onCreateViewHolder에서 your_feed_ad.xml을 사용하여 NativeAdView를 생성합니다.<br>
 그리고 FeedConfig에 구현한 YourAdsAdapter를 설정합니다. <br>
@@ -297,6 +306,8 @@ public class YourAdsAdapter extends AdsAdapter<AdsAdapter.NativeAdViewHolder> {
         final TextView descriptionView = view.findViewById(R.id.textDescription);
         final CtaView ctaView = view.findViewById(R.id.ctaView);
         final CtaPresenter ctaPresenter = new CtaPresenter(ctaView); // CtaView should not be null
+        final AdInfoView adInfoView = view.findViewById(R.id.information)
+        final InquiryView inquiryView = view.findViewById(R.id.inquiryButton)
  
         // data binding
         ctaPresenter.bind(nativeAd);
@@ -359,6 +370,9 @@ public class YourAdsAdapter extends AdsAdapter<AdsAdapter.NativeAdViewHolder> {
         view.setMediaView(mediaView);
         view.setClickableViews(clickableViews);
         view.setNativeAd(nativeAd);
+
+        view.setAdInfoView(adInfoView);
+        view.setInquiryView(inquiryView);
     }
 }
 ```
