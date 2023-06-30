@@ -9,7 +9,7 @@
 - JDK 1.11
 
 ### 준비사항
-![Planet AD APP Id/UnitID](./resources/benefit_basic_id.png)
+![Planet AD APP Id/UnitID](./resources/A_03.png)
 
 Planet AD Android SDK를 연동하기 위해서 아래 사항을 준비해야 합니다.
 
@@ -21,7 +21,7 @@ Unit ID|광고 지면별 고유 식별자||
 ### 포인트 적립 서버 연동
 
 
-![Planet AD Reward Process](./resources/benefit_reward_process.png)
+![Planet AD Reward Process](./resources/A_04.png)
 
 SKP 광고는 참여 시 포인트를 지급하는 보상형 광고와 지급하지 않는 비보상형 광고가 있습니다.<br>
 사용자가 보상형 광고에 참여하면 포인트 적립 요청을 처리할 수 있는 서버가 필요할 수 있습니다. 연동하는 방식에 따라 차이가 있으니, 아래 표를 확인하여 진행하시기 바랍니다.
@@ -133,21 +133,21 @@ SKPAdBenefit.setUserProfile(null);
 Planet AD Android SDK 연동을 위한 기본적인 설정은 완료하였습니다. 각각의 지면 별 여동 가이드에 따라 진행하시기 바랍니다.
 
 ##### Feed
-![feed_default](./resources/feed_default.png)
+![feed_default](./resources/A_05.png)
 
 Feed Type
 리스트 형태의 광고 지면입니다.
 
 
 #### Native
-![native_default](./resources/native_default.png)
+![native_default](./resources/A_06.png)
 
 [Native 연동하기](./3_Native-basic.md)
 커스텀 광고 지면입니다.
 배너 타입의 광고도 Native 지면으로 연동할 수 있습니다. 지면 크기별 Native 광고 layout 가이드를 참고하시기 바랍니다.
 
 #### Interstitial
-![interstitial_default](./resources/interstital_default.png)
+![interstitial_default](./resources/A_07.png)
 
 [Interstitial 연동하기](./8_Interstital-basic.md)
 전면 광고 지면입니다.

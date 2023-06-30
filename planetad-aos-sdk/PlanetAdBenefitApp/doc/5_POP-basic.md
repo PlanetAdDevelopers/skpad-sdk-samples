@@ -1,7 +1,7 @@
 ## POP-기본설정
 
 ### 개요
-![POP basic](./resources/benefit_pop_basic.png)
+![POP basic](./resources/A_18.png)
 
 Pop은 스크린 최상단에 뜨는 UI를 통해 사용자를 광고 지면으로 유도합니다. Pop을 활성화하면 화면을 껐다 켤 때마다 팝이 화면에 보이게 됩니다.<br>
 Android 12에 적용되는 오버레이의 터치 이벤트 차단에 대응하기 위해 팝(Pop) 버튼에 투명도를 적용하여 안정적인 앱 동작을 지원합니다.
@@ -30,7 +30,7 @@ SKPAdBenefit.init(this, skpAdBenefitConfig);
 Pop이 준비되면 Feed 지면에 Pop 활성화 버튼이 노출됩니다. 자세한 사항은 [Pop 활성화 버튼](./6_POP-advanced.md)에서 확인할 수 있습니다.
 
 ### Pop 초기화 및 활성화
-![POP permission](./resources/benefit_pop_permission.png)
+![POP permission](./resources/A_19.png)
 
 마시멜로(Android API 23) 이상 버전에서 Pop을 실행시키기 위해서 다른 앱 위에 그리기 권한이 필요합니다. 원활한 권한 획득을 위해 SKP Ad Android SDK는 사용자가 권한을 활성화하도록 유도하는 기능을 제공하고 있습니다.<br>
 다음 가이드에 따라 다른 앱위에 그리기 권한을 받고 Pop 을 활성화 할 수 있습니다.<br><br>

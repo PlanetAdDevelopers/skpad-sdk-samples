@@ -4,7 +4,7 @@
 본 가이드는 Native 지면에서 추가적으로 제공하는 기능에 대하여 추가적으로 설명합니다. 필요에 따라 가이드를 참고하시어 더욱 고도화할 수 있습니다.
 
 #### CtaView버튼 커스터마이징
-![CTAView button Customizing](./resources/benefit_ctaview_button_customizing.png)
+![CTAView button Customizing](./resources/A_17.png)
 
 PlanetAD Android SDK 에서 기본으로 제공하는 CtaView UI 및 처리 로직을 사용하지 않고 구현을 원하는 경우에는 다음과 같이 수정할 수 있습니다.
 

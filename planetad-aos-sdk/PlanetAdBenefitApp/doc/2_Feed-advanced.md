@@ -1,7 +1,7 @@
 ## Feed-고급설정
 
 ### 개요
-![Feed 영역 가이드](./resources/benefit_feed_area_guide.png)
+![Feed 영역 가이드](./resources/A_08.png)
 
 이 문서에서 가이드 하는 내용은 SKPAd Android SDK의 Feed 지면의 기능을 설명하고 각 기능을 변경하는 방법을 설명합니다.<br>
 이하 가이드에서 커스터마이징을 위해 구현 클래스를 정의합니다. 구현하는 클래스는 아래의 조건을 충족해야 합니다. 아래 조건을 충족하지 않는 경우 커스터마이징이 적용되지 않습니다.
@@ -10,27 +10,9 @@
 - 만일 내부 클래스로 생성을 해야 할 경우, public 정적(static) 클래스로 구현해야 합니다.
 
 
-### 개인정보 수집 동의 UI
-![개인정보 수집 동의 UI](./resources/benefit_privacy_collect_consent_ui.png)
-
-개인 정보 보호법과 구글 정책에 따라, 개인 정보 수집 및 사용에 대한 사용자의 동의가 필요합니다. 
-- 사용자가 개인 정보 수집에 동의하지 않으면, Feed 지면에 광고가 할당되지 않습니다. SKPAd Andorid SDK는 동의를 얻기 위한 UI를 제공합니다. 
-- Feed 지면에 처음 진입한 사용자에게는 위 이미지와 같은 UI가 보입니다.
-- SKPAd Andorid SDK의 개인 정보 수집 동의 UI를 사용하지 않거나, 다시 표시하고 싶은 경우 아래 표를 참고하여 설정할 수 있습니다.
-
-
-|Class|API|설명|
-|-|-|-|
-SKPAdBenefit|getPrivacyPolicyManager()|PrivacyPolicyManager 인스턴스를 반환합니다.
-PrivacyPolicyManager|showConsentUI(context, new PrivacyPolicyEventListener())|개인 정보 수집 동의 UI를 표시합니다.
-||grantConsent()|개인 정보 수집 동의합니다. 사용자가 처음 Feed 지면에 진입하기 전에 호출하면 해당 사용자에게 개인 정보 수집 동의 UI가 보이지 않습니다.
-||revokeConsent()|개인 정보 수집 동의를 철회합니다. 만일 철회하게 되면 사용자가 Feed 지면에 진입하면 개인 정보 수집 동의 UI가 표시됩니다.
-||isConsentGranted()|개인 정보 수집 동의 여부를 확인합니다.
-PrivacyPolicyEventListener|onUpdated(accepted: Boolean)|showConsentUI 에서 보여지는 UI에서 유저가 동의하면 accepted = True 로 호출됩니다. 반면 미동의시 accepted = False로 호출됩니다.
-
 ### Fragment로 Feed 연동
 
-![Fragment Feed Guide](./resources/benefit_fragment_feed_guide.png)
+![Fragment Feed Guide](./resources/A_05.png)
 
 Feed 지면은 기본적으로 제공되는 액티비티로 제공됩니다. 더 다양한 연동 방식을 지원하기 위해 액티비티가 아닌 프래그먼트로 Feed 지면을 연동할 수 있습니다.<br> 프래그먼트를 추가하고자 하는 액티비티에 프래그먼트를 추가하고, 해당 액티비티의 onCreate에서 프래그먼트를 초기화합니다.<br>
 다음은 FeedFragment를 연동하는 예시입니다.
@@ -77,7 +59,7 @@ Feed 툴바 영역의 디자인을 변경할 수 있습니다. 툴바 영역을 
 - SDK에서 기본으로 제공하는 UI를 이용하는 방법
 - 직접 구현한 Custom View를 이용하는 방법
 
-![toolbar_guide](./resources/benefit_toolbar_guide.png)
+![toolbar_guide](./resources/A_10.png)
 
 #### SDK에서 기본으로 제공하는 UI를 이용하는 방법
 SKPAd Android SDK에서 제공하는 기본 UI를 수정하여 타이틀 혹은 배경색을 변경할 수 있습니다. 다음은 기본 UI를 수정하여 툴바를 변경하는 예시입니다.<br><br>
@@ -165,7 +147,7 @@ Custom View의 높이가 안드로이드 액티비티의 기본 액션바 높이
 
 ### 헤더 영역에 프로필 입력 배너 표시
 
-![Header Profile guide](./resources/benefit_header_profile_guide.png)
+![Header Profile guide](./resources/A_14-1.png)
 
 사용자의 출생연도와 성별 정보를 설정하지 않으면 헤더 영역에 프로필 정보 입력 배너가 표시됩니다.<br>
 사용자의 정보 제공 여부와 무관하게 배너를 표시하지 않을 수 있습니다. 이 기능을 사용하기 위해서는 FeedConfig.feedHeaderViewAdapterClass를 설정하지 않아야 합니다.<br>
@@ -177,11 +159,10 @@ final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID
     .build();
 ```
 
-![Header Profile guide](../resources/benefit_header_profile_guide.png)
 
 
 ### 적립 가능 금액 표시
-![적립가능금액표시](./resources/benefit_header_reward)
+![적립가능금액표시](./resources/A_15.png)
 
 헤더 영역에 SKPAd Android SDK 에서 기본으로 제공하는 UI를 사용해 "총 적립 가능 금액"을 사용자에게 보여줍니다.<br>
 UI를 변경하기 위해서는 헤더 영역을 자체 구현해야 합니다. 헤더 영역을 자체 구현하는 방법은 아래 헤더 영역 자체 구현을 참고하시기 바랍니다.
@@ -193,7 +174,7 @@ final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID
 ```
 
 ### 헤더 영역 자체 구현
-![Feed Header Guide](./resources/benefit_header_guide.png)
+![Feed Header Guide](./resources/A_13.png)
 
 Feed 헤더 영역을 자유로이 활용할 수 있습니다. 예를 들어, Feed 영역을 설명하는 공간으로도 활용할 수 있습니다. (단, 헤더 영역을 필요에 따라 직접 구현한 UI 에 적립 가능한 금액을 표시할 수 있습니다. onBindView를 통해 지급 가능한 금액(reward)을 알 수 있습니다.<br>
 다음은 헤더 영역을 변경하는 예시입니다.<br>
@@ -230,7 +211,7 @@ final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID
 ### 광고 UI 자체 구현
 Feed 지면에서는 사용자가 UI를 변경하는 방법을 제공합니다.
 
-![Feed normal ad Guide](./resources/benefit_normal_ad_guide.png)
+![Feed normal ad Guide](./resources/A_05.png)
 
 다음은 광고의 디자인을 변경하는 방법을 설명하는 예시입니다.
 
@@ -385,7 +366,7 @@ final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID
 
 
 ### 기본 포인트 지급 안내 UI 자체 구현
-![Feed basic point noti Guide](./resources/benefit_basic_point_noti_guide.png)
+![Feed basic point noti Guide](./resources/A_15.png)
 
 사용자가 Feed 지면에 접근하면 일정 주기로 기본 포인트를 지급합니다. 기본 포인트 지급 알림 UI는 위의 이미지와 같습니다. <br>
 기본 포인트 지급 알림 UI를 수정하여 좀 더 사용자 경험을 개선할 수 있습니다.<br>
@@ -410,7 +391,7 @@ final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID
 ### 광고 미할당 안내 디자인 자체 구현하기
 Feed 지면에 진입한 시점에 노출할 광고가 없다면 광고 미할당 안내 UI가 표시됩니다. 미할당 안내 디자인은 자체 구현하여 변경할 수 있습니다.
 
-![Feed empty Guide](./resources/benefit_empty_guide.png)
+![Feed empty Guide](./resources/A_16.png)
 
 광고 미할당 안내 디자인을 직접 구현하려면 다음의 절차를 따르세요.
 
@@ -481,18 +462,3 @@ final FeedConfig feedConfig = new FeedConfig.Builder(YOUR_FEED_UNIT_ID)
                 .feedErrorViewHolderClass(CustomErrorView.class)
                 .build();
 ```
-
-### 탭 UI 변경
-![Feed TAB UI Guide](./resources/benefit_feed_tab_ui.png)
-
-아래의 방법으로 탭의 디자인을 수정할 수 있습니다.
-
-- 탭의 색상은 테마 적용을 통해 변경할 수 있습니다.
-- 탭의 문구는 FeedConfig를 설정하여 변경합니다.
-
-```
-final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID")
-        .tabTextArray(new String\[\] \{ FIRST_TAB_NAME, SECOND_TAB_NAME \}) // 탭에 들어갈 문구
-        .build();
-```
-

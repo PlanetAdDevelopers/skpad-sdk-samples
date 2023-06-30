@@ -3,7 +3,7 @@
 ### 개요
 Feed 지면은 광고를 리스트 형식으로 제공하는 지면입니다.
 
-![Feed Basic](./resources/benefit_feed_basic.png)
+![Feed Basic](./resources/A_05.png)
 
 ### 준비 사항
 - [시작하기](./0_benefit_begin.md) 적용 완료
@@ -38,7 +38,7 @@ FeedConfig를 사용하여 Feed 지면의 기능과 디자인을 변경할 수 �
 
 ### Feed 지면 표시
 
-![Feed Basic](./resources/benefit_feed_basic.png)
+![Feed Basic](./resources/A_05.png)
 
 바텀시트 형태의 Feed지면을 표시합니다. 광고를 할당 받지 않은 상태에서는 Feed 지면이 사용자에게 노출된 후에 자동으로 할당받습니다.
 - 단, 할당 받는 도중에는 "참여할 수 있는 광고가 없습니다." 라는 이미지가 보일 수 있습니다.
