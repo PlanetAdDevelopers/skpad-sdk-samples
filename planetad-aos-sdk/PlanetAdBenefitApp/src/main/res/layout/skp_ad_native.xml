@@ -53,85 +53,84 @@
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginRight="16dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-
-                        <com.skplanet.skpad.benefit.presentation.guide.InformationView
-                            android:id="@+id/information"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center_horizontal"
-                            android:padding="8dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-                        <com.skplanet.skpad.benefit.presentation.guide.InquiryButon
-                            android:id="@+id/inquiryButton"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center_horizontal"
-                            android:padding="8dp"
-                            app:layout_constraintStart_toEndOf="@id/information"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-
-                        <ImageView
-                            android:id="@+id/interstitial_ad_gift_icon"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center_horizontal"
-                            android:background="@drawable/skpad_native_ad_top_icon"
-                            android:padding="8dp"
-                            android:src="@drawable/skpad_ic_gift"
-                            app:layout_constraintStart_toEndOf="@id/inquiryButton"
-                            app:layout_constraintTop_toTopOf="parent" />
-                        <LinearLayout
-                            android:id="@+id/linkViewContainer"
-                            android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="@dimen/skpad_interstitial_dialog_portrait_link_view_container_margin_horizontal"
-                            android:orientation="vertical"
-                            app:layout_constraintBottom_toBottomOf="@+id/interstitial_ad_gift_icon"
-                            app:layout_constraintEnd_toStartOf="@+id/interstitial_ad_close_button"
-                            app:layout_constraintStart_toEndOf="@+id/interstitial_ad_gift_icon"
-                            app:layout_constraintTop_toTopOf="@+id/interstitial_ad_gift_icon">
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="16dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/interstitial_ad_gift_icon"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@drawable/skpad_native_ad_top_icon"
+                                android:padding="8dp"
+                                android:src="@drawable/skpad_ic_gift"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                            <LinearLayout
+                                android:id="@+id/linkViewContainer"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/skpad_interstitial_dialog_portrait_link_view_container_margin_horizontal"
+                                android:orientation="vertical"
+                                app:layout_constraintBottom_toBottomOf="@+id/interstitial_ad_gift_icon"
+                                app:layout_constraintEnd_toStartOf="@+id/interstitial_ad_close_button"
+                                app:layout_constraintStart_toEndOf="@+id/interstitial_ad_gift_icon"
+                                app:layout_constraintTop_toTopOf="@+id/interstitial_ad_gift_icon">
 
-                            <TextView
-                                android:id="@+id/card_title_text"
+                                <TextView
+                                    android:id="@+id/card_title_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="top"
+                                    android:ellipsize="end"
+                                    android:gravity="center_vertical"
+                                    android:lines="1"
+                                    android:text="@string/skpad_interstitial_title"
+                                    android:textAppearance="@style/skpad_h5"
+                                    android:textColor="@color/skpad_text_base"
+                                    android:visibility="visible" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/interstitial_ad_close_button"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="top"
-                                android:ellipsize="end"
-                                android:gravity="center_vertical"
-                                android:lines="1"
-                                android:text="@string/skpad_interstitial_title"
-                                android:textAppearance="@style/skpad_h5"
-                                android:textColor="@color/skpad_text_base"
-                                android:visibility="visible" />
-                        </LinearLayout>
+                                android:src="@drawable/skpad_ic_close"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:tint="@color/skpad_text_assistive" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <ImageView
-                            android:id="@+id/interstitial_ad_close_button"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/skpad_ic_close"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:tint="@color/skpad_text_assistive" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    </FrameLayout>
 
-                    <com.skplanet.skpad.benefit.presentation.media.MediaView
-                        android:id="@+id/ad_media_view"
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:minHeight="100dp" />
+                        >
+                        <com.skplanet.skpad.benefit.presentation.media.MediaView
+                            android:id="@+id/ad_media_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="100dp" />
+                        <com.skplanet.skpad.benefit.presentation.guide.AdInfoView
+                            android:id="@+id/information"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="left|top"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginLeft="8dp"/>
+                    </FrameLayout>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -178,7 +177,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp">
+                        android:layout_marginRight="16dp"
+                        android:visibility="gone">
 
                         <TextView
                             android:id="@+id/discountedPriceText"
@@ -235,7 +235,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:layout_marginBottom="16dp">
-
+                        <com.skplanet.skpad.benefit.presentation.guide.InquiryView
+                            android:id="@+id/inquiryButton"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="8dp"
+                            />
                         <com.skplanet.skpad.benefit.presentation.media.CtaView
                             android:id="@+id/ad_cta_view"
                             android:layout_width="wrap_content"
@@ -244,11 +250,8 @@
                             android:layout_marginRight="16dp"
                             android:clickable="true"
                             android:focusable="true" />
-
                     </FrameLayout>
-
                 </LinearLayout>
-
             </com.skplanet.skpad.benefit.presentation.nativead.NativeAdView>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
