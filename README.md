@@ -2,12 +2,12 @@
 
 ## skpad-benefit-web-sdk
 - Development Guide
-  > [Development Guide - SkpAD Benefit](./skpad-benefit-web-sdk)
+  > [Development Guide - SKPAD Benefit](./skpad-benefit-web-sdk)
   
   
-## plantad-android-sdk
+## skpad-android-sdk
 - Development Guide
-  > [Development Guide - PlanetAD Android](./skpad-aos-sdk)
+  > [Development Guide - SKPAD Android](./skpad-aos-sdk)
 
 
 ## skpad-benefit-ios-sdk
