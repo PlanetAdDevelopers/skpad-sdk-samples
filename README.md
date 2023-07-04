@@ -7,7 +7,7 @@
   
 ## plantad-android-sdk
 - Development Guide
-  > [Development Guide - PlanetAD Android](./planetad-aos-sdk)
+  > [Development Guide - PlanetAD Android](./skpad-aos-sdk)
 
 
 ## skpad-benefit-ios-sdk
