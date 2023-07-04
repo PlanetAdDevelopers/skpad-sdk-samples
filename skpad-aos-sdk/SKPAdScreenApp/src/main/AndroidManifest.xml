@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.skplanet.app.skpadscreensample">
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SKPADBenefitSample"
+        android:name="com.skplanet.app.skpadscreensample.MainApplication">
+
+        <!--  Planet AD APP KEY  -->
+        <meta-data
+            android:name="com.skplanet.APP_KEY"
+            android:value="app-pub-263145199717132" />
+
+        <activity
+            android:name="com.skplanet.app.skpadscreensample.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

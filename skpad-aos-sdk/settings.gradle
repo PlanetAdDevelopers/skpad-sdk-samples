@@ -1,0 +1,28 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+
+        //<< Planet AD를 위한 Repository 추가
+        jcenter()
+        maven { url "https://asia-northeast3-maven.pkg.dev/planetad-379102/planetad" }
+        //>> Planet AD를 위한 Repository 추가
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+
+        //<< Planet AD를 위한 Repository 추가
+        jcenter()
+        maven { url "https://asia-northeast3-maven.pkg.dev/planetad-379102/planetad" }
+        //>> Planet AD를 위한 Repository 추가
+    }
+}
+rootProject.name = "SKP AD Sample"
+rootProject.name = "SKP AD Sample"
+include ':SKPAdBenefitApp'
+include ':SKPAdScreenApp'
