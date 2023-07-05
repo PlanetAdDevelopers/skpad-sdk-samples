@@ -19,5 +19,7 @@
 #import <SKPAdBenefitNative/SKPVideoPlayerOverlay.h>
 #import <SKPAdBenefitNative/SKPVideoPlayerDefaultOverlay.h>
 #import <SKPAdBenefitNative/SKPVideoPlayerConfig.h>
+#import <SKPAdBenefitNative/SABAdInfoView.h>
+#import <SKPAdBenefitNative/SABInquiryView.h>
 
 static const NSNotificationName SABAdParticipatedNotification = @"SABAdParticipatedNotificiation";

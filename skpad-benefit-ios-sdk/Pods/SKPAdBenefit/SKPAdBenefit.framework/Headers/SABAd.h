@@ -14,7 +14,8 @@ typedef enum {
 
 @interface SABAd : NSObject <SABTrackable>
 
-@property (nonatomic, copy, readonly) NSString *Id;
+@property (nonatomic, copy, readonly) NSString *Id; //campaign_id
+@property (nonatomic, copy, readonly) NSString *name; //campaign_name
 @property (nonatomic, assign, readonly) NSUInteger ttl;
 @property (nonatomic, assign, readonly) double landingReward;
 @property (nonatomic, assign, readonly) double actionReward;

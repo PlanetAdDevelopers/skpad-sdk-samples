@@ -12,5 +12,5 @@
 
 ## skpad-benefit-ios-sdk
 - Development Guide
-  > [Development Guide - SKPAdBenefit iOS](./skpad-benefit-ios-sdk)
+  > [Development Guide - SKPAd Benefit iOS](./skpad-benefit-ios-sdk)
   

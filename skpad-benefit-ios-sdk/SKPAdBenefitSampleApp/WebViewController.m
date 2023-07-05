@@ -27,7 +27,7 @@
     [contentController addScriptMessageHandler:self name:SKPAdBenefitWebInterfaceName];
     config.userContentController = contentController;
     
-    _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) configuration:config];
+    _webView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
     _webView.allowsBackForwardNavigationGestures = YES;
     [self.view addSubview:_webView];
     

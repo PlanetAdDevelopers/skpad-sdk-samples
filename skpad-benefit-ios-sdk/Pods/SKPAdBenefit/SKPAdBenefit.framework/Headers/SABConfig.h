@@ -3,8 +3,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef enum {
-    SABEnvTest = 0,
-    SABEnvProduction
+    SABEnvDev = 0,
+    SABEnvPrd,
+    SABEnvAlp
 } SABEnv;
 
 @interface SABConfig : NSObject

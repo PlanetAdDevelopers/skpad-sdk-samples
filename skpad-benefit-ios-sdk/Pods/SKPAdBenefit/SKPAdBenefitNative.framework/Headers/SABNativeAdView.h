@@ -8,6 +8,8 @@ NS_ASSUME_NONNULL_BEGIN
 @class SABAd;
 @class SABNativeAdView;
 @class SABMediaView;
+@class SABAdInfoView;
+@class SABInquiryView;
 
 @protocol SABNativeAdViewDelegate <NSObject>
 
@@ -41,6 +43,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) SABMediaView *mediaView;
 @property (nonatomic, strong) NSArray<UIView *> *clickableViews;
 @property (nonatomic, strong) SABAd *ad;
+
+@property (nonatomic, strong) SABAdInfoView *adInfoView;
+@property (nonatomic, strong) SABInquiryView *inquiryView;
 
 @end
 

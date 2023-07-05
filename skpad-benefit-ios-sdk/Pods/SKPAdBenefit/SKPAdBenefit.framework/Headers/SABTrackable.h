@@ -43,6 +43,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray<NSString *> *)vastClickTrackingUrls;
 
+- (BOOL)isBlocked;
+- (void)setAsBlocked;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -19,4 +19,6 @@
 - (void)handleRewardFailure:(SABRewardResult)result;
 - (void)handleParticipation;
 - (void)handleLandingPageOpen;
+
+- (void)handleBlockAd;
 @end

@@ -9,7 +9,8 @@
 
 @class SABNativeAdView;
 @class SABMediaView;
-
+@class SABAdInfoView;
+@class SABInquiryView;
 
 @interface ViewController : UIViewController
 @property (nonatomic, strong) IBOutlet SABNativeAdView *adView;
@@ -21,6 +22,8 @@
 @property (nonatomic, strong) IBOutlet UISwitch *shouldClickSwitch;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *loginButton;
 @property (nonatomic, strong) IBOutlet UIView *container;
+@property (nonatomic, strong) IBOutlet SABAdInfoView *adInfoView;
+@property (nonatomic, strong) IBOutlet SABInquiryView *inquiryView;
 
 @end
 

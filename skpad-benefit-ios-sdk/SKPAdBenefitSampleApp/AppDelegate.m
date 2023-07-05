@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    SABConfig *config = [[SABConfig alloc] initWithAppId:kDefaultAppId environment:SABEnvProduction logging:YES];
+    SABConfig *config = [[SABConfig alloc] initWithAppId:kDefaultAppId];
     [SKPAdBenefit initializeWithConfig:config];
     
     SABUserPreference *userPreference = [[SABUserPreference alloc] initWithAutoPlayType:SABVideoAutoPlayOnWifi];

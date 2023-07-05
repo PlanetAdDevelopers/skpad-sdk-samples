@@ -70,7 +70,7 @@
     [self.navigationController.view.window makeToast:@"Session registered"];
 }
 
-#pragma mark NativeType
+#pragma mark - NativeType
 //Native Type 광고 할당 및 표시하기
 - (IBAction)loadNativeButtonTapped:(id)sender {
     self.adView.hidden = NO;
@@ -93,6 +93,8 @@
         self.adView.ad = ad;
         self.adView.mediaView = self.mediaView;
         self.adView.clickableViews = @[self.ctaButton, self.iconImageView, self.mediaView];
+        self.adView.adInfoView = self.adInfoView;
+        self.adView.inquiryView = self.inquiryView;
         
     } onFailure:^(SABError *error) {
         //할당된 광고가 없으면 호출됩니다.
@@ -167,7 +169,7 @@
     }
 }
 
-#pragma mark SABNativeAdViewVideoDelegate - 네이티브 비디오 광고 리스너 등록하기
+#pragma mark - SABNativeAdViewVideoDelegate - 네이티브 비디오 광고 리스너 등록하기
 - (void)SABNativeAdViewWillStartPlayingVideo:(SABNativeAdView *)adView {
 }
 - (void)SABNativeAdViewDidResumeVideo:(SABNativeAdView *)adView {
@@ -181,7 +183,7 @@
 - (void)SABNativeAdView:(SABNativeAdView *)adView didVideoError:(NSError *)error {
 }
 
-#pragma mark FeedType
+#pragma mark - FeedType
 - (IBAction)loadFeedButtonTapped:(id)sender {
     SABFeedConfig *feedConfig = [[SABFeedConfig alloc] initWithUnitId:kDefaultFeedUnitId];
     
@@ -189,10 +191,11 @@
     [self.navigationController pushViewController:[feedHandler populateViewController] animated:YES];
 }
 
-#pragma mark Interstitial
+#pragma mark - Interstitial
 //Dialog
 - (IBAction)loadInterstitialButtonTapped:(id)sender {
     SABInterstitialConfig *interstitialConfig = [[SABInterstitialConfig alloc] init];
+    
     SABInterstitialAdHandler *adLoader = [[SABInterstitialAdHandler alloc] initWithUnitId:kDefaultInterstitialUnitId
                                                                                      type:SABInterstitialDialog];
     adLoader.delegate = self;
@@ -202,6 +205,7 @@
 //BottomSheet
 - (IBAction)loadBottomSheetButtonTapped:(id)sender {
     SABInterstitialConfig *interstitialConfig = [[SABInterstitialConfig alloc] init];
+    
     SABInterstitialAdHandler *adLoader = [[SABInterstitialAdHandler alloc] initWithUnitId:kDefaultInterstitialUnitId
                                                                                      type:SABInterstitialBottomSheet];
     adLoader.delegate = self;
@@ -218,7 +222,7 @@
 - (void)SABInterstitialViewControllerDidFinish:(UIViewController *)viewController {
 }
 
-#pragma mark Web SDK
+#pragma mark - Web SDK
 - (IBAction)loadTestWebPage:(id)sender {
     WebViewController *webViewController = [[WebViewController alloc] init];
     NSString *samplePageUrl = websdk_url;

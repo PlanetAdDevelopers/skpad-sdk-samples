@@ -30,6 +30,7 @@
 #import <SKPAdBenefit/SKPLandingInfo.h>
 #import <SKPAdBenefit/SKPEvent.h>
 #import <SKPAdBenefit/SKPReward.h>
+#import <SKPAdBenefit/SABBlockAdHandler.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -54,14 +55,13 @@ extern NSString *const SABSessionRegisteredNotification;
 + (void)setUserProfile:(nullable SABUserProfile *)userProfile shouldShowAppTrackingTransparencyDialog:(BOOL)shouldShowAppTrackingTransparencyDialog;
 + (void)setUserPreference:(nullable SABUserPreference *)userPreference;
 + (void)setLauncher:(nullable id<SABLauncher>)launcher;
-+ (void)showInquiryPageOnViewController:(UIViewController *)viewController;
++ (void)showInquiryPage;
 - (void)getCurrentPointOnSuccess:(void (^)(int))onSuccess onFailure:(void (^)(NSError *))onFailure;
 - (void)getPointConfigOnSuccess:(void (^)(SABPointConfig *))onSuccess onFailure:(void (^)(NSError *))onFailure;
 
 + (NSData*)getLogAttachementData;
 + (NSString *)getLogBodyData;
 + (void) removeSKPAdsLogFile;
-+ (void) setServerType:(NSString *)serverType;
 + (NSString*) getSDKVersion;
 @end
 

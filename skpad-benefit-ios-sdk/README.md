@@ -24,6 +24,9 @@
   - [7-5. 오프라인 빌드 적용 예시](#7-5-오프라인-빌드-적용-예시)  
   - [7-6. 앱 다크모드 활성화 시 Feed 광고 뷰 설정](#7-6-앱-다크모드-활성화-시-feed-광고-뷰-설정)
   - [7-7. 광고 로드 실패 시 에러 정보 확인하기](#7-7-광고-로드-실패-시-에러-정보-확인하기)  
+  - [7-8. 문의하기](#7-8-문의하기)
+  - [7-9. 광고 노출/클릭/참여와 관련한 콜백 변화](#7-9-광고-노출클릭참여와-관련한-콜백-변화)
+  
 ---  
 
   
@@ -50,7 +53,7 @@ SKPAdBenefit iOS SDK가 제공하는 기본 UI를 사용해 원하는 지면에 
 
 ## 준비 사항
 
-![](./images/1.png)   
+![](./images/I_01.png)   
 
 <br>
 
@@ -67,7 +70,7 @@ SKPAdBenefit iOS SDK를 연동하기 위해서 아래 사항을 준비해야 합
 
 ## 포인트 적립 서버 연동
 
-![](./images/2.png)   
+![](./images/I_02.png)   
 
 <br>
 
@@ -79,7 +82,7 @@ PlanetAD 광고는 참여 시 포인트를 지급하는 보상형 광고와 지�
 |--|--|--|
 | 지급하지 않음 |- |비보상형 광고로 연동합니다.<br>서버 간 연동은 불필요합니다. |
 | 지급을 원함 |없음 | `네이버페이 포인트` 등 제 3의 포인트 시스템을 이용하여 포인트를 부여할 수 있습니다.<br>PlanetAD 담당자에게 문의하시기 바랍니다. |
-| 지급을 원함 | 있음 |[포스트백 연동 가이드]()을 참고하여 서버간 연동을 진행할 수 있습니다. | 
+| 지급을 원함 | 있음 |포스트백 연동 가이드을 참고하여 서버간 연동을 진행할 수 있습니다. | 
 
 <br>
 <br>
@@ -107,11 +110,11 @@ PlanetAD 담당자가 SDK 연동에 필요한 라이브러리를 준비해드립
 
 ### SKPAdBenefit 초기화   
 
-SABConfig에 App ID를 추가하고 AppDelegate의 `application:didFinishLaunchingWithOptions`에서 SDK 를 초기화합니다.
+SABConfig에 App ID를 추가하고 AppDelegate의 `application:didFinishLaunchingWithOptions`에서 SDK를 초기화합니다.
 
 다음은 `SKPAdBenefit`을 초기화하는 예시입니다.   
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>   
 
   ```objective-c
@@ -135,7 +138,7 @@ SABConfig에 App ID를 추가하고 AppDelegate의 `application:didFinishLaunchi
 </details>
 
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
   
 ```swift
@@ -174,7 +177,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 다음은 사용자 프로필을 설정하는 예시입니다.
   
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -185,7 +188,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -203,7 +206,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 외부 인증을 통한 로그인이 만료되는 시점 혹은 앱 사용 종료로 설정값 삭제가 필요할 경우, 다음을 설정합니다.    
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -214,7 +217,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -235,7 +238,7 @@ SKPAdBenefit iOS SDK 연동을 위한 기본적인 설정은 완료하였습니�
 
 |Feed |Native |Interstitial |
 |--|--|--|
-|![](./images/4.png)|![](./images/3.png)|![](./images/5.png)|
+|![](./images/I_04.png)|![](./images/I_03.png)|![](./images/I_05.png)|
 |[Feed 연동하기](#3-광고-지면---feed)<br>리스트 형태의 광고 지면입니다. |[Native 연동하기](#4-광고-지면---native)<br>커스텀 광고 지면입니다. |[Interstitial 연동하기](#5-광고-지면---interstitial)<br>전면 광고 지면입니다. |
 
 <br>
@@ -249,7 +252,7 @@ SKPAdBenefit iOS SDK 연동을 위한 기본적인 설정은 완료하였습니�
 
 ### 개요
 
-![](./images/6.png)   
+![](./images/I_06.png)   
 <br>
   
 Feed 지면은 여러 개의 광고를 리스트 형식으로 제공하는 지면입니다.
@@ -271,7 +274,7 @@ Feed 지면은 여러 개의 광고를 리스트 형식으로 제공하는 지�
 다음은 Feed 지면을 초기화하는 예시입니다.
 
   
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -285,7 +288,7 @@ Feed 지면은 여러 개의 광고를 리스트 형식으로 제공하는 지�
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -310,7 +313,7 @@ Feed 지면은 여러 개의 광고를 리스트 형식으로 제공하는 지�
 ### Feed 지면 표시
 
   
-![](./images/7.png)   
+![](./images/I_07.png)   
 
 <br>
 
@@ -320,7 +323,7 @@ Feed 지면에서 매번 새로운 광고를 보여주지 위해서는 새로운
 
 다음은 Feed 지면을 표시하는 예시입니다.
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -334,7 +337,7 @@ Feed 지면에서 매번 새로운 광고를 보여주지 위해서는 새로운
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -351,10 +354,10 @@ Feed 지면에서 매번 새로운 광고를 보여주지 위해서는 새로운
 <br>
 
 
-## 광고 미리 할당받기
+### 광고 미리 할당받기
 
   
-![](./images/8.png)
+![](./images/I_08.png)
   
 <br>
 
@@ -363,7 +366,7 @@ Feed 지면에서 매번 새로운 광고를 보여주지 위해서는 새로운
 다음은 광고를 미리 할당받은 후, 참여할 수 있는 광고가 있을 때 Feed 지면을 표시하는 예시입니다.
 
   
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -379,7 +382,7 @@ Feed 지면에서 매번 새로운 광고를 보여주지 위해서는 새로운
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -407,7 +410,7 @@ Feed 지면에서 매번 새로운 광고를 보여주지 위해서는 새로운
 
 ### 개요
 
-![](./images/9.png)
+![](./images/I_09.png)
 
 <br>
 이 문서에서 가이드 하는 내용은 SKPAdBenefit iOS SDK의 Feed 지면의 기능을 설명하고 각 기능을 변경하는 방법을 설명합니다.
@@ -417,7 +420,7 @@ Feed 지면에서 매번 새로운 광고를 보여주지 위해서는 새로운
 
 ### 헤더 영역 자체 구현
 
-![](./images/10.png)   
+![](./images/I_10.png)   
 
 <br>
 
@@ -430,7 +433,7 @@ Feed 헤더 영역을 자유로이 활용할 수 있습니다. 예를 들어, Fe
 다음은 헤더 영역을 자체 구현한 UI로 대체하는 예시입니다.
 
   
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -483,7 +486,7 @@ Feed 헤더 영역을 자유로이 활용할 수 있습니다. 예를 들어, Fe
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -537,7 +540,7 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
 
 #### 일반 광고 UI 자체 구현
 
-![](./images/11.png)  
+![](./images/I_11.png)  
 <br>
 
 다음은 일반 광고의 디자인을 변경하는 방법을 설명합니다.   
@@ -546,7 +549,7 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
 
 <br>
 
-![](./images/18.png)  
+![](./images/I_18.png)  
 
 <br>
 
@@ -556,22 +559,22 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
 |`필수` Title view |광고의 제목 |최대 10자 |- |생략 부호로 일정 길이 이상은 생략 가능 |
 |`필수` Description view |광고에 대한 상세 설명 |최대 40자 |- |생략 부호로 일정 길이 이상은 생략 가능 |
 |`필수` CTA view |광고 참여를 유도하는 문구 |최대 7자 |- |- 생략 부호로 일정 길이 이상은 생략 가능<br>- 보상형 광고에는 포인트 정보도 포함해야 합니다. |
-|`필수`Icon image view |광고주 아이콘 이미지 |80x80 px |종횡비 유지 |- |
-|`권장` Sponsored view |사용자에게 광고임을 알리는 문구 |- |- |예시) *“광고”, “ad”, “스폰서”, “Sponsored”* |
-  
+|`필수` Icon image view |광고주 아이콘 이미지 |80x80 px |종횡비 유지 |- |
+|`필수` AdInfo view |사용자에게 광고임을 알리는 버튼 |26x26 px |종횡비 유지 |- |  
 <br>
 
 광고 레이아웃을 생성한 후, `SABAdViewHolder`의 구현 클래스를 구현합니다. `SABAdViewHolder`의 구현 클래스는 `SABFeedConfig`에 설정합니다.   
 
 다음은 Objective-C와 Swift로 구현한 예시입니다.
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
   @interface CustomAdViewHolder: SABAdViewHolder {
     SABNativeAdView *_adView;
     SABMediaView *_mediaView;
+    SABAdInfoView *_adInfoView;
     UILabel *_titleLabel;
     ...
   }
@@ -596,11 +599,13 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
   - (void)setUpView {
     _adView = [[SABNativeAdView alloc] initWithFrame:CGRectZero];
     _mediaView = [[SABMediaView alloc] initWithFrame:CGRectZero];
+    _adInfoView = [[SABAdInfoView alloc] initWithFrame:CGRectZero];
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     ...
   
     [self addSubview:_adView];
     [_adView addSubview:_mediaView];
+    [_adView addSubView:_adInfoView];
     [_adView addSubview:_titleLabel];
     ...
   
@@ -630,6 +635,7 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
   
       self.adView.ad = ad;
       self.adView.mediaView = self.mediaView;
+      self.adView.adInfoView = self.adInfoView;
       self.adView.clickableViews = @[self.ctaButton, self.iconImageView];
   }
   @end
@@ -643,13 +649,14 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
   class CustomAdViewHolder: SABAdViewHolder {
     private var adView = SABNativeAdView()
     private var mediaView = SABMediaView()
+    private var adInfoView = SABAdInfoView()
     private var titleLabel = UILabel()
     ...
 
@@ -666,6 +673,7 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
     func setUpView() {
       addSubview(self.adView)
       adView.addSubview(self.mediaView)
+      adView.addSubView(self.adInfoView)
       adView.addSubview(self.titleLabel)
       ...
     
@@ -695,6 +703,7 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
   
         self.adView.ad = ad
         self.adView.mediaView = self.mediaView
+        self.adView.adInfoView = self.adInfoView
         self.adView.clickableViews = [self.ctaButton, self.iconImageView]
     }
   }
@@ -718,7 +727,7 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
 다음은 Objective-C와 Swift로 구현한 예시입니다.
 
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -761,7 +770,7 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -811,14 +820,14 @@ Feed 지면에서 ATT 권한 획득을 위한 팝업 및 가이드 배너를 보
 
 #### Feed 진입 시 권한 획득 다이얼로그 노출
 
-![](/.images/12.png)   
+![](/.images/I_12.png)   
 <br>
 
 팝업 노출을 설정하면 iOS 14에서 ATT 권한 허용 여부를 결정하지 않은 사용자가 Feed 지면에 진입할 때 ATT 권한 획득 팝업이 보입니다.   
 
 다음은 Objective-C 와 Swift에서 설정하는 방법입니다.
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -829,7 +838,7 @@ Feed 지면에서 ATT 권한 획득을 위한 팝업 및 가이드 배너를 보
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -847,14 +856,14 @@ ATT 권한에 대한 추가적인 설명은 [iOS 14를 위한 준비](#7-1-ios-1
 
 #### Feed 헤더 영역에 ATT 권한 설명 배너 추가하기
 
-![](./images/13.png)   
+![](./images/I_13.png)   
 <br>
 
 Feed 지면 상단의 헤더 영역에 배너를 표시하여 사용자에게 ATT 권한에 대해서 설명할 수 있습니다. 단, Feed 헤더 영역을 커스터마이즈해서 사용하는 경우 또는 유저로부터 이미 AppTrackingTransparency 권한을 획득했을 경우에는 ATT 권한 설명 배너는 노출되지 않습니다.
 
 다음은 Feed 지면 상단에 ATT 권한 설명 배너를 노출하는 설정 예시입니다.
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -865,7 +874,7 @@ Feed 지면 상단의 헤더 영역에 배너를 표시하여 사용자에게 AT
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -876,7 +885,7 @@ Feed 지면 상단의 헤더 영역에 배너를 표시하여 사용자에게 AT
 </p>
 </details> 
 
-<details><summary>Info.plist에 ATT 설명 페이지 URL 설정</summary>   
+<details open><summary>Info.plist에 ATT 설명 페이지 URL 설정</summary>   
 <p>    
 
   ```xml
@@ -891,14 +900,14 @@ Feed 지면 상단의 헤더 영역에 배너를 표시하여 사용자에게 AT
 
 ### Feed 지면 광고 미할당 안내 UI 자체 구현
 
-![](./images/14.png)   
+![](./images/I_14.png)   
 <br>
 
 사용자가 Feed 지면에 진입한 시점에 노출할 광고가 없다면 미 할당 안내 UI가 노출됩니다. SKPAdBenefit iOS SDK는 위와 같은 기본 UI를 제공합니다. 안내 UI는 자체 구현하여 변경하거나 [Feed 지면 광고 미할당 안내 UI 변경](#feed-지면-광고-미할당-안내-ui-변경)을 참고하여 이미지 혹은 문구만 변경하여 수정할 수도 있습니다.
 
 다음은 자체 구현한 UI로 변경하는 예시입니다.
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -941,7 +950,7 @@ Feed 지면 상단의 헤더 영역에 배너를 표시하여 사용자에게 AT
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -984,7 +993,7 @@ Feed 지면에 진입하기 전에 광고를 미리 할당받아서 참여할 �
 
 <br>
 <br>
-  
+
 
 ## 3-3. 디자인 커스터마이징
 
@@ -996,13 +1005,13 @@ Feed 지면에 진입하기 전에 광고를 미리 할당받아서 참여할 �
 
 ### Feed 지면 구분선 UI 변경
 
-![](./images/15.png)   
+![](./images/I_15.png)   
 <br>
 
 Feed 지면에는 광고와 광고를 구분하기 위한 구분선이 있습니다.
 `SABFeedConfig`를 설정하여 Feed 지면의 구분선의 UI를 변경할 수 있습니다. 다음은 광고 구분선 UI를 변경하는 예시입니다.   
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -1015,7 +1024,7 @@ Feed 지면에는 광고와 광고를 구분하기 위한 구분선이 있습니
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -1032,7 +1041,7 @@ Feed 지면에는 광고와 광고를 구분하기 위한 구분선이 있습니
 
 ### Feed 지면 광고 미할당 안내 UI 변경
 
-![](./images/16.png)  
+![](./images/I_16.png)  
 
 <br>
 
@@ -1040,7 +1049,7 @@ Feed 지면에는 광고와 광고를 구분하기 위한 구분선이 있습니
 
 `SABFeedDefaultErrorView`의 구현 클래스를 구현하여 이미지 및 문구를 변경할 수 있습니다. 다음은 이미지 혹은 문구를 변경하는 예시입니다.
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -1072,7 +1081,7 @@ Feed 지면에는 광고와 광고를 구분하기 위한 구분선이 있습니
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -1099,6 +1108,40 @@ Feed 지면에는 광고와 광고를 구분하기 위한 구분선이 있습니
   
 </p>
 </details> 
+
+<br>
+<br>
+
+
+### Feed 문의하기
+Feed 지면에서 문의하기 버튼을 보여줄 수 있습니다.
+
+<br>
+
+![](/.images/I_04_01.png)   
+<br>
+
+<details open><summary>Objective-C</summary>   
+<p>    
+
+  ```objective-c
+  SABFeedConfig *config = [[SABFeedConfig alloc] initWithUnitId:@"YOUR_FEED_UNIT_ID"];
+  config.showInquiryButton = YES;
+  ```
+  
+</p>
+</details>  
+  
+<details open><summary>Swift</summary>   
+<p>    
+
+  ```swift
+  let config = SABFeedConfig(unitId: "YOUR_FEED_UNIT_ID")
+  config.showInqiuryButton = true
+  ```
+  
+</p>
+</details> 
   
 <br>
 <br>
@@ -1110,7 +1153,7 @@ Feed 지면에는 광고와 광고를 구분하기 위한 구분선이 있습니
 
 ### 개요
 
-![](./images/17.png)
+![](./images/I_17.png)
 
 <br>
 
@@ -1128,7 +1171,7 @@ Feed 지면에는 광고와 광고를 구분하기 위한 구분선이 있습니
 
 ### 광고 레이아웃 구성
 
-![](./images/18.png)   
+![](./images/I_18.png)   
 
 <br>
 
@@ -1143,13 +1186,14 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 |`필수` Description view |광고에 대한 상세 설명 |최대 40자 |- |생략 부호로 일정 길이 이상은 생략 가능 |
 |`필수` CTA view |광고 참여를 유도하는 문구 |최대 7자 |- |- 생략 부호로 일정 길이 이상은 생략 가능<br>-보상형 광고에는 포인트 정보도 포함해야 합니다. |
 |`필수` Icon image view |광고주 아이콘 이미지 |80x80 px |종횡비 유지 |- |
-|`권장` Sponsored view |사용자에게 광고임을 알리는 문구 |- |- |예시) “광고”, “ad”, “스폰서”, “Sponsored”|
+|`필수` AdInfo view |사용자에게 광고임을 알리는 버튼 |26x26 px |종횡비 유지 |- |
+|`권장` Inquiry view |광고 참여 및 보상에 대한 문의 접수 버튼  |26x26 px |종횡비 유지 |- |
 
 <br>
 
 다음은 Native 광고 레이아웃을 초기화하는 예시입니다.
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -1158,6 +1202,8 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
     // Native 관련 뷰
     SABNativeAdView *_adView;
     SABMediaView *_mediaView;
+    SABAdInfoView *_adInfoView;
+    SABInquiryView *_inquirytView;
     UILabel *_titleLabel;
     ...
   }
@@ -1167,11 +1213,15 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
   
     _adView = [[SABNativeAdView alloc] initWithFrame:CGRectZero];
     _mediaView = [[SABMediaView alloc] initWithFrame:CGRectZero];
+    _adInfoView = [[SABAdInfoView alloc] initWithFrame:CGRectZero];
+    _inquiryView = [[SABInquiryView alloc] initWithFrame:CGRectZero];
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     ...
   
     [self addSubview:_adView];
     [_adView addSubview:_mediaView];
+    [_adView addSubview:_adInfoView];
+    [_adView addSubview:_inquiryView];
     [_adView addSubview:_titleLabel];
     ...
   
@@ -1184,7 +1234,7 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -1192,6 +1242,8 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
     // Native 관련 뷰
     private var adView = SABNativeAdView()
     private var mediaView = SABMediaView()
+    private var adInfoView = SABAdInfoView()
+    private var inquiryView = SABInquiryView()
     private var titleLabel = UILabel()
     ...
   
@@ -1200,6 +1252,8 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
  
       addSubview(self.adView)
       adView.addSubview(self.mediaView)
+      adView.addSubview(self.adInfoView)
+      adView.addSubvew(self.inquiryView)
       adView.addSubview(self.titleLabel)
       ...
     
@@ -1221,7 +1275,7 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 `SABAdLoader`의 `loadAd`를 실행하면 광고 데이터를 요청합니다. 다음은 광고 할당 요청 예시입니다.
 
   
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -1237,7 +1291,7 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -1265,12 +1319,12 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 
 [1] [광고 레이아웃 구성](#광고-레이아웃-구성)에서 생성한 광고 뷰에 `Ad` 의 각 요소를 설정합니다. 
 
-[2] `NativeAdView` 에 `MediaView`, `Ad` 를 설정합니다.
+[2] `NativeAdView` 에 `MediaView`, `AdInfoView`, `Ad`, `InquiryView` 를 설정합니다.
 
 [3] `clickableViews` List 를 생성하여 광고 클릭이 가능한 영역을 지정합니다. 해당 뷰 영역을 클릭 할 경우, 광고 랜딩 페이지로 이동하게 됩니다.   
 
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -1287,7 +1341,9 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 
     // (2) NativeAdView 에 다음의 항목을 추가합니다.
     self.adView.ad = ad;
-    self.adView.mediaView = self.mediaView;    
+    self.adView.mediaView = self.mediaView;
+    self.adView.adInfoView = self.adInfoView;
+    self.adView.inquiryView = self.inquiryView;    
 
     // (3) 광고 클릭이 가능한 영역을 지정합니다.
     self.adView.clickableViews = @[self.ctaButton, self.iconImageView];
@@ -1297,7 +1353,7 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -1315,6 +1371,8 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
     // (2) NativeAdView 에 다음의 항목을 추가합니다.
     self.adView.ad = ad
     self.adView.mediaView = self.mediaView
+    self.adView.adInfoView = self.adInfoView
+    self.adView.inquiryView = self.inquiryView
 
     // (3) 광고 클릭이 가능한 영역을 지정합니다.
     self.adView.clickableViews = [self.ctaButton, self.iconImageView]
@@ -1335,10 +1393,11 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 
 <br>
 
+이벤트의 정의 및 동작을 [광고 노출/클릭/참여와 관련한 콜백 변화](#7-9-광고-노출클릭참여와-관련한-콜백-변화) 문서를 참고하여 확인할 수 있습니다.
 아래는 일반 광고와 동영상 광고 이벤트를 수신하는 예시입니다.
 
   
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -1396,7 +1455,7 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -1465,7 +1524,7 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 
 ### CTA(Call to action) 버튼 커스터마이징
 
-![](./images/19.png)   
+![](./images/I_19.png)   
 
 <br>
 
@@ -1479,7 +1538,7 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
 
 다음은 광고의 상태에 따라 CTA 문구를 수정하는 예시입니다. 광고 참여 상태를 확인하는데 필요한 API는 하단에 기재하였습니다.   
   
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -1490,7 +1549,7 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
     BOOL isParticipated = [ad isParticipated];
     BOOL isClicked = [ad isClicked];
     BOOL isActionType = [ad isActionType];
-    if (isClicked && isActionType && isParticipated) {
+    if (isClicked && isActionType && !isParticipated) {
       _rewardIcon.image = nil;
       _ctaLabel.text = @"참여 확인 중";
     
@@ -1523,7 +1582,7 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -1534,7 +1593,7 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
     let isParticipated = ad.isParticipated()
     let isClicked = ad.isClicked()
     let isActionType = ad.isActionType()
-    if (isClicked && isActionType && isParticipated) {
+    if (isClicked && isActionType && !isParticipated) {
       rewardIcon.image = nil
       ctaLabel.text = "참여 확인 중"
     
@@ -1587,7 +1646,7 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
 
 다음은 여러 개의 광고를 로드하는 예시입니다.
   
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -1602,7 +1661,7 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -1628,7 +1687,7 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
 
 ### 개요
  
-![](./images/20.png)   
+![](./images/I_20.png)   
 
 <br>
 
@@ -1649,7 +1708,7 @@ Interstitial 지면은 SKPAdBenefit iOS SDK에서 제공하는 UI를 사용해 �
 
 ### 광고 표시
 
-![](./images/21.png)   
+![](./images/I_21.png)   
 
 <br>
 
@@ -1658,7 +1717,7 @@ Interstitial 지면을 표시합니다. SKPAdBenefit iOS SDK의 Interstitial 지
 다음은 다이얼로그 형태의 Interstitial 지면을 표시하는 예시입니다.
 
   
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -1669,7 +1728,7 @@ Interstitial 지면을 표시합니다. SKPAdBenefit iOS SDK의 Interstitial 지
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -1695,7 +1754,7 @@ Interstitial 지면을 표시합니다. SKPAdBenefit iOS SDK의 Interstitial 지
 
 ### 광고 개수 설정
 
-![](./images/22.png)   
+![](./images/I_22.png)   
 
 <br>
 
@@ -1704,7 +1763,7 @@ Interstitial 지면을 표시합니다. SKPAdBenefit iOS SDK의 Interstitial 지
 다음은 3개의 광고를 할당받는 예시입니다.
 
   
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -1715,7 +1774,7 @@ Interstitial 지면을 표시합니다. SKPAdBenefit iOS SDK의 Interstitial 지
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -1734,7 +1793,7 @@ Interstitial 지면이 종료되는 이벤트를 수신할 수 있습니다. 필
 
 다음은 Interstitial 지면이 종료되는 이벤트를 수신하는 예시입니다.
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -1757,7 +1816,7 @@ Interstitial 지면이 종료되는 이벤트를 수신할 수 있습니다. 필
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -1782,7 +1841,7 @@ Interstitial 지면이 종료되는 이벤트를 수신할 수 있습니다. 필
 
 다음은 광고 요청 결과를 수신하는 리스너를 추가한 예시입니다.
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -1808,7 +1867,7 @@ Interstitial 지면이 종료되는 이벤트를 수신할 수 있습니다. 필
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -1841,7 +1900,7 @@ Interstitial 지면이 종료되는 이벤트를 수신할 수 있습니다. 필
 
 ### Interstitial 지면 UI 커스터마이징
 
-![](./images/23.png)   
+![](./images/I_23.png)   
 
 <br>
 
@@ -1865,7 +1924,7 @@ Interstitial 지면 UI를 Config 설정으로 변경할 수 있습니다. 일부
 
 다음은 Interstitial 지면 UI를 변경하는 예시입니다.
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -1885,7 +1944,7 @@ Interstitial 지면 UI를 Config 설정으로 변경할 수 있습니다. 일부
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -1936,7 +1995,7 @@ pod 'SKPAdBenefit', '= 1.1.0'
 `AppDelegate`의 `application:didFinishLaunchingWithOptions`에서 `SKPAdBenefit initializeWithConfig:`를 호출해 SKPAdBenefit iOS용 SDK를 초기화 하세요   
 
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -1954,7 +2013,7 @@ pod 'SKPAdBenefit', '= 1.1.0'
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -1982,12 +2041,12 @@ pod 'SKPAdBenefit', '= 1.1.0'
 |`userId`  |매체사 앱에서 사용하는 사용자 식별자입니다. 서비스 도중 변하지 않는 고정 값이어야 하며, 광고 할당을 위해서 필수로 전달해야합니다. <br>`앱을 삭제 후 재설치하여 사용자의 ID 값이 변경되거나 다른 사유로 인해 고정 ID를 사용하지 못하는 경우 PlanetAD 담당자에게 문의하세요.`  |
 |`gender`  |사용자의 성별입니다. 사용자 맞춤형 광고를 제공하는 데에 활용됩니다.<br>- 남성: `SABUserGenderMale`<br>- 여성: `SABUserGenderFemale`  |
 |`birthYear`  |사용자의 출생연도입니다. 사용자 맞춤형 광고를 제공하는 데에 활용됩니다.  |
-|`showAppTrackingTransparencyDialog`  |사용자의 활동 추적 권한 획득 팝업 노출 여부입니다. 필수가 아닌 권장 등록 정보입니다. 자세한 정보는 [iOS 14를 위한 대응](#app-tracking-transparency-(ios-14-지원)) 토픽을 참고하세요. |  
+|`showAppTrackingTransparencyDialog`  |사용자의 활동 추적 권한 획득 팝업 노출 여부입니다. 필수가 아닌 권장 등록 정보입니다. 자세한 정보는 [iOS 14를 위한 대응](#7-1-ios-14를-위한-준비) 토픽을 참고하세요. |  
  
  
 다음은 SDK에 로그인을 요청하는 예시입니다. 로그인 상태를 확인하거나 로그아웃할 수도 있습니다.
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -1998,7 +2057,7 @@ pod 'SKPAdBenefit', '= 1.1.0'
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -2015,7 +2074,7 @@ pod 'SKPAdBenefit', '= 1.1.0'
 웹뷰 안에서 광고를 로드하려면 다음과 같이 웹뷰에 `scriptMessageHandler`를 추가한 뒤 웹뷰로 넘어오는 scriptMessage를 `SABWebInterface` 객체에게 전달해주어야 합니다.
 
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -2042,7 +2101,7 @@ pod 'SKPAdBenefit', '= 1.1.0'
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -2086,7 +2145,7 @@ WKScriptMessage) {
 
 ### App Tracking Transparency 권한 획득 팝업 노출
 
-![](./images/24.png)   
+![](./images/I_24.png)   
 
 <br>
 
@@ -2156,7 +2215,7 @@ App Tracking Transparency에 대한 자세한 내용은 [애플 공식 문서](h
 
 다음은 동영상 광고를 자동재생으로 설정하는 예시입니다. 기본값은 Wifi 환경에서만 자동 재생하도록 설정되어 있습니다.
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -2167,7 +2226,7 @@ App Tracking Transparency에 대한 자세한 내용은 [애플 공식 문서](h
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -2193,7 +2252,7 @@ App Tracking Transparency에 대한 자세한 내용은 [애플 공식 문서](h
 
 사용자 프로필을 설정하면 서버로부터 토큰이 발급됩니다. 토큰이 발급된 이후부터 PlanetAD 서버와 네트워크 통신이 가능합니다. 토큰 발근이 완료되면 `SABSessionRegisteredNotification` notification을 호출합니다.
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -2203,7 +2262,7 @@ App Tracking Transparency에 대한 자세한 내용은 [애플 공식 문서](h
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -2238,7 +2297,7 @@ SKPAdBenefit iOS SDK에서 제공하는 `browserViewController`를 사용하여 
 
 다음은 인앱 브라우저를 구현하는 예시입니다.
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -2264,7 +2323,7 @@ SKPAdBenefit iOS SDK에서 제공하는 `browserViewController`를 사용하여 
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -2295,7 +2354,7 @@ SKPAdBenefit iOS SDK에서 제공하는 `browserViewController`를 사용하여 
 
 다음은 커스텀 런처를 구현하는 예시입니다.
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -2328,7 +2387,7 @@ SKPAdBenefit iOS SDK에서 제공하는 `browserViewController`를 사용하여 
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -2365,7 +2424,7 @@ SKPAdBenefit iOS SDK에서 제공하는 `browserViewController`를 사용하여 
 
 다음은 커스텀 런처를 설정하는 예시입니다.
 
-<details><summary>Objective-C</summary>   
+<details open><summary>Objective-C</summary>   
 <p>    
 
   ```objective-c
@@ -2376,7 +2435,7 @@ SKPAdBenefit iOS SDK에서 제공하는 `browserViewController`를 사용하여 
 </p>
 </details>  
   
-<details><summary>Swift</summary>   
+<details open><summary>Swift</summary>   
 <p>    
 
   ```swift
@@ -2449,7 +2508,6 @@ done
 
 > ! 다크모드에 적합한 텍스트 색상의 가이드라인에 대해서는 [Apple의 공식 문서](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/dark-mode/)를 참고하세요.
 
-
 <br>
 <br>
 
@@ -2466,3 +2524,157 @@ typedef enum {
   SABEmptyResponse
 } SABErrorCode;
 ```
+
+<br>
+<br>
+
+## 7-8. 문의하기
+
+### 문의하기 사용 시 권한 설정
+- 문의하기 기능을 사용하는 경우, info.plist에 카메라 권한 설정을 해야 합니다.
+
+```
+    <key>NSCameraUsageDescription</key>
+    <string>Camera Usage Description - PlanetAD</string>
+```   
+
+<br>
+
+### 커스텀으로 문의하기 버튼을 사용하는 경우  
+
+문의하기 버튼을 커스텀으로 만들어서 사용하는 경우, 버튼 클릭 시 아래와 같이 호출해 주시면 됩니다.  
+
+<details open><summary>Objective-C</summary>   
+<p>    
+
+  ```objective-c
+  [SKPAdBenefit showInquiryPage];
+  ```
+  
+</p>
+</details>  
+  
+<details open><summary>Swift</summary>   
+<p>    
+
+  ```swift
+  SKPAdBenefit.showInquiryPage()
+  ```
+  
+</p>
+</details> 
+
+
+<br>
+<br>
+
+## 7-9. 광고 노출/클릭/참여와 관련한 콜백 변화
+
+### 순서 (AOS/iOS는 이름만 다를 뿐 동작은 동일하기 때문에 아래에서는 AOS의 이름을 기준으로 설명함)
+- AOS : onImpressed → onClicked → (onRewardRequested) → onRewarded → onParticipated
+- iOS : didImpressAd → didClickAd → willRequestRewardForAd → didRewardForAd → didParticipateAd
+
+<br>
+
+### onImpressed
+- 정의
+  - 광고가 유저에게 노출 되었음 (=NativeAdView의 광고 레이아웃의 50%가 유저에게 보여짐)
+- 중복 호출 여부
+  - 한 광고당 한번만 호출됨
+- 추천 대응
+  - X
+
+<br>
+
+### onClicked
+- 정의
+  - 광고가 유저에 의해 클릭됨 (=clickableViews로 지정한 component들이 클릭됨)
+    - 일반/비디오 광고 모두 onClickEvent/shouldClickAd (AOS/iOS)를 통한 click 이벤트 intercept가 가능함 ([아래 참조](#클릭-hooking))
+    - 이때 일반 광고는 랜딩페이지로 이동을 시도하며, 비디오 광고는 서버에서 비디오의 Asset을 받아와 재생을 시작함
+- 중복 호출 여부
+  - 한 광고당 중복해서 호출될 수 있음 (유저가 광고를 클릭하여 랜딩한 후 돌아와서 다시 클릭하거나, 아래처럼 비디오 Pause/Resume 등이 불리거나 inline으로 재생 중에 fullscreen 재생하기를 누르는 경우 등)
+- 주의
+  - 비디오 광고의 경우 mediaView 내에 재생/전체화면재생/리플레이/랜딩 버튼이 유저에게 노출되어 있고 ([Appendix 이미지](#appendix) 참조) 이 버튼을 클릭했을 때 아무런 반응이 없는 것은 유저 경험상 이상하기 때문에, mediaView를 clickableViews로 지정하지 않았더라도 해당 4개의 버튼은 클릭이 가능하며 클릭시 onClicked 콜백이 불림
+  - 또한 비디오 재생 중에 Pause/Resume 등을 위해 위에 있는 “재생" 버튼이 반복적으로 눌려질 수 있는데, 이 경우에도 매번 onClicked 콜백이 불림
+- 추천 대응
+  - X
+
+<br>
+
+### onRewardRequested
+- 정의
+  - 광고에 대한 리워드 지급 조건을 만족해서 리워드가 지급 요청 되었음
+    - 일반 광고의 경우 click 후 너무 빠르게 (1초) back-button을 눌러 돌아오지 않았고, 비디오 광고의 경우 최소 재생 시간이 지남
+- 중복 호출 여부
+  - 보통 한번 호출되나 아래 onRewarded의 Failure 조건이 만족하는 경우 호출이 되지 않거나 (리워드 지급 대상이 아닌 경우) 중복하여 호출 될 수 있음 (서버에서 에러가 나서 적립이 이루어지지 않아 유저가 재시도 하는 경우)
+- 주의
+  - 해당 콜백은 생략이 가능 (리워드 지급 조건을 만족시키지 못 하면 리워드가 지급되지 않는데, 이때는 onRewarded 콜백에 Failure로 전달됨)
+- 추천 대응
+  - 리워드 지급 완료에 대한 Response를 받기까지 시간이 걸릴 수 있으므로 로딩 이미지 등을 보여줌
+    - 비디오의 경우 최소 재생 시간을 Play 한 후 리워드가 지급되고 onClicked 콜백이 여러번 호출되기 때문에 onClicked 콜백이 아닌 onRewardRequested 콜백에서 로딩 이미지를 보여주는 것을 추천함
+
+<br>
+
+### onRewarded
+- 정의
+  - 리워드 관련한 처리가 완료됨
+- 중복 호출 여부
+  - SUCCESS는 한번만 호출되고, Failure의 다양한 경우는 중복 호출될 수 있음
+- 상태 (result 인자에 담겨 있음. AOS/iOS 전달값)
+  - SUCCESS / SABRewardResultSuccess : 리워드가 성공적으로 지급 완료됨
+  - ALREADY_PARTICIPATED / SABRewardResultAlreadyParticipated : 이미 참여한 광고 (현참여)임
+  - MISSING_REWARD / SABRewardResultMissingReward : 리워드가 없는 광고임
+    - 기참여 광고 (rewardStatus가 received) 역시 이 콜백이 불리기 때문에 별도 처리가 필요함
+  - TOO_SHORT_TO_PARTICIPATE / SABRewardResultTooShortToParticipate : 일반 광고의 경우 유저가 광고 click 후 너무 빨리 (1초 이내) back-button을 눌러서 돌아옴
+  - NETWORK_TIMEOUT / SABRewardResultTimeout : 리워드 지급을 요청했지만 Response를 기다리는 데에 Timeout (5초)이 발생함
+  - BROWSER_NOT_LAUNCHED / SABRewardResultBrowserNotLaunched : 광고를 클릭했지만 어떤 이유로든 브라우저가 열리지 않음
+  - NO_PBURL_ERROR / SABRewardResultNoPbUrl : postback url이 없음
+  - UNKNOWN_NETWORK_ERROR / SABRewardResultNetworkError : 알 수 없는 이유로 네트워크 에러가 발생함
+  - UNKNOWN_SERVER_ERROR / SABRewardResultServerError : 알 수 없는 이유로 서버 쪽에서 에러가 발생함
+  - UNKNOWN_CLIENT_ERROR / SABRewardResultClientError : 알 수 없는 이유로 런타임 에러가 발생함
+  - UNKNOWN_ERROR / SABRewardResultUnknownError : 그 외의 모든 에러
+
+- 추천 대응
+  - 모든 경우 onRewardRequested에서 만든 “로딩이미지"가 있으면 없앰
+  - SUCCESS의 경우 리워드 지급 완료 애니메이션을 보여줌
+  - ALREADY_PARTICIPATED 또는 MISSING REWARD에서 rewardStatus가 received인 경우에 대해서 “이미 적립한 광고" 메시지 보여줌
+  - TOO_SHORT_TO_PARTICIPATE에서 광고를 더 보시면 리워드가 지급된다는 메시지 보여줌
+  - 그 외의 경우 일반 에러메시지 보여줌
+
+<br>
+
+### onParticipated
+- 정의
+  - 광고 참여가 완료됨
+- 중복 호출 여부
+  - 한번만 호출됨
+- 주의
+  - 유저가 한 광고 (A)를 참여 완료 했을 때, 그 광고 뿐만 아니라 SDK가 현재 로드하고 있는 모든 똑같은 광고 (PlanetAD가 부여한 id 값으로 구분)에 대해서도 해당 콜백이 호출되고 광고의 isParticipated가 true로 변경됨
+- 추천 대응
+  - isParticipated가 true인 광고에 대해 적용하는 UI (리워드 부분을 없애고 지급 처리 되었음을 나타내는 체크 표시 등)를 적용함
+
+<br>
+
+### 딥링크 URL을 사용하는 광고에 대한 Parameter 전달
+
+- Launcher 사용시 nativeAd.getAd().getCreative().isDeeplink() / ad.creative.isDeeplink (AOS / iOS) 의 값으로 판단 가능
+- true인 경우 브라우저가 로딩되면 (Playstore / 앱스토어) 또는 광고주 앱으로 이동하게 되기 때문에, 여기에 대한 적절한 처리가 필요함
+  - default 값은 false로 전달됨  
+
+<br>
+
+### 클릭 Hooking
+
+AOS: onClickEvent / iOS : shouldClickAd method를 사용한 클릭 Hooking  
+
+- 비디오/일반 광고 구분 없이, 그리고 비디오 광고 내에서도 inline으로 video가 재생될 때와 fullscreen 재생될 때 구분 없이 모두 onClickEvent/shouldClickAd method로 클릭시의 이벤트 Hooking 가능함
+- 각각의 method는 각각 NativeAdView 객체 (AOS)와 Adview 객체 (iOS) 하에 속함
+
+<br>
+
+### APPENDIX
+
+비디오 MediaView 관련 이미지
+
+![](./images/I_25.png)
+
