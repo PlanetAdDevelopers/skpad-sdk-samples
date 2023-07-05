@@ -47,4 +47,5 @@
 
 - [8. 광고 노출과 관련한 콜백 변화](./SKPAdBenefitApp/doc/13_Event_Callback.md)
 
+- [9. VOC(문의하기) 사용하기](./SKPAdBenefitApp/doc/14_Personalized_Ads_VOC.md)
 ---

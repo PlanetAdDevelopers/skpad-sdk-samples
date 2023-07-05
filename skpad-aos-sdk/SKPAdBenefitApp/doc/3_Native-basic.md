@@ -14,17 +14,16 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 
 
 
-
-|항목|설명|필수여부|비고|
-|-|-|-|-|
-광고 제목|광고의 제목|Mandatory|<li>최대 10자</li><li>생략 부호로 일정 길이 이상은 생략 가능</li>
-광고 소재|이미지, 동영상 등 광고 소재|Mandatory|<li>com.skplanet.skpad.benefit.presentation.media.MediaView 사용 필수</li><li>종횡비 유지 필수</li><li>여백 추가 가능</li><li>이미지 사이즈 1200x627 [px]</li>
-광고 설명|광고에 대한 상세 설명|Mandatory|<li>생략 부호로 일정 길이 이상은 생략 가능</li><li>최대 40자</li>
-광고주 아이콘|광고주 아이콘 이미지|Mandatory|<li>종횡비 유지 필수</li><li>이미지 사이즈 80x80 [px]</li>
-CTA 버튼|광고의 참여를 유도하는 버튼|Mandatory|<li>com.skplanet.skpad.benefit.presentation.media.CtaView 사용 필수</li><li>최대 7자</li><li>생략 부호로 일정 길이 이상은 생략 가능</li>
-맞춤형 광고 정보 버튼|광고 표시 이유에 대한 가이드 기능을 제공|Mandatory|<li>com.skplanet.skpad.benefit.presentation.guide.AdInfoView 사용 필수</li><li>icon Image 교체 가능</li><li>필수 추가 필요</li>
-문의하기 버튼|VOC대응을 위한 Planet AD Report Web Page로 이동하는 기능 제공| Optional |<li>com.skplanet.skpad.benefit.presentation.guide.InquiryView 사용 필수</li><li>icon Image 교체 가능</li>
-광고 알림 문구|Sponsored view| Optional |예시) "광고", "ad", "스폰서", "Sponsored"
+|항목|설명|비고|
+|-|-|-|
+`필수` 광고 제목|광고의 제목|<li>최대 10자</li><li>생략 부호로 일정 길이 이상은 생략 가능</li>
+`필수`광고 소재|이미지, 동영상 등 광고 소재|<li>com.skplanet.skpad.benefit.presentation.media.MediaView 사용 필수</li><li>종횡비 유지 필수</li><li>여백 추가 가능</li><li>이미지 사이즈 1200x627 [px]</li>
+`필수` 광고 설명|광고에 대한 상세 설명|<li>생략 부호로 일정 길이 이상은 생략 가능</li><li>최대 40자</li>
+`필수` 광고주 아이콘|광고주 아이콘 이미지|<li>종횡비 유지 필수</li><li>이미지 사이즈 80x80 [px]</li>
+`필수` CTA 버튼|광고의 참여를 유도하는 버튼|<li>com.skplanet.skpad.benefit.presentation.media.CtaView 사용 필수</li><li>최대 7자</li><li>생략 부호로 일정 길이 이상은 생략 가능</li>
+`필수` 맞춤형 광고 정보 버튼|광고 표시 이유에 대한 가이드 기능을 제공|<li>com.skplanet.skpad.benefit.presentation.guide.AdInfoView 사용 필수</li><li>icon Image 교체 가능</li><li>필수 추가 필요</li>
+`권장` 문의하기 버튼|VOC대응을 위한 Planet AD Report Web Page로 이동하는 기능 제공|<li>com.skplanet.skpad.benefit.presentation.guide.InquiryView 사용 필수</li><li>icon Image 교체 가능</li>
+`권장` 광고 알림 문구|Sponsored view|예시) "광고", "ad", "스폰서", "Sponsored"
 
 
 광고 레이아웃의 최상위 컴포넌트는 NatvieAdView이며, 상기의 컴포넌트는 NativeAdView의 하위 컴포넌트로 구현해야 합니다.
