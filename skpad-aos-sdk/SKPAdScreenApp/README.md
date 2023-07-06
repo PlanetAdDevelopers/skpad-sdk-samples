@@ -4,11 +4,11 @@
 - [기본 설정](#기본-설정)
 - [일시적 비활성화](#일시적-비활성화)
 - [서비스 노티피케이션](#서비스-노티피케이션)
-- [광고 컨텐츠 설정](#광고/컨텐츠-설정)
+- [광고 컨텐츠 설정](#광고-컨텐츠-설정)
 - [UI 커스터마이징](#UI-커스터마이징)
 - [유저 액션 리스너](#User-Action-Listener)
 - [배터리 최적화 옵션끄기](#배터리-최적화-옵션-끄기)
-- [맞춤형 광고에 대한 고지와 VOC(문의하기) 사용하기](#맞춤형-광고를-위한-가이드-라인과-VOC(문의하기)-사용하기)
+- [맞춤형 광고에 대한 고지와 VOC 지원](#맞춤형-광고에-대한-고지와-VOC-지원)
 
 ## 기본 설정
 
@@ -111,7 +111,7 @@ AndroidManifest.xml에 아래 meta data를 추가하고 000000000000 부분에 a
 
 |항목|코드|호출 위치|세부내용|
 | :- | - | - | - |
-|SKP AD Screen 초기화 필수|```SKPAdScreen.init(String unitId, Context context, Class lockerActivityClass, int imageResourceIdOnFail)```| <li>Application Class 의 onCreate()</li><li>모든 다른 메소드보다 항상 먼저 호출되도록 함</li><li>기존에 사용하던 Application Class가 없이 SKP AD Screen 연동을 위해 처음으로 Application Class를 생성할 경우 반드시 AndroidManifest.xml에 해당 Application Class를 등록해야 합니다.</li>|Parameters<li>unitId : SKPAdScreen SDK 사용을 위한 Unit ID로,SKP AD Screen 어드민에서 확인 가능합니다.</li><li>context : Application context 를 this 로 입력합니다.</li><li>lockerActivityClass : 잠금화면 액티비티 클래스.<ul><li>잠금화면을 커스터마이징하지 않는 경우 SDK 내에서 제공하는 SimpleLockerActivity.class 를 설정합니다.</li><li>커스터마이징을 하는 경우 직접 구현한 액티비티 클래스를 설정합니다. 자세한 사항은 [UI 커스터마이징](./4_customizing.md) 문서의 설명을 참조하세요.</li><li>imageResourceIdOnFail : 네트워크 에러 발생 시 혹은 일시적으로 잠금화면에 보여줄 캠페인이 없을 경우 보여주게 되는 이미지를 앱 내 리소스에 포함시켜야 하며, 이 이미지의 리소스 아이디를 설정합니다.</li></ul>|
+|SKP AD Screen 초기화 필수|```SKPAdScreen.init(String unitId, Context context, Class lockerActivityClass, int imageResourceIdOnFail)```| <li>Application Class 의 onCreate()</li><li>모든 다른 메소드보다 항상 먼저 호출되도록 함</li><li>기존에 사용하던 Application Class가 없이 SKP AD Screen 연동을 위해 처음으로 Application Class를 생성할 경우 반드시 AndroidManifest.xml에 해당 Application Class를 등록해야 합니다.</li>|Parameters<li>unitId : SKPAdScreen SDK 사용을 위한 Unit ID로,SKP AD Screen 어드민에서 확인 가능합니다.</li><li>context : Application context 를 this 로 입력합니다.</li><li>lockerActivityClass : 잠금화면 액티비티 클래스.<ul><li>잠금화면을 커스터마이징하지 않는 경우 SDK 내에서 제공하는 SimpleLockerActivity.class 를 설정합니다.</li><li>커스터마이징을 하는 경우 직접 구현한 액티비티 클래스를 설정합니다. 자세한 사항은 [UI 커스터마이징](#UI-커스터마이징) 문서의 설명을 참조하세요.</li><li>imageResourceIdOnFail : 네트워크 에러 발생 시 혹은 일시적으로 잠금화면에 보여줄 캠페인이 없을 경우 보여주게 되는 이미지를 앱 내 리소스에 포함시켜야 하며, 이 이미지의 리소스 아이디를 설정합니다.</li></ul>|
 SKP AD Screen 시작 필수|```SKPAdScreen.getInstance().launch()```|앱 실행 시 처음 실행되는 액티비티에 추가||
 
 ###### Sample Code
@@ -227,7 +227,7 @@ SKPAdScreen은 포인트 적립이 발생했을 때 직접 유저들에게 포�
 #### 포인트 적립 요청 흐름
 ![포인트 적립 요청 흐름](./doc/resources/screen_reward_process.png)
 
-SKPAdScreen의 UI 및 동작을 커스터마이징하고 싶다면 [고급 설정 문서](./4_customizing.md)를 참고하여 구현합니다.
+SKPAdScreen의 UI 및 동작을 커스터마이징하고 싶다면 [고급 설정 문서](#UI-커스터마이징)를 참고하여 구현합니다.
 
 
 ## 일시적 비활성화
@@ -260,7 +260,7 @@ SKP AD Screen을 일시적으로 비활성화하기 위해 사용할 수 있는 
 |서비스 노티피케이 션 커스터 마이징 권장|LockerServiceNotificationConfig 클래스를 통해 접근 (getter) 및 변경(setter) 반드시 SKPAdScreen.init() 다음에 호출해야 함|<p>Parameters</p><li>String Title : 노티피케이션의 상단 타이틀. 기본값은 앱 명칭</li><li>String Text : 노티피케이션의 하단 텍스트. 기본값은 빈 문자열("")</li><li>int SmallIcon : 노티피케이션의 작은 아이콘 이미지. 기본값은 앱 아이콘</li><li>int LargeIcon : 노티피케이션의 큰 아이콘 이미지. 기본값은 없음</li><li>boolean ShowAlways : 노티피케이션을 항상 보여줄지 유무. 위 설정 값들이 제대로 나오는지 테스트 목적으로도 사용 가능. 기본값은 false</li><li>intent Intent : 노티피케이션 클릭 시 실행될 인텐트. 기본값은 앱의 첫 액티비티(Launcher Activity)로 의 이동 인텐트|public class App extends Application {<br>   @Override<br>   public void onCreate() {<br>   super.onCreate();<br>    ....<br>    SKPAdScreen.init("app_key", this, SimpleLockerActivity. class, R.drawable.image_on_fail, false);<br>    // 노티피케이션 설정<br>    LockerServiceNotificati onConfig config = SKPAdScreen.getInstance().getLockerServiceNotificationConfig();<br>   config. setTitle("SampleTitle");<br>    config.setText("SampleText");<br>    config.setSmallIconResourceId(R.drawable.ic_noti_small);<br>    config.setLargeIconResourceId (R.drawable.ic_noti_large);<br>    // config.setShowAlways(true);<br>    }<br>    }
 서비스 노티피케이션을 일시적으로 다른 노티피케이션으로 대체하기 선택|<p>서비스 노티피케이션이 노출되어 있는 상태에서 노티피케이션을 추가적으로 띄울 경우 (적립 알림 등), 한 앱에서 다수의 노티피케이션이 알림바에 나타나기 때문에 유저 경험 상 좋지 않을 수 있습니다. 해당 메소드를 통해 서비스 노티피케이션이 있던 곳에 새로운 노티피케이션을 띄우고, 다시 원래의 서비스 노티피케이션으로 돌아갈 수 있습니다.<li>퍼블리셔 측에서 빌드가 완료된 notification을 이 메소드의 파라미터로 전달</li><ul><li>해당 notification을 서비스 노티피케이션이 위치한 곳에 띄움</li></ul><li>이 메소드의 파라미터로 null을 전달하여 다시 호출<ul><li>다시 LockerServiceNotificationConfig에서 설정한 원래 상태의 서비스 노티피케이션으로 돌아감</li><ul>
 
-## 광고/컨텐츠 설정
+## 광고 컨텐츠 설정
 
 SKP Ad Screen스크린에 노출되는 광고와 컨텐츠에 대한 세부 설정을 선택할 수 있는 기능들입니다. 기능에 따라 유저가 개별 설정 가능하도록 UI를 오픈할 수 있는 경우도 있으니 자세한 내용은 각 기능 설명을 확인해주세요.<br><br>
 하위 항목은 아래와 같습니다.
@@ -553,15 +553,36 @@ SKPAdScreen.getInstance().setOnPointListener(new OnPointListener() {
 });
 ```
 
-## 맞춤형 광고를 위한 가이드 라인과 VOC(문의하기) 사용하기
+## 배터리 최적화 옵션 끄기
 
-### 맞춤형 광고를 위한 가이드 라인 추가하기
+<p>안드로이드 P 정책에 따라, 기기의 배터리 최적화 과정에서 SKPAdScreen 앱의 동작이 제한되어 잠금 화면이 뜨지 않을 수 있습니다. 안내 메시지를 띄워서 유저가 직접 배터리 최적화 대상에서 SKPAdScreen 앱을 제외하도록 유도할 수 있습니다.</p>
+
+### 안내 메세지 보여주는 옵션 설정
+
+|API|호출위치|Parameter|주의|
+|-|-|-|-|
+showBatteryGuideIfNeeded(Activity mainActivity, View view)<br><br>안내 메시지가 보일 액티비티와 뷰를 파라미터로 전달합니다.| MainActivity의 onCreate()| <li>mainActivity: 안내 메시지가 보일 메인 액티비티</li><li>view: Content view</li>|<li>액티비티의 테마가 AppCompat 테마일 경우 Snackbar가 나오고</li><li>다른 테마일 경우 Dialog가 나오게 되며 두 번째 파라미터인 view는 사용되지 않습니다.</li>
+
+```java
+public class MainActivity extends Activity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+    ...
+    SKPAdScreen.getInstance().showBatteryGuideIfNeeded(this, findViewById(android.R.id.content));
+    ...
+    }
+}
+```
+
+## 맞춤형 광고에 대한 고지와 VOC 지원
+
+### 맞춤형 광고를 위한 고지 추가하기
 Planet AD는 개인별 맞춤형 광고를 제공하며, 그에 해당하는 사항을 필수적으로 사용자에게 고지해야합니다.
 
 이러한 맞춤형 광고 고지를 위해 미리 만들어진 웹페이지를 제공하고 있으며, 이 맞춤형 광고 고지 페이지로 진입하기 위한 방법은 아래와 같습니다.
 
 - 광고・컨텐츠・컨텐츠채널 피드백 메뉴를 이용하는 경우는 아래의 문서에 기술되어 잇습니다.
-    - [광고・컨텐츠・컨텐츠채널 피드백](./3_advanced.md)
+    - [광고・컨텐츠・컨텐츠채널 피드백](#광고-컨텐츠-설정)
 
 - 커스텀으로 만들어서 사용하는 경우, 아래의 단계를 통해 해당 기능을 사용하실 수 있습니다.
    1. 맞춤형 광고 고지 웹페이지 진입을 위한 유저 진입 Icon/ Tab을 디자인 합니다.
@@ -575,7 +596,7 @@ Planet AD는 개인별 맞춤형 광고를 제공하며, 그에 해당하는 사
 이러한 유저 VOC에 대한 접수 및 처리를 자동화 하기 위해 SDK에서는 미리 만들어 놓은 웹 페이지를 제공하고 있습니다. 이 문의하기 페이지는 연동되어 있는 앱을 기준으로 조회하기 때문에, 유닛별로 구현할 필요가 없으며, VOC의 위치를 강제하지 않습니다.
 
 - 광고・컨텐츠・컨텐츠채널 피드백 메뉴를 이용하는 경우는 아래의 문서에 기술되어 잇습니다.
-    - [광고・컨텐츠・컨텐츠채널 피드백](./3_advanced.md)
+    - [광고・컨텐츠・컨텐츠채널 피드백](#광고-컨텐츠-설정)
 
 
 - 커스텀으로 만들어서 사용하는 경우, 아래의 단계를 통해 해당 기능을 사용하실 수 있습니다.
