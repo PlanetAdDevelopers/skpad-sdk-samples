@@ -1,4 +1,4 @@
-## Feed-고급설정
+## Feed 고급설정
 
 ### 개요
 ![Feed 영역 가이드](./resources/A_08.png)

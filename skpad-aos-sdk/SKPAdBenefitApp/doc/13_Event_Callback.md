@@ -1,4 +1,4 @@
-## 광고 노출/클릭/참여와 관련한 콜백 변화
+## 광고 노출 클릭 참여와 관련한 콜백 변화
 
 ### 순서 (AOS/iOS는 이름만 다를 뿐 동작은 동일하기 때문에 아래에서는 AOS의 이름을 기준으로 설명함)
 - AOS : onImpressed → onClicked → (onRewardRequested) → onRewarded → onParticipated

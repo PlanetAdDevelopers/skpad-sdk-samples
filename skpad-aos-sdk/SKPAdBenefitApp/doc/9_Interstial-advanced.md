@@ -1,4 +1,4 @@
-## Interstial-고급설정
+## Interstial 고급설정
 
 ### 개요
 이 문서에서 가이드 하는 내용은 PlanetAD Android SDK의 Interstitial 지면 연동의 기능을 설명하고 각 기능을 사용하는 방법을 안내합니다.

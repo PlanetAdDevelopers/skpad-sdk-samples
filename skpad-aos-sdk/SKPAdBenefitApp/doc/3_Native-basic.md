@@ -1,4 +1,4 @@
-## Native-기본설정
+## Native 기본설정
 
 ### 개요
 본 가이드는 PlanetAD Android SDK의 Native 지면을 연동하는 방법은 안내합니다. Native 지면은 광고 지면 레이아웃을 직접 구성한 후, SKP 서버로부터 광고 데이터를 할당받아 광고 지면에 표시합니다.

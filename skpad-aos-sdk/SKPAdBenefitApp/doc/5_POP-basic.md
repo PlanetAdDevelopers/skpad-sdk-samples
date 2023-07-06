@@ -1,4 +1,4 @@
-## POP-기본설정
+## POP 기본설정
 
 ### 개요
 ![POP basic](./resources/A_18.png)
