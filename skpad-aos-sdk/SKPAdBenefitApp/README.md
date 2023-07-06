@@ -16,7 +16,7 @@
 	- [Interstial-기본 설정](#Interstial-기본설정)
 	- [Interstial-고급 설정](#Interstial-고급설정)
 	- [Interstial-Customizing](#Interstial-Customizing)
-- [커스터마이징](#커스터마이징)
+- [디자인 커스터마이징](#디자인-커스터마이징)
 - [Web Android SDK 연동 가이드](#Web-Android-SDK-연동-가이드)
 - [광고 노출과 관련한 콜백 변화](#광고-노출-클릭-참여와-관련한-콜백-변화)
 - [맞춤형 광고에 대한 고지와 VOC 지원](#맞춤형-광고에-대한-고지와-VOC-지원)
@@ -1669,7 +1669,8 @@ final InterstitialAdHandler interstitialAdHandler = new InterstitialAdHandlerFac
         .create("YOUR_INTERSTITIAL_UNIT_ID", InterstitialAdHandler.Type.Dialog);
 interstitialAdHandler.show(context, interstitialAdConfig);
 ```
-## 커스터마이징
+
+## 디자인 커스터마이징
 
 ### 테마 적용
 
