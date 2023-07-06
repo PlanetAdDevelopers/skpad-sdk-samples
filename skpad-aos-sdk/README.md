@@ -16,6 +16,7 @@
 
 - [7. 배터리 최적화 옵션끄기](./SKPAdScreenApp/doc/6_battery_optimizing.md)
 
+- [8. 맞춤형 광고에 대한 고지와 VOC(문의하기) 사용하기](./SKPAdScreenApp/doc/8_Personalized_Ads_VOC.md)
 
 
 
