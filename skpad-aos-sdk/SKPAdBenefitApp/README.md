@@ -24,6 +24,7 @@
 
 ## 시작하기
 
+
 ### 기본요건
 - Android 4.1 Jellybean (API 레벨 16) 이상
 - Android Studio 3.2 이상
@@ -253,7 +254,7 @@ feedHandler.preload(new FeedHandler.FeedPreloadListener() {
 ## Feed 고급설정
 
 ### 개요
-![Feed 영역 가이드](./doc/resources/A_08.png)
+![Feed 영역 가이드](./doc/resources/A_09.png)
 
 이 문서에서 가이드 하는 내용은 SKPAd Android SDK의 Feed 지면의 기능을 설명하고 각 기능을 변경하는 방법을 설명합니다.<br>
 이하 가이드에서 커스터마이징을 위해 구현 클래스를 정의합니다. 구현하는 클래스는 아래의 조건을 충족해야 합니다. 아래 조건을 충족하지 않는 경우 커스터마이징이 적용되지 않습니다.
@@ -264,7 +265,7 @@ feedHandler.preload(new FeedHandler.FeedPreloadListener() {
 
 ### Fragment로 Feed 연동
 
-![Fragment Feed Guide](./doc/resources/A_05.png)
+![Fragment Feed Guide](./doc/resources/A_11.png)
 
 Feed 지면은 기본적으로 제공되는 액티비티로 제공됩니다. 더 다양한 연동 방식을 지원하기 위해 액티비티가 아닌 프래그먼트로 Feed 지면을 연동할 수 있습니다.<br> 프래그먼트를 추가하고자 하는 액티비티에 프래그먼트를 추가하고, 해당 액티비티의 onCreate에서 프래그먼트를 초기화합니다.<br>
 다음은 FeedFragment를 연동하는 예시입니다.
@@ -311,7 +312,7 @@ Feed 툴바 영역의 디자인을 변경할 수 있습니다. 툴바 영역을 
 - SDK에서 기본으로 제공하는 UI를 이용하는 방법
 - 직접 구현한 Custom View를 이용하는 방법
 
-![toolbar_guide](./doc/resources/A_10.png)
+![toolbar_guide](./doc/resources/A_13.png)
 
 #### SDK에서 기본으로 제공하는 UI를 이용하는 방법
 SKPAd Android SDK에서 제공하는 기본 UI를 수정하여 타이틀 혹은 배경색을 변경할 수 있습니다. 다음은 기본 UI를 수정하여 툴바를 변경하는 예시입니다.<br><br>
@@ -399,7 +400,7 @@ Custom View의 높이가 안드로이드 액티비티의 기본 액션바 높이
 
 ### 헤더 영역에 프로필 입력 배너 표시
 
-![Header Profile guide](./doc/resources/A_14-1.png)
+![Header Profile guide](./doc/resources/A_14.png)
 
 사용자의 출생연도와 성별 정보를 설정하지 않으면 헤더 영역에 프로필 정보 입력 배너가 표시됩니다.<br>
 사용자의 정보 제공 여부와 무관하게 배너를 표시하지 않을 수 있습니다. 이 기능을 사용하기 위해서는 FeedConfig.feedHeaderViewAdapterClass를 설정하지 않아야 합니다.<br>
@@ -426,7 +427,7 @@ final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID
 ```
 
 ### 헤더 영역 자체 구현
-![Feed Header Guide](./doc/resources/A_13.png)
+![Feed Header Guide](./doc/resources/A_16.png)
 
 Feed 헤더 영역을 자유로이 활용할 수 있습니다. 예를 들어, Feed 영역을 설명하는 공간으로도 활용할 수 있습니다. (단, 헤더 영역을 필요에 따라 직접 구현한 UI 에 적립 가능한 금액을 표시할 수 있습니다. onBindView를 통해 지급 가능한 금액(reward)을 알 수 있습니다.<br>
 다음은 헤더 영역을 변경하는 예시입니다.<br>
@@ -618,7 +619,7 @@ final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID
 
 
 ### 기본 포인트 지급 안내 UI 자체 구현
-![Feed basic point noti Guide](./doc/resources/A_15.png)
+![Feed basic point noti Guide](./doc/resources/A_21.png)
 
 사용자가 Feed 지면에 접근하면 일정 주기로 기본 포인트를 지급합니다. 기본 포인트 지급 알림 UI는 위의 이미지와 같습니다. <br>
 기본 포인트 지급 알림 UI를 수정하여 좀 더 사용자 경험을 개선할 수 있습니다.<br>
@@ -643,7 +644,7 @@ final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID
 ### 광고 미할당 안내 디자인 자체 구현하기
 Feed 지면에 진입한 시점에 노출할 광고가 없다면 광고 미할당 안내 UI가 표시됩니다. 미할당 안내 디자인은 자체 구현하여 변경할 수 있습니다.
 
-![Feed empty Guide](./doc/resources/A_16.png)
+![Feed empty Guide](./doc/resources/A_22.png)
 
 광고 미할당 안내 디자인을 직접 구현하려면 다음의 절차를 따르세요.
 
@@ -720,7 +721,7 @@ final FeedConfig feedConfig = new FeedConfig.Builder(YOUR_FEED_UNIT_ID)
 ### 개요
 본 가이드는 PlanetAD Android SDK의 Native 지면을 연동하는 방법은 안내합니다. Native 지면은 광고 지면 레이아웃을 직접 구성한 후, SKP 서버로부터 광고 데이터를 할당받아 광고 지면에 표시합니다.
 
-![Native AD Overview](./doc/resources/A_03.png)
+![Native AD Overview](./doc/resources/A_06.png)
 
 ### 준비사항
 - [시작하기](#시작하기) 적용 완료
@@ -908,7 +909,7 @@ public void populateAd(final NativeAd nativeAd) {
 본 가이드는 Native 지면에서 추가적으로 제공하는 기능에 대하여 추가적으로 설명합니다. 필요에 따라 가이드를 참고하시어 더욱 고도화할 수 있습니다.
 
 #### CtaView버튼 커스터마이징
-![CTAView button Customizing](./doc/resources/A_17.png)
+![CTAView button Customizing](./doc/resources/A_24.png)
 
 PlanetAD Android SDK 에서 기본으로 제공하는 CtaView UI 및 처리 로직을 사용하지 않고 구현을 원하는 경우에는 다음과 같이 수정할 수 있습니다.
 
@@ -1040,7 +1041,7 @@ mediaView.setVideoEventListener(new VideoEventListener() {
 ## POP 기본설정
 
 ### 개요
-![POP basic](./doc/resources/A_18.png)
+![POP basic](./doc/resources/A_25.png)
 
 Pop은 스크린 최상단에 뜨는 UI를 통해 사용자를 광고 지면으로 유도합니다. Pop을 활성화하면 화면을 껐다 켤 때마다 팝이 화면에 보이게 됩니다.<br>
 Android 12에 적용되는 오버레이의 터치 이벤트 차단에 대응하기 위해 팝(Pop) 버튼에 투명도를 적용하여 안정적인 앱 동작을 지원합니다.
@@ -1069,7 +1070,7 @@ SKPAdBenefit.init(this, skpAdBenefitConfig);
 Pop이 준비되면 Feed 지면에 Pop 활성화 버튼이 노출됩니다. 자세한 사항은 [Pop 활성화 버튼](#POP-고급설정)에서 확인할 수 있습니다.
 
 ### Pop 초기화 및 활성화
-![POP permission](./doc/resources/A_19.png)
+![POP permission](./doc/resources/A_26.png)
 
 마시멜로(Android API 23) 이상 버전에서 Pop을 실행시키기 위해서 다른 앱 위에 그리기 권한이 필요합니다. 원활한 권한 획득을 위해 SKP Ad Android SDK는 사용자가 권한을 활성화하도록 유도하는 기능을 제공하고 있습니다.<br>
 다음 가이드에 따라 다른 앱위에 그리기 권한을 받고 Pop 을 활성화 할 수 있습니다.<br><br>
@@ -1134,7 +1135,7 @@ skpAdPop.removePop(context);
 ### 개요
 본 가이드에서는 SKP Android SDK의 Pop 지면의 기능을 설명하고 각 기능을 변경하는 방법을 설명합니다.
 
-![POP_AREA_GUIDE](./doc/resources/benefit_pop_area_guide.png)
+![POP_AREA_GUIDE](./doc/resources/A_27.png)
 
 ### PopConfig 설정
 
@@ -1164,7 +1165,7 @@ PopConfig popConfig = new PopConfig.Builder(getApplicationContext(), "YOUR_POP_U
 
 ### Pop 활성화 버튼
 
-![POP_BUTTON](./doc/resources/benefit_pop_button_guide.png)
+![POP_BUTTON](./doc/resources/A_28.png)
 
 Feed 지면에 Pop 지면 활성화 버튼을 표시할 수 있습니다. 사용자는 Pop 지면 활성화 버튼을 통해 자연스럽게 Pop 을 활성화할 수 있습니다.
 사용자에게 Pop 활성화 버튼을 표시하는 방법은 다음과 같습니다.
@@ -1197,7 +1198,7 @@ final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID
 ```
 
 ### Pop Service Notification 자체 구현
-![POP_NOTIFICATION](./doc/resources/benefit_pop_notification.png)
+![POP_NOTIFICATION](./doc/resources/A_29.png)
 
 Pop이 정상적으로 동작하기 위해서 Service 를 필요로 합니다. 그래서 Pop이 활성화되어 있는 동안에 Service Notification이 보입니다.
 
@@ -1283,7 +1284,7 @@ final SKPAdBenefitConfig skpAdBenefitConfig = new SKPAdBenefitConfig.Builder(get
 
 ### 툴바 영역 View 자체 구현
 
-![POP_BASIC_TOOLBAR_GUIDE](./doc/resources/benefit_pop_basic_toolbar_guide.png)
+![POP_BASIC_TOOLBAR_GUIDE](./doc/resources/A_30.png)
 
 Pop지면의 툴바 영역의 UI를 변경할 수 있습니다. SKP Android SDK가 제공하는 UI을 이용하여 변경하는 방법과 사용하지 않고 변경하는 방법이 있습니다.
 
@@ -1330,7 +1331,7 @@ new PopConfig.Builder(getApplicationContext(), "YOUR_POP_UNIT_ID")
 ```
 
 #### Custom View를 직접 구현하여 UI를 변경
-![POP_CUSTOM_VIEW_TOOLBAR_GUIDE](./doc/resources/benefit_pop_custom_toolbar_toolbar_guide.png)
+![POP_CUSTOM_VIEW_TOOLBAR_GUIDE](./doc/resources/A_32.png)
 
 DefaultPopToolbarHolder의 상속 클래스는 구현하여 툴바를 변경합니다. SDK에서 제공하는 PopToolbar를 사용하지 않고 직접 구성한 레이아웃을 사용합니다. 그리고 구현한 상속 클래스는 PopConfig에 설정합니다.<br>
 다음은 레이아웃을 직접 구성하여 구현하는 예제입니다.
@@ -1363,7 +1364,7 @@ new PopConfig.Builder(getApplicationContext(), "YOUR_POP_UNIT_ID")
 
 ### 유틸리티 영역 UI 변경
 
-![POP_UTILITY_GUIDE](./doc/resources/benefit_pop_utility_guide.png)
+![POP_UTILITY_GUIDE](./doc/resources/A_33.png)
 
 유틸리티 영역을 활용하여 사용자에게 편리한 기능을 제공합니다.
 
@@ -1409,7 +1410,7 @@ new PopConfig.Builder(getApplicationContext(), "YOUR_POP_UNIT_ID")
 ### 커스텀 페이지 추가
 Pop 지면을 이용하여 원하는 내용을 표시할 수 있습니다. 커스텀 페이지는 툴바와 컨텐츠로 이루어져있습니다.
 
-![POP_CUSTOM_PAGE_GUIDE](./doc/resources/benefit_pop_custom_page.png)
+![POP_CUSTOM_PAGE_GUIDE](./doc/resources/A_34.png)
 
 - 툴바에는 타이틀을 설정할 수 있습니다.
 - 컨텐츠영역에 원하는 Fragment를 설정할 수 있습니다.
@@ -1436,12 +1437,12 @@ new PopNavigator().launchCustomFragment(
 추가적인 디자인 변경을 원하시는 경우에는 [고급 설정](#POP-고급설정)에서 UI를 자체 구현하는 방법으로 진행할 수 있습니다.
 
 ### Pop 배경색 변경
-![POP_BACKGROUND](./doc/resources/benefit_pop_background.png)
+![POP_BACKGROUND](./doc/resources/A_35.png)
 
 Pop의 배경색은 [테마 적용](#커스터마이징)에 따라 변경할 수 있습니다.
 
 ### Pop 아이콘 변경
-![POP_ICON](./doc/resources/benefit_pop_icon.png)
+![POP_ICON](./doc/resources/A_36.png)
 
 PopConfig를 설정하여 Pop 아이콘 이미지를 변경할 수 있습니다.
 
@@ -1482,7 +1483,7 @@ rewardReadyIconResId: 적립 가능한 포인트가 있을 때 기본 아이콘�
 
 
 ### Pop 활성화 버튼
-![POP_ACTIVE_BUTTON](./doc/resources/benefit_pop_active_button.png)
+![POP_ACTIVE_BUTTON](./doc/resources/A_37.png)
 
 Pop 활성화 버튼의 디자인은 아래 가이드에 따라 수정할 수 있습니다.
 
@@ -1504,7 +1505,7 @@ final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID
 ```
 
 ### Notification UI 수정
-![POP_NOTIFICATION](./doc/resources/benefit_pop_notification.png)
+![POP_NOTIFICATION](./doc/resources/A_38.png)
 
 
 Pop이 활성화되어 있는 동안에 Service Notification이 보입니다.<br>
@@ -1526,7 +1527,7 @@ PopConfig popConfig = new PopConfig.Builder(context, "YOUR_POP_UNIT_ID")
 UI 레이아웃 혹은 Notification 전체를 수정하기 위해서는 [Pop Service Notification 자체 구현](#POP-고급설정)을 참고하시기 바랍니다.
 
 ### 스낵바 및 토스트 메시지 커스터마이징
-![POP_SNACKBAR](./doc/resources/benefit_pop_snackbar.png)
+![POP_SNACKBAR](./doc/resources/A_40.png)
 
 사용자에게 포인트를 지급할 때, 스낵바 혹은 토스트를 사용해 적립 내역을 표시합니다.<br>
 기본 문구는 "광고 적립 포인트 n포인트 적립되었습니다." 입니다.<br>
@@ -1557,7 +1558,7 @@ public class CustomPopFeedbackHandler extends DefaultPopFeedbackHandler {
 ## Interstial 기본설정
 
 ### 개요
-![Interstitail_Basic](./doc/resources/insterstital_default.png)
+![Interstitail_Basic](./doc/resources/A_07.png)
 
 Interstitial 지면은 PlanetAd Android SDK에서 제공하는 UI를 사용해 앱을 완전히 덮으면서 노출됩니다. <br>
 제공하는 UI로 쉽게 연동할 수 있으며, 광고 지면이 앱을 덮고 있어서 앱 UI 와의 조합을 고려하지 않고 노출하기 용이합니다. 
@@ -1674,7 +1675,7 @@ interstitialAdHandler.show(context, interstitialAdConfig);
 
 ### 테마 적용
 
-![Theme 적용](./doc/resources/benefit_theme.png)
+![Theme 적용](./doc/resources/A_41.png)
 
 PlanetAD Benefit에서 제공하는 광고지면의 CTA 테마를 변경할 수 있습니다. 이 단계는 선택사항이긴 하지만 원하는 색상, 아이콘을 적용하는 단계이므로 적용하는 것을 권장합니다. 앱에서 사용중인 application theme에 PlanetAD에서 제공하는 attribute를 정의하여 간편하게 PlanetAD Benefit SDK의 CTA UI를 커스터마이징 할 수 있습니다. 
 
@@ -2117,6 +2118,8 @@ Planet AD는 개인별 맞춤형 광고를 제공하며, 그에 해당하는 사
 
 이러한 맞춤형 광고 고지를 위해 미리 만들어진 UI를 제공하고 있으며, 해당 UI로 진입하기 위한 방법은 아래와 같습니다.
 
+![adInfoVew 적용](./doc/resources/benefit_adinfoview.png)
+ 
 - AdInfoView 추가하기
 
    - SDK에서는 AdInfoView를 제공하며, APP에서는 해당 View를 광고 영역에 추가함으로서 맞춤형 광고에 대한 고지 기능을 제공할 수 있습니다.
@@ -2179,10 +2182,16 @@ public void populateAd(final NativeAd nativeAd) {
 - Interstitial, Feed 타입의 경우, 문의하기에 사용하는 기본 제공 아이콘을 사용하실 수 있습니다.
 
    - Interstitial - `InterstitialAdConfig`에 `showInquiryButton(true)` 설정.
+
+![InquiryView 적용-Interstitial](./doc/resources/A_07.png)
+
    - Feed - Toolbar를 Customize 하지 않고 Default Toolbar를 사용.
+
+![InquiryView 적용-Feed](./doc/resources/A_13.png)
 
 - Native Type일 경우에는, 문의하기를 위해 제공되는 View를 사용하실 수 있습니다.
 
+![InquiryView 적용-Native](./doc/resources/A_06.png)
 ```
 <com.skplanet.skpad.benefit.presentation.nativead.NativeAdView
     android:id="@+id/native_ad_view"

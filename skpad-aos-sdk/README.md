@@ -4,6 +4,6 @@
 
 ## SDK 적용 가이드
 
-- [Android Benefit SDK Development Guide](./skpad-aos-sdk/SKPAdBenefitApp)
+- [Android Benefit SDK Development Guide](./SKPAdBenefitApp)
 
-- [Android Screen SDK Development Guide](./skpad-aos-sdk/SKPAdScreenApp)
+- [Android Screen SDK Development Guide](./SKPAdScreenApp)

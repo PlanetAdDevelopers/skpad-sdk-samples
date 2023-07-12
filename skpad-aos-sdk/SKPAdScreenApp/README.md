@@ -1,4 +1,4 @@
-# SKP AD Android SDK 연동 가이드
+# Android SKP AD Sceen SDK 연동 가이드
 
 ## 목차
 - [기본 설정](#기본-설정)
