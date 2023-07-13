@@ -1587,7 +1587,7 @@ interstitialAdHandler.show(context);
 이 문서에서 가이드 하는 내용은 PlanetAD Android SDK의 Interstitial 지면 연동의 기능을 설명하고 각 기능을 사용하는 방법을 안내합니다.
 
 ### 광고 개수 설정
-![Interstitail_multi](./doc/resources/insterstital_ad_count.png)
+![Interstitail_multi](./doc/resources/ios_22.png)
 
 바텀 시트 형태의 Interstitial 지면은 복수 개의 광고를 표시할 수 있습니다. 
 
@@ -1647,7 +1647,7 @@ interstitialAdHandler.show(MainActivity.this, interstitialAdConfig, new Intersti
 
 ### Interstitial 지면 UI 커스터마이징
 
-![Interstitail_area_guide](./doc/resources/insterstital_area_guide.png)
+![Interstitail_area_guide](./doc/resources/ios_23.png)
 
 Interstitial 지면 UI는 2가지를 설정할 수 있습니다.
 
