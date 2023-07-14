@@ -53,7 +53,7 @@ SKPAdBenefit iOS SDK가 제공하는 기본 UI를 사용해 원하는 지면에 
 
 ## 준비 사항
 
-![](./images/I_01.png)   
+<img src="./images/ios_01.png" alt="Image" style="width:70%; height:auto;">   
 
 <br>
 
@@ -70,7 +70,7 @@ SKPAdBenefit iOS SDK를 연동하기 위해서 아래 사항을 준비해야 합
 
 ## 포인트 적립 서버 연동
 
-![](./images/I_02.png)   
+<img src="./images/ios_02.png" alt="Image" style="width:80%; height:auto;">   
 
 <br>
 
@@ -238,8 +238,8 @@ SKPAdBenefit iOS SDK 연동을 위한 기본적인 설정은 완료하였습니�
 
 |Feed |Native |Interstitial |
 |--|--|--|
-|![](./images/I_04.png)|![](./images/I_03.png)|![](./images/I_05.png)|
-|[Feed 연동하기](#3-광고-지면---feed)<br>리스트 형태의 광고 지면입니다. |[Native 연동하기](#4-광고-지면---native)<br>커스텀 광고 지면입니다. |[Interstitial 연동하기](#5-광고-지면---interstitial)<br>전면 광고 지면입니다. |
+|<p align="center"><img src="./images/ios_04.png" alt="Image" style="width:100%; height:auto;"></p>|<p align="center"><img src="./images/ios_03.png" alt="Image" style="width:100%; height:auto;"></p>|<p align="center"><img src="./images/ios_05.png" alt="Image" style="width:92%; height:auto;"></p>|
+|<p align="center">[Feed 연동하기](#3-광고-지면---feed)<br>리스트 형태의 광고 지면입니다.</p> |<p align="center">[Native 연동하기](#4-광고-지면---native)<br>커스텀 광고 지면입니다.</p> |<p align="center">[Interstitial 연동하기](#5-광고-지면---interstitial)<br>전면 광고 지면입니다.</p> |
 
 <br>
 <br>
@@ -252,7 +252,7 @@ SKPAdBenefit iOS SDK 연동을 위한 기본적인 설정은 완료하였습니�
 
 ### 개요
 
-![](./images/I_06.png)   
+<img src="./images/ios_06.png" alt="Image" style="width:40%; height:auto;">   
 <br>
   
 Feed 지면은 여러 개의 광고를 리스트 형식으로 제공하는 지면입니다.
@@ -313,7 +313,7 @@ Feed 지면은 여러 개의 광고를 리스트 형식으로 제공하는 지�
 ### Feed 지면 표시
 
   
-![](./images/I_07.png)   
+<img src="./images/ios_07.png" alt="Image" style="width:80%; height:auto;">   
 
 <br>
 
@@ -357,7 +357,7 @@ Feed 지면에서 매번 새로운 광고를 보여주지 위해서는 새로운
 ### 광고 미리 할당받기
 
   
-![](./images/I_08.png)
+<img src="./images/ios_08.png" alt="Image" style="width:80%; height:auto;">
   
 <br>
 
@@ -410,7 +410,7 @@ Feed 지면에서 매번 새로운 광고를 보여주지 위해서는 새로운
 
 ### 개요
 
-![](./images/I_09.png)
+<img src="./images/ios_09.png" alt="Image" style="width:80%; height:auto;">
 
 <br>
 이 문서에서 가이드 하는 내용은 SKPAdBenefit iOS SDK의 Feed 지면의 기능을 설명하고 각 기능을 변경하는 방법을 설명합니다.
@@ -420,7 +420,7 @@ Feed 지면에서 매번 새로운 광고를 보여주지 위해서는 새로운
 
 ### 헤더 영역 자체 구현
 
-![](./images/I_10.png)   
+<img src="./images/ios_10.png" alt="Image" style="width:60%; height:auto;">   
 
 <br>
 
@@ -540,7 +540,7 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
 
 #### 일반 광고 UI 자체 구현
 
-![](./images/I_11.png)  
+<img src="./images/ios_11.png" alt="Image" style="width:40%; height:auto;">  
 <br>
 
 다음은 일반 광고의 디자인을 변경하는 방법을 설명합니다.   
@@ -549,7 +549,7 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
 
 <br>
 
-![](./images/I_18.png)  
+<img src="./images/ios_18.png" alt="Image" style="width:80%; height:auto;">  
 
 <br>
 
@@ -820,7 +820,7 @@ Feed 지면에서 ATT 권한 획득을 위한 팝업 및 가이드 배너를 보
 
 #### Feed 진입 시 권한 획득 다이얼로그 노출
 
-![](/.images/I_12.png)   
+<img src="./images/ios_12.png" alt="Image" style="width:40%; height:auto;">   
 <br>
 
 팝업 노출을 설정하면 iOS 14에서 ATT 권한 허용 여부를 결정하지 않은 사용자가 Feed 지면에 진입할 때 ATT 권한 획득 팝업이 보입니다.   
@@ -856,7 +856,7 @@ ATT 권한에 대한 추가적인 설명은 [iOS 14를 위한 준비](#7-1-ios-1
 
 #### Feed 헤더 영역에 ATT 권한 설명 배너 추가하기
 
-![](./images/I_13.png)   
+<img src="./images/ios_13.png" alt="Image" style="width:60%; height:auto;">   
 <br>
 
 Feed 지면 상단의 헤더 영역에 배너를 표시하여 사용자에게 ATT 권한에 대해서 설명할 수 있습니다. 단, Feed 헤더 영역을 커스터마이즈해서 사용하는 경우 또는 유저로부터 이미 AppTrackingTransparency 권한을 획득했을 경우에는 ATT 권한 설명 배너는 노출되지 않습니다.
@@ -900,7 +900,7 @@ Feed 지면 상단의 헤더 영역에 배너를 표시하여 사용자에게 AT
 
 ### Feed 지면 광고 미할당 안내 UI 자체 구현
 
-![](./images/I_14.png)   
+<img src="./images/ios_14.png" alt="Image" style="width:60%; height:auto;">   
 <br>
 
 사용자가 Feed 지면에 진입한 시점에 노출할 광고가 없다면 미 할당 안내 UI가 노출됩니다. SKPAdBenefit iOS SDK는 위와 같은 기본 UI를 제공합니다. 안내 UI는 자체 구현하여 변경하거나 [Feed 지면 광고 미할당 안내 UI 변경](#feed-지면-광고-미할당-안내-ui-변경)을 참고하여 이미지 혹은 문구만 변경하여 수정할 수도 있습니다.
@@ -1005,7 +1005,7 @@ Feed 지면에 진입하기 전에 광고를 미리 할당받아서 참여할 �
 
 ### Feed 지면 구분선 UI 변경
 
-![](./images/I_15.png)   
+<img src="./images/ios_15.png" alt="Image" style="width:60%; height:auto;">   
 <br>
 
 Feed 지면에는 광고와 광고를 구분하기 위한 구분선이 있습니다.
@@ -1041,7 +1041,7 @@ Feed 지면에는 광고와 광고를 구분하기 위한 구분선이 있습니
 
 ### Feed 지면 광고 미할당 안내 UI 변경
 
-![](./images/I_16.png)  
+<img src="./images/ios_16.png" alt="Image" style="width:70%; height:auto;">  
 
 <br>
 
@@ -1116,9 +1116,8 @@ Feed 지면에는 광고와 광고를 구분하기 위한 구분선이 있습니
 ### Feed 문의하기
 Feed 지면에서 문의하기 버튼을 보여줄 수 있습니다.
 
-<br>
+<img src="./images/ios_04_01.png" alt="Image" style="width:44%; height:auto;">
 
-![](/.images/I_04_01.png)   
 <br>
 
 <details open><summary>Objective-C</summary>   
@@ -1153,7 +1152,7 @@ Feed 지면에서 문의하기 버튼을 보여줄 수 있습니다.
 
 ### 개요
 
-![](./images/I_17.png)
+<img src="./images/ios_17.png" alt="Image" style="width:80%; height:auto;">
 
 <br>
 
@@ -1171,7 +1170,7 @@ Feed 지면에서 문의하기 버튼을 보여줄 수 있습니다.
 
 ### 광고 레이아웃 구성
 
-![](./images/I_18.png)   
+<img src="./images/ios_18.png" alt="Image" style="width:80%; height:auto;">   
 
 <br>
 
@@ -1524,7 +1523,7 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 
 ### CTA(Call to action) 버튼 커스터마이징
 
-![](./images/I_19.png)   
+<img src="./images/ios_19.png" alt="Image" style="width:80%; height:auto;">   
 
 <br>
 
@@ -1635,7 +1634,7 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
 |`totalReward` |해당 광고에 할당된 총 리워드 양을 나타냅니다.<br>리워드 적립 주기가 지나지 않아 광고에 리워드가 할당되지 않는 경우에는 0으로 내려오게 됩니다.|
 |`availableReward` |해당 광고에 남아있는 총 리워드 양을 나타냅니다.<br>유저가 광고에서 특정 액션을 취하지 않아 받아가지 못한 리워드가 있을때 0보다 큰 값을 갖게됩니다.|
 |`isParticipated` |현재 할당 받은 광고들의 참여 상태를 sync하기 위한 값입니다.<br>광고 참여가 일어나면 해당 광고 및 메모리 상의 동일 광고들의 isParticipated값이 true로 바뀌며 onParticipate 콜백이 호출됩니다.|
-|`isClicked` |현재 할당 받은 광고의 클릭 여부를 나타내기 위한 값입니다.<br>광고를 클릭한 적이 있으면 true로 변경됩니다. 일부 액션형 광고의 경우 서버에서 참여 여부를 실시간으로 판단할 수 없습니다. 이 경우에는 isParticipated 값이 true가 아니므로, Click이 발생한 경우 “참여 확인 중” 이라는 CTA로 변경하여 유저 혼선을 줄일 수 있습니다. |
+|`isClicked` |현재 할당 받은 광고의 클릭 여부를 나타내기 위한 값입니다.<br>광고를 클릭한 적이 있으면 true로 변경됩니다. 일부 액션형 광고의 경우 서버에서 참여 여부를 실시간으로 판단할 수 없습니다. 이 경우에는 isParticipated 값이 true가 아니므로, Click이 발생한 경우 “참여 확인 중" 이라는 CTA로 변경하여 유저 혼선을 줄일 수 있습니다. |
 |`isActionType` |참여형 광고의 경우 True 이며, 노출형 광고의 경우 False 입니다. |
 
 <br>  
@@ -1687,7 +1686,7 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
 
 ### 개요
  
-![](./images/I_20.png)   
+<img src="./images/ios_20.png" alt="Image" style="width:40%; height:auto;">   
 
 <br>
 
@@ -1708,7 +1707,7 @@ Interstitial 지면은 SKPAdBenefit iOS SDK에서 제공하는 UI를 사용해 �
 
 ### 광고 표시
 
-![](./images/I_21.png)   
+<img src="./images/ios_21.png" alt="Image" style="width:80%; height:auto;">   
 
 <br>
 
@@ -1754,7 +1753,7 @@ Interstitial 지면을 표시합니다. SKPAdBenefit iOS SDK의 Interstitial 지
 
 ### 광고 개수 설정
 
-![](./images/I_22.png)   
+<img src="./images/ios_22.png" alt="Image" style="width:40%; height:auto;">   
 
 <br>
 
@@ -1900,7 +1899,7 @@ Interstitial 지면이 종료되는 이벤트를 수신할 수 있습니다. 필
 
 ### Interstitial 지면 UI 커스터마이징
 
-![](./images/I_23.png)   
+<img src="./images/ios_23.png" alt="Image" style="width:70%; height:auto;">   
 
 <br>
 
@@ -2145,7 +2144,7 @@ WKScriptMessage) {
 
 ### App Tracking Transparency 권한 획득 팝업 노출
 
-![](./images/I_24.png)   
+<img src="./images/ios_24.png" alt="Image" style="width:60%; height:auto;">   
 
 <br>
 
@@ -2676,5 +2675,5 @@ AOS: onClickEvent / iOS : shouldClickAd method를 사용한 클릭 Hooking
 
 비디오 MediaView 관련 이미지
 
-![](./images/I_25.png)
+<img src="./images/ios_25.png" alt="Image" style="width:80%; height:auto;">
 
