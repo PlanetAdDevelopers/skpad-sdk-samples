@@ -1899,7 +1899,7 @@ Interstitial 지면이 종료되는 이벤트를 수신할 수 있습니다. 필
 
 ### Interstitial 지면 UI 커스터마이징
 
-<img src="./images/ios_23.png" alt="Image" style="width:70%; height:auto;">   
+<img src="./images/ios_23.png" alt="Image" style="width:80%; height:auto;">   
 
 <br>
 
