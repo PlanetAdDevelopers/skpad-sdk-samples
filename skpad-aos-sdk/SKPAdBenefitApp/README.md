@@ -67,9 +67,7 @@ allprojects {
     repositories {
         ...생략...
         // Planet AD 저장소
-        maven { url "https://asia-northeast3-maven.pkg.dev/planetad-379102/planetad"
-     
-        }
+        maven { url "https://asia-northeast3-maven.pkg.dev/planetad-379102/planetad" }
         ...생략...
     }
 }
