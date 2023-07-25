@@ -1,5 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-SKPAdBenefitSampleApp/Pods-SKPAdBenefitSampleApp-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework
+${PODS_ROOT}/GoogleAds-IMA-iOS-SDK/GoogleInteractiveMediaAds.framework
 ${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImageWebPCoder/SDWebImageWebPCoder.framework
@@ -10,4 +11,3 @@ ${PODS_ROOT}/SKPAdBenefit/SKPAdBenefitFeed.framework
 ${PODS_ROOT}/SKPAdBenefit/SKPAdBenefitWebInterface.framework
 ${BUILT_PRODUCTS_DIR}/Toast/Toast.framework
 ${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework
-${PODS_XCFRAMEWORKS_BUILD_DIR}/GoogleAds-IMA-iOS-SDK/GoogleInteractiveMediaAds.framework/GoogleInteractiveMediaAds

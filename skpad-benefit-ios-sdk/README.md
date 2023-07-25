@@ -93,8 +93,22 @@ Cocoapods 을 사용하여 라이브러리를 추가합니다.
 
 ```ruby
 // Podfile
-pod 'SKPAdBenefit', '= 1.1.0'
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/PlanetAdDevelopers/Specs.git'
+
+...
+
+target 'YourApp' do
+
+...
+
+   pod 'SKPAdBenefit', '=1.1.0'
+   
+...
+
+end
 ```     
+
 > ! 오프라인 빌드가 필요하시면 PlanetAD 담당자에게 문의 바랍니다.   
 PlanetAD 담당자가 SDK 연동에 필요한 라이브러리를 준비해드립니다.   
 자세한 내용은 [오프라인 빌드를 적용하는 예시](#7-5-오프라인-빌드-적용-예시)를 확인하시기 바랍니다.   
