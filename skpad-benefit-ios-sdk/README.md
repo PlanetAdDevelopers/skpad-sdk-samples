@@ -1154,7 +1154,10 @@ Feed 지면에서 문의하기 버튼을 보여줄 수 있습니다.
   ```
   
 </p>
-</details> 
+</details>
+
+([7-8. 문의하기](#7-8-문의하기) 참고)   
+
   
 <br>
 <br>
@@ -1200,7 +1203,7 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 |`필수` CTA view |광고 참여를 유도하는 문구 |최대 7자 |- |- 생략 부호로 일정 길이 이상은 생략 가능<br>-보상형 광고에는 포인트 정보도 포함해야 합니다. |
 |`필수` Icon image view |광고주 아이콘 이미지 |80x80 px |종횡비 유지 |- |
 |`필수` AdInfo view |사용자에게 광고임을 알리는 버튼 |26x26 px |종횡비 유지 |- |
-|`권장` Inquiry view |광고 참여 및 보상에 대한 문의 접수 버튼  |26x26 px |종횡비 유지 |- |
+|`권장` Inquiry view |광고 참여 및 보상에 대한 문의 접수 버튼 ([7-8. 문의하기](#7-8-문의하기) 참고) |26x26 px |종횡비 유지 |- |
 
 <br>
 
@@ -1921,7 +1924,7 @@ Interstitial 지면 UI를 Config 설정으로 변경할 수 있습니다. 일부
 
 [1] 공통 Config
 - `backgroundColor` : Interstitial 광고 전체의 배경 색깔 (UIColor)   
-- `showInquiryButton` : 문의하기 버튼 노출 여부 (BOOL)   
+- `showInquiryButton` : 문의하기 버튼 노출 여부 (BOOL) ([7-8. 문의하기](#7-8-문의하기) 참고)   
 - `ctaViewBackgroundColor` : CTA의 배경 색깔 (SABStateValue<UIColor *>)   
 - `ctaViewIcon` : CTA에 포함된 기본 아이콘 (SABStateValue<UIImage *>)   
 - `ctaViewTextColor` : CTA의 Text 색깔 (SABStateValue<UIColor *>)   
@@ -1976,6 +1979,7 @@ Interstitial 지면 UI를 Config 설정으로 변경할 수 있습니다. 일부
   
 </p>
 </details> 
+
 
 <br>
 <br>
