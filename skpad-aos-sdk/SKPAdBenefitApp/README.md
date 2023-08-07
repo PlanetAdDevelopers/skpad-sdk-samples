@@ -78,7 +78,7 @@ allprojects {
 dependencies {
     ...생략...
     // Planet AD Benefit SDK
-    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.4.0.rc1")
+    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.4.0.rc2")
      ...생략...
 }
 ```
