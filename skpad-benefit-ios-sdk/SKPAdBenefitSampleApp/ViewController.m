@@ -34,6 +34,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    NSLog(@"SDK VERSION : %@", [SKPAdBenefit getSDKVersion]);
+    
     _adView.delegate = self;
     _adView.videoDelegate = self;
     
@@ -94,7 +96,6 @@
         self.adView.mediaView = self.mediaView;
         self.adView.clickableViews = @[self.ctaButton, self.iconImageView, self.mediaView];
         self.adView.adInfoView = self.adInfoView;
-        self.adView.inquiryView = self.inquiryView;
         
     } onFailure:^(SABError *error) {
         //할당된 광고가 없으면 호출됩니다.
@@ -162,12 +163,13 @@
     }
 }
 - (void)SABNativeAdView:(SABNativeAdView *)adView didParticipateAd:(SABAd *)ad {
-    if (ad.isParticipated || ad.reward <= 0) {
+    if ([ad isClicked] && [ad isActionType] && ![ad isParticipated]) {
+        [self.ctaButton setTitle:@"참여 확인 중" forState:UIControlStateNormal];
+    } else if (ad.isParticipated || ad.reward <= 0) {
         [self.ctaButton setTitle:@"참여 완료" forState:UIControlStateNormal];
     } else {
         [self.ctaButton setTitle:[NSString stringWithFormat:@"+%d %@", (int)(ad.reward), ad.creative.callToAction] forState:UIControlStateNormal];
-    }
-}
+    }}
 
 #pragma mark - SABNativeAdViewVideoDelegate - 네이티브 비디오 광고 리스너 등록하기
 - (void)SABNativeAdViewWillStartPlayingVideo:(SABNativeAdView *)adView {

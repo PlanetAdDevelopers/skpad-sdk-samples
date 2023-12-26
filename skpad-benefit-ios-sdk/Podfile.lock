@@ -15,23 +15,26 @@ PODS:
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
   - GoogleAds-IMA-iOS-SDK (3.12.1)
-  - libwebp (1.2.4):
-    - libwebp/demux (= 1.2.4)
-    - libwebp/mux (= 1.2.4)
-    - libwebp/webp (= 1.2.4)
-  - libwebp/demux (1.2.4):
+  - libwebp (1.3.2):
+    - libwebp/demux (= 1.3.2)
+    - libwebp/mux (= 1.3.2)
+    - libwebp/sharpyuv (= 1.3.2)
+    - libwebp/webp (= 1.3.2)
+  - libwebp/demux (1.3.2):
     - libwebp/webp
-  - libwebp/mux (1.2.4):
+  - libwebp/mux (1.3.2):
     - libwebp/demux
-  - libwebp/webp (1.2.4)
+  - libwebp/sharpyuv (1.3.2)
+  - libwebp/webp (1.3.2):
+    - libwebp/sharpyuv
   - ReactiveObjC (3.1.1)
-  - SDWebImage (5.13.4):
-    - SDWebImage/Core (= 5.13.4)
-  - SDWebImage/Core (5.13.4)
-  - SDWebImageWebPCoder (0.9.1):
+  - SDWebImage (5.18.5):
+    - SDWebImage/Core (= 5.18.5)
+  - SDWebImage/Core (5.18.5)
+  - SDWebImageWebPCoder (0.14.2):
     - libwebp (~> 1.0)
-    - SDWebImage/Core (~> 5.13)
-  - SKPAdBenefit (1.1.0):
+    - SDWebImage/Core (~> 5.17)
+  - SKPAdBenefit (1.3.0):
     - AFNetworking (~> 4.0)
     - GoogleAds-IMA-iOS-SDK (~> 3.12.1)
     - ReactiveObjC (~> 3.1.1)
@@ -41,7 +44,7 @@ PODS:
 
 DEPENDENCIES:
   - SDWebImage (~> 5.0)
-  - SKPAdBenefit (= 1.1.0)
+  - SKPAdBenefit (= 1.3.0)
   - Toast (~> 4.0.0)
 
 SPEC REPOS:
@@ -59,13 +62,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
   GoogleAds-IMA-iOS-SDK: 3c01b8db7d01de6b4a3b1d58744d4bc426a2d821
-  libwebp: f62cb61d0a484ba548448a4bd52aabf150ff6eef
+  libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
-  SDWebImage: e5cc87bf736e60f49592f307bdf9e157189298a3
-  SDWebImageWebPCoder: 18503de6621dd2c420d680e33d46bf8e1d5169b0
-  SKPAdBenefit: 513ba640cebca87a9422b5c19d28a03b6abfe8d8
+  SDWebImage: 7ac2b7ddc5e8484c79aa90fc4e30b149d6a2c88f
+  SDWebImageWebPCoder: 633b813fca24f1de5e076bcd7f720c038b23892b
+  SKPAdBenefit: 45f04275444d6e1f86b583279442ffdcd9f7a93a
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
 
-PODFILE CHECKSUM: 9d1ea9a024c243798ad89d0031b8742dfd723fd4
+PODFILE CHECKSUM: cec8979c44eec519e121ce2b2dcec0dd885b862b
 
 COCOAPODS: 1.12.0

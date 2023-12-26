@@ -14,6 +14,7 @@ typedef enum {
     SABCreativeNative,
     SABCreativeVideo,
     SABCreativeVast,
+    SABCreativeWebBanner,
 } SABCreativeType;
 
 typedef enum {
@@ -57,6 +58,10 @@ typedef enum {
 //jylee encodedClickUrlAfterRewarded : 참여 완료 후에 click_url에 reward를 0으로 보내야 헤서 추가로 만들었음. (220826)
 @property (nonatomic, strong, nullable) NSString *encodedClickUrlAfterRewarded;
 @property (nonatomic, strong, nullable) SABVideoAdMetadata *videoAdMetadata;
+
+//jylee webjs 추가
+@property (nonatomic, copy, readonly, nullable) NSString *bgImageUrl; //webbanner는 사용안함. (추후 banner타입일 때 사용할 수 있어서 남겨둠)
+@property (nonatomic, copy, readonly, nullable) NSString *htmlTag;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
 

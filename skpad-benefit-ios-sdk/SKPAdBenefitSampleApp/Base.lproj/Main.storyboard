@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kow-qd-kKH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kow-qd-kKH">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -154,14 +154,6 @@
                                                     <constraint firstAttribute="width" constant="26" id="P0P-CE-DcE"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldB-5N-PZX" customClass="SABInquiryView">
-                                                <rect key="frame" x="380" y="10" width="26" height="26"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="26" id="LsK-P1-rod"/>
-                                                    <constraint firstAttribute="width" constant="26" id="p47-ov-JIu"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -169,12 +161,10 @@
                                             <constraint firstItem="j0x-Yb-4af" firstAttribute="top" secondItem="ODU-mS-8te" secondAttribute="bottom" constant="10" id="4ft-d7-1fI"/>
                                             <constraint firstAttribute="trailing" secondItem="n3b-dc-Dof" secondAttribute="trailing" id="8RA-I0-sd5"/>
                                             <constraint firstItem="beT-mg-5a3" firstAttribute="top" secondItem="Az5-pc-lHq" secondAttribute="bottom" constant="15" id="9cM-Xr-Nvd"/>
-                                            <constraint firstItem="ldB-5N-PZX" firstAttribute="top" secondItem="n3b-dc-Dof" secondAttribute="top" constant="10" id="DGE-tp-74T"/>
                                             <constraint firstItem="j0x-Yb-4af" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OAY-yI-SU9" secondAttribute="leading" constant="20" symbolic="YES" id="F09-Ie-nr0"/>
                                             <constraint firstAttribute="trailing" secondItem="Jtk-X8-whf" secondAttribute="trailing" constant="8" id="GSk-Ov-u8R"/>
                                             <constraint firstItem="Az5-pc-lHq" firstAttribute="top" secondItem="n3b-dc-Dof" secondAttribute="bottom" constant="10" id="H2b-vj-hdR"/>
                                             <constraint firstItem="n3b-dc-Dof" firstAttribute="top" secondItem="OAY-yI-SU9" secondAttribute="top" id="Jxm-3G-3KV"/>
-                                            <constraint firstItem="ldB-5N-PZX" firstAttribute="trailing" secondItem="n3b-dc-Dof" secondAttribute="trailing" constant="-8" id="KiN-9E-j8w"/>
                                             <constraint firstItem="ODU-mS-8te" firstAttribute="leading" secondItem="Az5-pc-lHq" secondAttribute="trailing" constant="8" id="OTp-aH-j1m"/>
                                             <constraint firstAttribute="trailing" secondItem="j0x-Yb-4af" secondAttribute="trailing" constant="8" id="QAH-xb-6XG"/>
                                             <constraint firstItem="ZbQ-C2-AdJ" firstAttribute="centerY" secondItem="beT-mg-5a3" secondAttribute="centerY" id="T3Y-Ia-aAH"/>
@@ -241,7 +231,6 @@
                         <outlet property="ctaButton" destination="j0x-Yb-4af" id="5Bl-xP-zaS"/>
                         <outlet property="descriptionLabel" destination="ODU-mS-8te" id="cuL-4v-yfj"/>
                         <outlet property="iconImageView" destination="Az5-pc-lHq" id="Va3-hG-Q4R"/>
-                        <outlet property="inquiryView" destination="ldB-5N-PZX" id="qk8-m6-d3w"/>
                         <outlet property="loginButton" destination="r6w-TU-xBb" id="oeJ-Q3-LMd"/>
                         <outlet property="mediaView" destination="n3b-dc-Dof" id="88q-2p-imy"/>
                         <outlet property="shouldClickSwitch" destination="ZbQ-C2-AdJ" id="UJv-Ju-6G1"/>

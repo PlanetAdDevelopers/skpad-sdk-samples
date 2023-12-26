@@ -102,7 +102,7 @@ target 'YourApp' do
 
 ...
 
-   pod 'SKPAdBenefit', '=1.1.0'
+   pod 'SKPAdBenefit', '=1.3.0'
    
 ...
 
@@ -1548,7 +1548,7 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
 
 - 참여한 광고에 대해서는 “참여 완료“로 표기
 - 리워드가 없는 광고(과거에 참여한 광고를 다시 할당 받음 등)는 포인트가 부여되지 않기 때문에 “0P“ 혹은 포인트를 표기하지 않음
-- 참여형 광고에 대해서는 리워드 부여까지 시간이 소요되므로 “확인 중“으로 표기
+- 참여형 광고에 대해서는 리워드 부여까지 시간이 소요되므로 “참여 확인 중“으로 표기
 
 <br>
 
@@ -2004,7 +2004,7 @@ SKPAdBenefit iOS SDK를 연동하려면 반드시 앱의 고유 식별자인 `Ap
 ### 2 단계: SDK 설치하기
 SKPAdBenefit iOS용 SDK를 설치하려면 CocoaPods을 사용하여 `Podfile`에 추가하세요.
 ```ruby
-pod 'SKPAdBenefit', '= 1.1.0'
+pod 'SKPAdBenefit', '=1.3.0'
 ```
 <br>
 
@@ -2106,6 +2106,7 @@ pod 'SKPAdBenefit', '= 1.1.0'
     
     _webView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
     _webInterface = [[SABWebInterface alloc] initWithWebView:_webView];
+    // url loadRequest
     // 생략 ...
   }
 
@@ -2132,6 +2133,7 @@ pod 'SKPAdBenefit', '= 1.1.0'
     
     webView = WKWebView(frame: self.view.bounds, configuration: config)
     webInterface = SABWebInterface(webView: webView)
+    // url loadRequest
     // 생략 ...
   }
 
@@ -2230,7 +2232,7 @@ App Tracking Transparency에 대한 자세한 내용은 [애플 공식 문서](h
 
 동영상 광고의 재생 방식을 변경할 수 있습니다.
 
-다음은 동영상 광고를 자동재생으로 설정하는 예시입니다. 기본값은 Wifi 환경에서만 자동 재생하도록 설정되어 있습니다.
+다음은 동영상 광고를 자동재생으로 설정하는 예시입니다.  
 
 <details open><summary>Objective-C</summary>   
 <p>    
@@ -2256,9 +2258,13 @@ App Tracking Transparency에 대한 자세한 내용은 [애플 공식 문서](h
 
 <br>
 
+> 설정하지 않으면 서버 설정에 따라 재생 방식이 결정됩니다. (서버 설정의 기본 값은 WiFi 환경에서만 자동 재생하도록 되어 있습니다.)   
+
+
 추가적으로 선택 가능한 설정값은 다음과 같습니다.
 
-- `SABVideoAutoPlayOnWifi`: Wifi 환경에서만 자동 재생됩니다. (기본값)
+- `SABVideoAutoPlayNotSet`: 서버 설정에 따라 재생됩니다. (기본값)
+- `SABVideoAutoPlayOnWifi`: WiFi 환경에서만 자동 재생됩니다.
 - `SABVideoAutoPlayEnabled`: 항상 자동 재생됩니다.
 - `SABVideoAutoPlayDisabled`: 자동 재생을 사용하지 않습니다.
 
@@ -2546,16 +2552,6 @@ typedef enum {
 <br>
 
 ## 7-8. 문의하기
-
-### 문의하기 사용 시 권한 설정
-- 문의하기 기능을 사용하는 경우, info.plist에 카메라 권한 설정을 해야 합니다.
-
-```
-    <key>NSCameraUsageDescription</key>
-    <string>Camera Usage Description - PlanetAD</string>
-```   
-
-<br>
 
 ### 커스텀으로 문의하기 버튼을 사용하는 경우  
 

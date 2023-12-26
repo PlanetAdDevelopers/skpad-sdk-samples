@@ -1,6 +1,6 @@
 framework module SKPAdBenefitInterstitial {
   umbrella header "SKPAdBenefitInterstitial.h"
-
   export *
+
   module * { export * }
 }

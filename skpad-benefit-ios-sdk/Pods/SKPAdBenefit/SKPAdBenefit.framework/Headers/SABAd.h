@@ -52,6 +52,8 @@ typedef enum {
 
 - (BOOL)isActionType;
 
+- (BOOL)isWebBannerType;
+
 - (SKPEvent *)getEventWithType:(SKPAdEventType)type;
 
 - (BOOL)hasRewardForEventType:(SKPAdEventType)type;

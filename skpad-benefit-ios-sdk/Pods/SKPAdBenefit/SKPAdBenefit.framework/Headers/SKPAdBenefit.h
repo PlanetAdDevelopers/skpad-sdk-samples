@@ -1,4 +1,4 @@
-//2023.07.24
+//2023.12.26
 
 #import <Foundation/Foundation.h>
 #import <SKPAdBenefit/SABConfig.h>

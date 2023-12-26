@@ -1,6 +1,6 @@
 framework module SKPAdBenefitNative {
   umbrella header "SKPAdBenefitNative.h"
-
   export *
+
   module * { export * }
 }
