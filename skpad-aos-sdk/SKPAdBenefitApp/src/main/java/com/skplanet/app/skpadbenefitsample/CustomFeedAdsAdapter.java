@@ -9,8 +9,6 @@ import androidx.annotation.Nullable;
 import com.skplanet.skpad.benefit.presentation.feed.ad.DefaultAdsAdapter;
 import com.skplanet.skpad.benefit.presentation.nativead.NativeAd;
 import com.skplanet.skpad.benefit.presentation.nativead.NativeAdView;
-import com.skplanet.skpad.benefit.presentation.notification.RewardNotificationConfig;
-import com.skplanet.skpad.benefit.presentation.notification.SKPAdPush;
 import com.skplanet.skpad.benefit.presentation.reward.RewardResult;
 
 public class CustomFeedAdsAdapter extends DefaultAdsAdapter {
@@ -34,10 +32,6 @@ public class CustomFeedAdsAdapter extends DefaultAdsAdapter {
         @Override
         public void onRewarded(@NonNull NativeAdView view, @NonNull NativeAd nativeAd, @Nullable RewardResult nativeAdRewardResult) {
             Toast.makeText(view.getContext(), "onRewarded: " + nativeAdRewardResult, Toast.LENGTH_SHORT).show();
-            // TODO RewardNotificationConfig set config once
-            if (nativeAdRewardResult == RewardResult.SUCCESS) {
-                SKPAdPush.showRewardNotification(view.getContext(), new RewardNotificationConfig.Builder().build(), nativeAd.getAd().getReward());
-            }
         }
 
         @Override
