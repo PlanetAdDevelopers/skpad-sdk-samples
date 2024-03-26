@@ -98,7 +98,6 @@ public class NativeAdAdapter {
         nativeAdView.setMediaView(mediaView);
         nativeAdView.setClickableViews(clickableViews);
         nativeAdView.setNativeAd(nativeAd);
-        nativeAdView.enableNativeToFeedOverlay();
         nativeAdView.setAdInfoView(informationView);
         nativeAdView.setInquiryView(inquiryButon);
 
