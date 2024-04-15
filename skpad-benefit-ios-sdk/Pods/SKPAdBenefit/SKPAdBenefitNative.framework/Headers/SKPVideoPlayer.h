@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class SKPVideoPlayer;
 @class SKPVideoPlayerOverlay;
 @class SKPVideoPlayerConfig;
+@class SABAd;
 
 @protocol SKPAdVideoPlayerDelegate <NSObject>
 - (void)SKPAdVideoPlayerDidTappedLearnMore:(SKPVideoPlayer *)videoPlayer;
@@ -46,9 +47,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) SKPVideoPlayerOverlay *overlay;
 @property (nonatomic, strong) SKPVideoPlayerConfig *config;
 
-- (void)loadVideoAtUrl:(NSURL *)url autoPlay:(BOOL)autoPlay fromSecond:(NSTimeInterval)fromSecond mute:(BOOL)mute;
-- (void)loadVideoWithBuzzPlayer:(id<SKPPlayerProtocol>)player authPlay:(BOOL)autoPlay;
-- (void)loadVideoAtVastTag:(NSString *)vastTag autoPlay:(BOOL)autoPlay fromSecond:(NSTimeInterval)fromSecond mute:(BOOL)mute;
+- (void)loadVideoAtUrl:(NSURL *)url autoPlay:(BOOL)autoPlay fromSecond:(NSTimeInterval)fromSecond mute:(BOOL)mute ad:(SABAd*)ad;
+- (void)loadVideoWithBuzzPlayer:(id<SKPPlayerProtocol>)player authPlay:(BOOL)autoPlay ad:(SABAd*)ad;
+- (void)loadVideoAtVastTag:(NSString *)vastTag autoPlay:(BOOL)autoPlay fromSecond:(NSTimeInterval)fromSecond mute:(BOOL)mute ad:(SABAd*)ad;
 
 - (void)play;
 - (void)startAutoPlay;

@@ -24,8 +24,9 @@
   - [7-5. 오프라인 빌드 적용 예시](#7-5-오프라인-빌드-적용-예시)  
   - [7-6. 앱 다크모드 활성화 시 Feed 광고 뷰 설정](#7-6-앱-다크모드-활성화-시-feed-광고-뷰-설정)
   - [7-7. 광고 로드 실패 시 에러 정보 확인하기](#7-7-광고-로드-실패-시-에러-정보-확인하기)  
-  - [7-8. 문의하기](#7-8-문의하기)
-  - [7-9. 광고 노출/클릭/참여와 관련한 콜백 변화](#7-9-광고-노출클릭참여와-관련한-콜백-변화)
+  - [7-8. 광고 로드 가능 여부 확인하기](#7-8-광고-로드-가능-여부-확인하기)
+  - [7-9. 문의하기](#7-9-문의하기)
+  - [7-10. 광고 노출/클릭/참여와 관련한 콜백 변화](#7-10-광고-노출클릭참여와-관련한-콜백-변화)
   
 ---  
 
@@ -47,7 +48,7 @@ SKPAdBenefit iOS SDK가 제공하는 기본 UI를 사용해 원하는 지면에 
 ## 기본 요건
 
 - deployment target 12 이상
-- Xcode 12 이상 사용
+- Xcode 14 이상 사용
 
 <br>
 
@@ -102,15 +103,14 @@ target 'YourApp' do
 
 ...
 
-   pod 'SKPAdBenefit', '=1.3.0'
+   pod 'SKPAdBenefit', '1.4.1'
    
 ...
 
 end
 ```     
 
-> ! 오프라인 빌드가 필요하시면 PlanetAD 담당자에게 문의 바랍니다.   
-PlanetAD 담당자가 SDK 연동에 필요한 라이브러리를 준비해드립니다.   
+> ! 오프라인 빌드가 필요하시면 PlanetAD 담당자에게 문의 바랍니다. PlanetAD 담당자가 SDK 연동에 필요한 라이브러리를 준비해드립니다.   
 자세한 내용은 [오프라인 빌드를 적용하는 예시](#7-5-오프라인-빌드-적용-예시)를 확인하시기 바랍니다.   
 
 <br>
@@ -331,7 +331,7 @@ Feed 지면은 여러 개의 광고를 리스트 형식으로 제공하는 지�
 
 <br>
 
-바텀 시트 형태의 Feed 지면을 표시합니다. 단, 할당받은 광고가 없다면 할당을 진행하며 할당받는 도중에는 "참여할 수 있는 광고가 없습니다." 라는 이미지가 사용자에게 노출될 수 있습니다. `SABFeedViewController`를 이용하여 Feed 지면을 표시합니다.   
+리스트 형태의 Feed 지면을 표시합니다. 단, 할당받은 광고가 없다면 할당을 진행하며 할당받는 도중에는 "참여할 수 있는 광고가 없습니다." 라는 이미지가 사용자에게 노출될 수 있습니다. `SABFeedViewController`를 이용하여 Feed 지면을 표시합니다.   
 
 Feed 지면에서 매번 새로운 광고를 보여주지 위해서는 새로운 `FeedHandler` 인스턴스를 생성해야 합니다.   
 
@@ -416,7 +416,8 @@ Feed 지면에서 매번 새로운 광고를 보여주지 위해서는 새로운
 **유의사항**
 
 - 프리로드한 `SABFeedHandler`와 동일한 객체에서 `populateViewController()`를 호출해야 합니다.
-    - 하나의 FeedHandler 인스턴스에서 광고를 load/preload 하는 경우, 그 인스턴스는 계속 같은 광고를 들고 있게 됩니다. 그래서 유저가 feed에서 나왔더라도 다시 해당 인스턴스로 populateViewController()를 호출하는 경우 같은 광고 리스트를 보게 됩니다. 만약 피드에 진입할 때마다 새로 광고가 로드되는 것을 원하는 경우 새로운 FeedHandler 인스턴스를 만들어서 populateViewController()를 호출해야 합니다.   
+    - 하나의 FeedHandler 인스턴스에서 광고를 load/preload 하는 경우, 그 인스턴스는 계속 같은 광고를 들고 있게 됩니다. 그래서 유저가 feed에서 나왔더라도 다시 해당 인스턴스로 populateViewController()를 호출하는 경우 같은 광고 리스트를 보게 됩니다.  
+    만약 피드에 진입할 때마다 새로 광고가 로드되는 것을 원하는 경우 새로운 FeedHandler 인스턴스를 만들어서 populateViewController()를 호출해야 합니다.   
   
 <br>  
 
@@ -547,7 +548,7 @@ Feed 헤더 영역을 자유로이 활용할 수 있습니다. 예를 들어, Fe
 
 ### 광고 UI 자체 구현
 
-SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방법입니다.
+SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방법입니다.   
 추가로 광고의 노출, 클릭, 참여 이벤트 콜백을 받을 수 있습니다. 적용 방법은 [광고 이벤트 콜백 수신](#광고-이벤트-콜백-수신)을 참고하시기 바랍니다
 
 <br>
@@ -579,7 +580,7 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
 
 광고 레이아웃을 생성한 후, `SABAdViewHolder`의 구현 클래스를 구현합니다. `SABAdViewHolder`의 구현 클래스는 `SABFeedConfig`에 설정합니다.   
 
-다음은 Objective-C와 Swift로 구현한 예시입니다.
+다음은 구현한 예시입니다.
 
 <details open><summary>Objective-C</summary>   
 <p>    
@@ -738,7 +739,7 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
 
 필요에 따라 광고 노출, 클릭, 참여 이벤트 콜백을 받을 수 있습니다.   
 
-다음은 Objective-C와 Swift로 구현한 예시입니다.
+다음은 구현한 예시입니다.
 
 
 <details open><summary>Objective-C</summary>   
@@ -825,6 +826,10 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
 
 <br>
 
+> 컨텐츠 아이템 영역을 Customization하는 경우, SABArticleViewHolder를 상속받는 CustomArticleViewHolder를 구현하고, SABFeedConfig의 articleViewHolderClass를 설정 해주시면 됩니다.
+
+<br>
+<br>
 
 ### App Tracking Transparency (iOS 14 지원) 권한 획득 기능
 
@@ -839,7 +844,7 @@ Feed 지면에서 ATT 권한 획득을 위한 팝업 및 가이드 배너를 보
 
 팝업 노출을 설정하면 iOS 14에서 ATT 권한 허용 여부를 결정하지 않은 사용자가 Feed 지면에 진입할 때 ATT 권한 획득 팝업이 보입니다.   
 
-다음은 Objective-C 와 Swift에서 설정하는 방법입니다.
+다음은 설정하는 방법입니다.
 
 <details open><summary>Objective-C</summary>   
 <p>    
@@ -1156,7 +1161,7 @@ Feed 지면에서 문의하기 버튼을 보여줄 수 있습니다.
 </p>
 </details>
 
-([7-8. 문의하기](#7-8-문의하기) 참고)   
+([7-9. 문의하기](#7-9-문의하기) 참고)   
 
   
 <br>
@@ -1203,7 +1208,7 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 |`필수` CTA view |광고 참여를 유도하는 문구 |최대 7자 |- |- 생략 부호로 일정 길이 이상은 생략 가능<br>-보상형 광고에는 포인트 정보도 포함해야 합니다. |
 |`필수` Icon image view |광고주 아이콘 이미지 |80x80 px |종횡비 유지 |- |
 |`필수` AdInfo view |사용자에게 광고임을 알리는 버튼 |26x26 px |종횡비 유지 |- |
-|`권장` Inquiry view |광고 참여 및 보상에 대한 문의 접수 버튼 ([7-8. 문의하기](#7-8-문의하기) 참고) |26x26 px |종횡비 유지 |- |
+|`권장` Inquiry view |광고 참여 및 보상에 대한 문의 접수 버튼 ([7-9. 문의하기](#7-9-문의하기) 참고) |26x26 px |종횡비 유지 |- |
 
 <br>
 
@@ -1287,8 +1292,8 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 ### 광고 요청
   
 광고 레이아웃에 추가할 광고를 할당받습니다.   
-
-`SABAdLoader`의 `loadAd`를 실행하면 광고 데이터를 요청합니다. 다음은 광고 할당 요청 예시입니다.
+`SABAdLoader`의 `loadAd`를 실행하면 광고 데이터를 요청합니다.  
+다음은 광고 할당 요청 예시입니다.   
 
   
 <details open><summary>Objective-C</summary>   
@@ -1409,7 +1414,7 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 
 <br>
 
-이벤트의 정의 및 동작을 [광고 노출/클릭/참여와 관련한 콜백 변화](#7-9-광고-노출클릭참여와-관련한-콜백-변화) 문서를 참고하여 확인할 수 있습니다.
+이벤트의 정의 및 동작을 [광고 노출/클릭/참여와 관련한 콜백 변화](#7-10-광고-노출클릭참여와-관련한-콜백-변화) 문서를 참고하여 확인할 수 있습니다.   
 아래는 일반 광고와 동영상 광고 이벤트를 수신하는 예시입니다.
 
   
@@ -1449,7 +1454,7 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
     [self.rewardIcon setImage:[UIImage imageNamed:@"participated_icon"]];
   }
 
-  #pragma mark - SABNativeAdViewVideoDelegate
+  #pragma mark - SABNativeAdViewVideoDelegate // 동영상 광고 Delegate
   - (void)SABNativeAdViewWillStartPlayingVideo:(SABNativeAdView *)adView {
   }
 
@@ -1463,6 +1468,10 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
   }
 
   - (void)SABNativeAdView:(SABNativeAdView *)adView didFinishPlayingVideoAd:(SABAd *)ad {
+  }
+
+  //동영상 광고 에러 시 호출됩니다. (v1.1.0 부터 지원)
+  - (void)SABNativeAdView:(SABNativeAdView *)adView didVideoError:(NSError *)error {
   }
 
   @end
@@ -1518,6 +1527,9 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
     }
   
     func sabNativeAdView(_ adView: SABNativeAdView, didFinishPlayingVideoAd ad: SABAd) {
+    }
+    //동영상 광고 에러 시 호출됩니다. (v1.1.0 부터 지원)
+    func sabNativeAdView(_ adView: SABNativeAdView, didVideoError error: NSError) {
     }
   }
   ```
@@ -1653,8 +1665,36 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
 |`isParticipated` |현재 할당 받은 광고들의 참여 상태를 sync하기 위한 값입니다.<br>광고 참여가 일어나면 해당 광고 및 메모리 상의 동일 광고들의 isParticipated값이 true로 바뀌며 onParticipate 콜백이 호출됩니다.|
 |`isClicked` |현재 할당 받은 광고의 클릭 여부를 나타내기 위한 값입니다.<br>광고를 클릭한 적이 있으면 true로 변경됩니다. 일부 액션형 광고의 경우 서버에서 참여 여부를 실시간으로 판단할 수 없습니다. 이 경우에는 isParticipated 값이 true가 아니므로, Click이 발생한 경우 “참여 확인 중" 이라는 CTA로 변경하여 유저 혼선을 줄일 수 있습니다. |
 |`isActionType` |참여형 광고의 경우 True 이며, 노출형 광고의 경우 False 입니다. |
+|`isWebBannerType` | 웹배너형 광고의 경우 True이며 CTA버튼을 노출하지 않아야 합니다. (v1.3.0 부터 지원)|
 
 <br>  
+
+<details open><summary>예시</summary>   
+<p>    
+
+  ```
+  if ad.isClicked && ad.isActionType && !ad.isParticipated {
+    // 클릭은 했지만 참여가 완료되지 않은 액션형 광고
+    rewardLabel.text = "참여 확인 중"
+  } else {
+    if ad.totalReward > 0 && ad.isParticipated {
+      // 리워드 적립 주기 내에 이미 참여했던 광고
+      rewardLabel.text = "참여 완료"
+    } else if ad.availableReward > 0 {
+      // 리워드가 있고 아직 참여하지 않은 광고
+      rewardLabel.text = ad.reward + "P"
+    } else {
+      // 리워드가 없는 광고. (현재 Benefit은 리워드형 광고만 내보내고 있으므로 )
+      rewardLabel.text = "0P"
+    }
+  }
+  ```
+  
+</p>
+</details>  
+
+<br>
+<br>
 
 ### 한번에 여러 개의 광고 로드
 
@@ -1924,7 +1964,7 @@ Interstitial 지면 UI를 Config 설정으로 변경할 수 있습니다. 일부
 
 [1] 공통 Config
 - `backgroundColor` : Interstitial 광고 전체의 배경 색깔 (UIColor)   
-- `showInquiryButton` : 문의하기 버튼 노출 여부 (BOOL) ([7-8. 문의하기](#7-8-문의하기) 참고)   
+- `showInquiryButton` : 문의하기 버튼 노출 여부 (BOOL) ([7-9. 문의하기](#7-9-문의하기) 참고)   
 - `ctaViewBackgroundColor` : CTA의 배경 색깔 (SABStateValue<UIColor *>)   
 - `ctaViewIcon` : CTA에 포함된 기본 아이콘 (SABStateValue<UIImage *>)   
 - `ctaViewTextColor` : CTA의 Text 색깔 (SABStateValue<UIColor *>)   
@@ -2004,7 +2044,7 @@ SKPAdBenefit iOS SDK를 연동하려면 반드시 앱의 고유 식별자인 `Ap
 ### 2 단계: SDK 설치하기
 SKPAdBenefit iOS용 SDK를 설치하려면 CocoaPods을 사용하여 `Podfile`에 추가하세요.
 ```ruby
-pod 'SKPAdBenefit', '=1.3.0'
+pod 'SKPAdBenefit', '1.4.1'
 ```
 <br>
 
@@ -2273,7 +2313,7 @@ App Tracking Transparency에 대한 자세한 내용은 [애플 공식 문서](h
 
 ## 7-3. 토큰 발급 콜백받기
 
-사용자 프로필을 설정하면 서버로부터 토큰이 발급됩니다. 토큰이 발급된 이후부터 PlanetAD 서버와 네트워크 통신이 가능합니다. 토큰 발근이 완료되면 `SABSessionRegisteredNotification` notification을 호출합니다.
+사용자 프로필을 설정하면 서버로부터 토큰이 발급됩니다. 토큰이 발급된 이후부터 PlanetAD 서버와 네트워크 통신이 가능합니다. 토큰 발급이 완료되면 `SABSessionRegisteredNotification` notification을 호출합니다.
 
 <details open><summary>Objective-C</summary>   
 <p>    
@@ -2297,7 +2337,7 @@ App Tracking Transparency에 대한 자세한 내용은 [애플 공식 문서](h
 
 <br>
   
-토큰 발급이 되지 않는 시점에 광고 요청을 시도할 경우, 광고가 할당되지 않을 수 있습니다.
+> 토큰 발급이 되지 않는 시점에 광고 요청을 시도할 경우, 광고가 할당되지 않을 수 있습니다.
 
   
 
@@ -2307,7 +2347,9 @@ App Tracking Transparency에 대한 자세한 내용은 [애플 공식 문서](h
 
 ## 7-4. 인앱 브라우저 사용방법
 
-사용자가 광고에 참여하는데 사용하는 인앱 브라우저를 변경할 수 있습니다. 인앱 브라우저는 커스텀 런처를 통해 동작합니다. 인앱 브라우저를 사용하기 위해서는 아래 3개의 설정을 모두 적용해야 합니다.   
+사용자가 광고에 참여하는데 사용하는 인앱 브라우저를 변경할 수 있습니다. 인앱 브라우저는 커스텀 런처를 통해 동작합니다.   
+인앱 브라우저를 사용하기 위해서는 아래 3개의 설정을 모두 적용해야 합니다.   
+
 - [인앱 브라우저 구현](#인앱-브라우저-구현)
 - [커스텀 런처 구현](#커스텀-런처-구현)
 - [커스텀 런처 설정](#커스텀-런처-설정)
@@ -2551,7 +2593,50 @@ typedef enum {
 <br>
 <br>
 
-## 7-8. 문의하기
+## 7-8. 광고 로드 가능 여부 확인하기
+
+
+> (v1.4.0 부터 지원)
+
+Native 타입 광고를 사용자 클릭에 의해 광고 적립 Process가 진행 중인 상태에서, 적립 진행 중인 광고가 다른 광고로 치환 되는 상황을 대비하기 위해 사용합니다.
+
+
+<details open><summary>Objective-C</summary>   
+<p>    
+
+  ```objective-c
+  - (BOOL) isReloadBlocked;
+
+  if ([adView isReloadBlocked] == YES) { 
+    //광고 갱신 불가
+  } else { 
+    //광고 갱신 가능
+  }
+  ```
+  
+</p>
+</details>  
+  
+<details open><summary>Swift</summary>   
+<p>    
+
+  ```swift
+  func isReloadBlocked()
+  
+  if adView.isReloadBlocked {
+    // 광고 갱신 불가
+  } else {
+    // 광고 갱신 가능
+  }
+  ```
+  
+</p>
+</details> 
+
+<br>
+<br>
+
+## 7-9. 문의하기
 
 ### 커스텀으로 문의하기 버튼을 사용하는 경우  
 
@@ -2581,9 +2666,9 @@ typedef enum {
 <br>
 <br>
 
-## 7-9. 광고 노출/클릭/참여와 관련한 콜백 변화
+## 7-10. 광고 노출/클릭/참여와 관련한 콜백 변화
 
-### 순서 (AOS/iOS는 이름만 다를 뿐 동작은 동일하기 때문에 아래에서는 AOS의 이름을 기준으로 설명함)
+**순서 (AOS/iOS는 이름만 다를 뿐 동작은 동일하기 때문에 아래에서는 AOS의 이름을 기준으로 설명함)**
 - AOS : onImpressed → onClicked → (onRewardRequested) → onRewarded → onParticipated
 - iOS : didImpressAd → didClickAd → willRequestRewardForAd → didRewardForAd → didParticipateAd
 
@@ -2602,7 +2687,7 @@ typedef enum {
 ### onClicked
 - 정의
   - 광고가 유저에 의해 클릭됨 (=clickableViews로 지정한 component들이 클릭됨)
-    - 일반/비디오 광고 모두 onClickEvent/shouldClickAd (AOS/iOS)를 통한 click 이벤트 intercept가 가능함 ([아래 참조](#클릭-hooking))
+    - 일반/비디오 광고 모두 onClickEvent/shouldClickAd (AOS/iOS)를 통한 click 이벤트 intercept가 가능함 ([클릭 Hooking 참조](#클릭-hooking))
     - 이때 일반 광고는 랜딩페이지로 이동을 시도하며, 비디오 광고는 서버에서 비디오의 Asset을 받아와 재생을 시작함
 - 중복 호출 여부
   - 한 광고당 중복해서 호출될 수 있음 (유저가 광고를 클릭하여 랜딩한 후 돌아와서 다시 클릭하거나, 아래처럼 비디오 Pause/Resume 등이 불리거나 inline으로 재생 중에 fullscreen 재생하기를 누르는 경우 등)
