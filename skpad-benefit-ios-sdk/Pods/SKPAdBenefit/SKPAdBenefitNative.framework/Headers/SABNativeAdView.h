@@ -47,6 +47,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) SABAdInfoView *adInfoView;
 @property (nonatomic, strong) SABInquiryView *inquiryView;
 
+- (BOOL) isReloadBlocked;
+
 @end
 
 NS_ASSUME_NONNULL_END

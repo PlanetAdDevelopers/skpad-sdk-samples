@@ -1,4 +1,6 @@
-//2023.12.26
+// 2024.04.15 (1)
+// v1.4.1
+// Xcode 15.2
 
 #import <Foundation/Foundation.h>
 #import <SKPAdBenefit/SABConfig.h>

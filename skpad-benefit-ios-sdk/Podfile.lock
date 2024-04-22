@@ -1,20 +1,5 @@
 PODS:
-  - AFNetworking (4.0.1):
-    - AFNetworking/NSURLSession (= 4.0.1)
-    - AFNetworking/Reachability (= 4.0.1)
-    - AFNetworking/Security (= 4.0.1)
-    - AFNetworking/Serialization (= 4.0.1)
-    - AFNetworking/UIKit (= 4.0.1)
-  - AFNetworking/NSURLSession (4.0.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (4.0.1)
-  - AFNetworking/Security (4.0.1)
-  - AFNetworking/Serialization (4.0.1)
-  - AFNetworking/UIKit (4.0.1):
-    - AFNetworking/NSURLSession
-  - GoogleAds-IMA-iOS-SDK (3.12.1)
+  - GoogleAds-IMA-iOS-SDK (3.22.0)
   - libwebp (1.3.2):
     - libwebp/demux (= 1.3.2)
     - libwebp/mux (= 1.3.2)
@@ -31,12 +16,11 @@ PODS:
   - SDWebImage (5.18.5):
     - SDWebImage/Core (= 5.18.5)
   - SDWebImage/Core (5.18.5)
-  - SDWebImageWebPCoder (0.14.2):
+  - SDWebImageWebPCoder (0.14.5):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.17)
-  - SKPAdBenefit (1.3.0):
-    - AFNetworking (~> 4.0)
-    - GoogleAds-IMA-iOS-SDK (~> 3.12.1)
+  - SKPAdBenefit (1.4.1):
+    - GoogleAds-IMA-iOS-SDK (~> 3.22.0)
     - ReactiveObjC (~> 3.1.1)
     - SDWebImage (~> 5.0)
     - SDWebImageWebPCoder
@@ -44,12 +28,11 @@ PODS:
 
 DEPENDENCIES:
   - SDWebImage (~> 5.0)
-  - SKPAdBenefit (= 1.3.0)
+  - SKPAdBenefit (= 1.4.1)
   - Toast (~> 4.0.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - AFNetworking
     - GoogleAds-IMA-iOS-SDK
     - libwebp
     - ReactiveObjC
@@ -60,15 +43,14 @@ SPEC REPOS:
     - SKPAdBenefit
 
 SPEC CHECKSUMS:
-  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
-  GoogleAds-IMA-iOS-SDK: 3c01b8db7d01de6b4a3b1d58744d4bc426a2d821
+  GoogleAds-IMA-iOS-SDK: e594350077f2838a335b40de079a12f0a16e1f6d
   libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDWebImage: 7ac2b7ddc5e8484c79aa90fc4e30b149d6a2c88f
-  SDWebImageWebPCoder: 633b813fca24f1de5e076bcd7f720c038b23892b
-  SKPAdBenefit: 45f04275444d6e1f86b583279442ffdcd9f7a93a
+  SDWebImageWebPCoder: c94f09adbca681822edad9e532ac752db713eabf
+  SKPAdBenefit: 59bf519434727d87d98b6f688469361838d14e13
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
 
-PODFILE CHECKSUM: cec8979c44eec519e121ce2b2dcec0dd885b862b
+PODFILE CHECKSUM: 4275d409c4b01306be25d3a1809b44fd7bd00594
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.15.2
