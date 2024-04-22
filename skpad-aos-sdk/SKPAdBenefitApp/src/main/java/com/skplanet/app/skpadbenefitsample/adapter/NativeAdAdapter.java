@@ -101,6 +101,9 @@ public class NativeAdAdapter {
         nativeAdView.setAdInfoView(informationView);
         nativeAdView.setInquiryView(inquiryButon);
 
+        // 만 14세 이상인 경우에만 VOC(문의하기) 기능을 노출해야합니다.
+        inquiryButon.setVisibility(Constants.OLDER_14YEAR ? View.VISIBLE : View.INVISIBLE);
+
         mediaView.setVideoEventListener(new VideoEventListener() {
             @Override
             public void onVideoStarted() {
