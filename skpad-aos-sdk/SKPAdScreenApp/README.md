@@ -91,7 +91,7 @@ repositories {
 }
  
 dependencies {
-    implementation ("com.skplanet.sdk.ad:skpad-screen:1.7.2")
+    implementation ("com.skplanet.sdk.ad:skpad-screen:1.7.3")
 }
 ```
 

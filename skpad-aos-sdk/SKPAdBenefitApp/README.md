@@ -78,7 +78,7 @@ allprojects {
 dependencies {
     ...생략...
     // Planet AD Benefit SDK
-    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.7.2")
+    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.7.3")
      ...생략...
 }
 ```
@@ -1916,7 +1916,7 @@ allprojects {
 // 모듈 레벨의 build.gradle
  
 dependencies {
-    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.7.2") { changing = true }  // SKP AD Benefit SDK 라이브러리
+    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.7.3") { changing = true }  // SKP AD Benefit SDK 라이브러리
 }
 ```
 
