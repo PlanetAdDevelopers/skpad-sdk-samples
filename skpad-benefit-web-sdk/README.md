@@ -273,9 +273,9 @@ CTA View는 참여를 유도하기 위한 버튼입니다. 현재 리워드 상�
   1.2   원래 리워드가 없는 광고인 경우
 2. 현재 지급 가능한 리워드가 있는 경우
 3. 사용자가 광고에 참여하여 참여 완료 상태인 경우
+4. 액션형 광고의 참여 확인 중인 경우
 
-- 1번, 2번의 경우, 광고를 처음 화면에 표시할 때 nativeAd.reward > 0인지 확인하여 표시합니다.
-- 3번의 경우 onParticipated 이벤트를 받았을 때 nativeAd.particiated가 참인지 여부를 체크하여 CtaView를 업데이트 해야 합니다. (아래 샘플 코드의 updateCtaView라는 함수의 구현을 참고) 이 함수는 처음 광고를 보여줄 때, 그리고 onParticipated 이벤트를 받았을 때 실행됩니다.
+- onClicked, onParticipated 이벤트를 받았을 때 nativeAd.participated가 참인지 여부를 체크하여 CtaView를 업데이트 해야 합니다. (아래 샘플 코드의 updateCtaView라는 함수의 구현을 참고) 이 함수는 처음 광고를 보여줄 때, 그리고 onClicked, onParticipated 이벤트를 받았을 때 실행됩니다.
 
 ```javascript
 function updateCtaView(ctaView, nativeAd) {  
