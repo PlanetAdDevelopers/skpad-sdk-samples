@@ -2187,6 +2187,14 @@ public void populateAd(final NativeAd nativeAd) {
 - Interstitial, Feed 타입의 경우, 문의하기에 사용하는 기본 제공 아이콘을 사용하실 수 있습니다.
 
    - Interstitial - `InterstitialAdConfig`에 `showInquiryButton(true)` 설정.
+```
+        InterstitialAdConfig config = new InterstitialAdConfig.Builder()
+                .showInquiryButton(true)    // 문의하기 버튼 활성화
+                                            // 단, 만14세 이상인 경우에만 VOC(문의하기) 기능을 노출해야합니다.
+                .build();
+
+```
+
 
 ![InquiryView 적용-Interstitial](./doc/resources/A_07.png)
 
@@ -2194,6 +2202,15 @@ public void populateAd(final NativeAd nativeAd) {
       - 기본값이 True이며, 해당 API는 Default Toolbar를 사용 시에만 적용됩니다.
       - false로 설정시 문의하기 버튼이 표시되지 않습니다.
       - 해당 API는 Planet AD SDK v1.7.3부터 지원됩니다.
+
+```
+        FeedConfig.Builder builder = new FeedConfig.Builder(context, Constants.FEED_UNIT_ID)
+                .showInquiryButton(true);   // 문의하기 버튼 활성화
+                                            // 단, 만14세 이상인 경우에만 VOC(문의하기) 기능을 노출해야합니다.
+
+        return builder.build();
+
+```
 
 ![InquiryView 적용-Feed](./doc/resources/A_13.png)
 
@@ -2236,6 +2253,9 @@ public void populateAd(final NativeAd nativeAd) {
     ...생략...
     // NativeAdView에 InquiryView를 설정해주어야 합니다.
     view.setInquiryView(inquiryView);
+
+    // 만 14세 이상인 경우에만 VOC(문의하기) 기능을 노출해야합니다.
+    view.setVisibility(Constants.OLDER_14YEAR ? View.VISIBLE : View.INVISIBLE);
 
 
     view.setMediaView(mediaView);

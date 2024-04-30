@@ -34,10 +34,6 @@ public class FeedAdapter {
         return builder.build();
     }
 
-    private boolean IsUpper14YearsOld() {
-        return false;
-    }
-
     public void show() {
         feedHandler.startFeedActivity(context);
     }
