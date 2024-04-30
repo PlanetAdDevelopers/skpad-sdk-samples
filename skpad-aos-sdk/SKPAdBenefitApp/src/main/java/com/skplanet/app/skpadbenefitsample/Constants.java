@@ -18,4 +18,7 @@ public class Constants {
     public static final int BIRTHDAY = 1979;
 
     public static final String WEB_SDK_TEST_URL = "https://m.planetad.co.kr/pages/integration/websdk.html";
+
+    // 만 14세 미만일 경우 VOC(문의하기) 기능을 제공해서는 안됩니다.
+    public static final boolean OLDER_14YEAR = true;
 }

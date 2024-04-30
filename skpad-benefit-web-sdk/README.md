@@ -13,6 +13,7 @@
   - [Step 4 받아온 광고를 사용하기 위한 등록](#step-4-받아온-광고를-사용하기-위한-등록)
   - [Step 5 광고 레이아웃 구성하기](#step-5-광고-레이아웃-구성하기)
   - [CTA View 주의 사항](#cta-view-주의-사항)
+  - [skp-mediaview 주의 사항](#skp-mediaview-주의-사항)
 - [심화 기능](#심화-기능)
   - [웹페이지에서 사용자의 프로필 정보 설정](#웹페이지에서-사용자의-프로필-정보-설정)
   - [복수 개의 광고 로드하기](#복수-개의-광고-로드하기)
@@ -40,12 +41,12 @@ SKPAdBenefit WEB SDK는 광고를 웹페이지에 자연스럽게 녹아들 수 
 
 ## 설치
 웹페이지에 웹 SDK를 삽입해야 합니다.
-- 개발: [https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.0.5/skpad-benefit-sdk.js](https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.0.5/skpad-benefit-sdk.js)
-- 알파: [https://adpf-js.alp.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.0.5/skpad-benefit-sdk.js](https://adpf-js.alp.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.0.5/skpad-benefit-sdk.js)
-- 상용: [https://adpf-js.prd.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.0.5/skpad-benefit-sdk.js](https://adpf-js.prd.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.0.5/skpad-benefit-sdk.js)
+- 개발: [https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.0/skpad-benefit-sdk.js](https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.0/skpad-benefit-sdk.js)
+- 알파: [https://adpf-js.alp.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.0/skpad-benefit-sdk.js](https://adpf-js.alp.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.0/skpad-benefit-sdk.js)
+- 상용: [https://adpf-js.prd.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.0/skpad-benefit-sdk.js](https://adpf-js.prd.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.0/skpad-benefit-sdk.js)
 
 ```javascript
-<script src="https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.0.5/skpad-benefit-sdk.js"></script>
+<script src="https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.0/skpad-benefit-sdk.js"></script>
 ```
 
 - SDK 스크립트의 로드가 완료되면 전역 변수로 SKPAdBenefit 객체가 생성됩니다. 이 객체가 생성되었는지 체크하는 것으로, SDK 초기화 코드를 실행할지 여부를 결정할 수 있습니다.
@@ -182,6 +183,7 @@ function populateAd(nativeAd) {
     },
     onClicked: function(placementView, nativeAd) {
       console.log('ON CLICKED: The ad is clicked.');
+      updateCtaView(element.getElementsByClassName('cta')[0], nativeAd);  // 아래에서 설명
     },
     onRewardRequested: function(placementView, nativeAd) {
       console.log('ON REWARD REQUESTED: Reward is requested.');
@@ -271,28 +273,37 @@ CTA View는 참여를 유도하기 위한 버튼입니다. 현재 리워드 상�
   1.2   원래 리워드가 없는 광고인 경우
 2. 현재 지급 가능한 리워드가 있는 경우
 3. 사용자가 광고에 참여하여 참여 완료 상태인 경우
+4. 액션형 광고의 참여 확인 중인 경우
 
-- 1번, 2번의 경우, 광고를 처음 화면에 표시할 때 nativeAd.reward > 0인지 확인하여 표시합니다.
-- 3번의 경우 onParticipated 이벤트를 받았을 때 nativeAd.particiated가 참인지 여부를 체크하여 CtaView를 업데이트 해야 합니다. (아래 샘플 코드의 updateCtaView라는 함수의 구현을 참고) 이 함수는 처음 광고를 보여줄 때, 그리고 onParticipated 이벤트를 받았을 때 실행됩니다.
+- onClicked, onParticipated 이벤트를 받았을 때 nativeAd.participated가 참인지 여부를 체크하여 CtaView를 업데이트 해야 합니다. (아래 샘플 코드의 updateCtaView라는 함수의 구현을 참고) 이 함수는 처음 광고를 보여줄 때, 그리고 onClicked, onParticipated 이벤트를 받았을 때 실행됩니다.
 
 ```javascript
-function updateCtaView(ctaView, nativeAd) {
-    var ctaTextHeader = '';
-    if (nativeAd.reward) {
-        if (nativeAd.participated) {
-            // CtaView의 디자인을 '이미 참여하여 리워드 지급 불가능 상태'로 표시
-        } else {
-            // CtaView의 디자인을 '참여 시 리워드 지급 가능 상태'로 표시
-            ctaTextHeader = '+' + nativeAd.reward + ' ';
-        }
-    } else {
-        // CtaView의 디자인을 '지급 가능한 리워드 없음' 상태로 표시
-    }
-
-    ctaView.innerText = ctaTextHeader + nativeAd.callToAction;
+function updateCtaView(ctaView, nativeAd) {  
+        var ctaText = '';
+        if (nativeAd.participated) {
+          // CtaView의 디자인을 '이미 참여하여 리워드 지급 불가능 상태'로 표시
+          /* ex
+          ctaText = nativeAd.isActionType ? '참여 완료' : nativeAd.callToAction;
+          */
+ 
+        } else {
+          // CtaView의 디자인을 '참여 시 리워드 지급 가능 상태'로 표시
+          /* ex
+          ctaText =
+            nativeAd.isActionType && nativeAd.conversionChecking
+              ? '참여 확인 중'
+              : `+${nativeAd.reward} ${nativeAd.callToAction}`;
+          */
+        }
+ 
+        ctaView.innerText = ctaText;
 }
 ```
-  
+
+### skp-mediaview 주의 사항
+Impression Tracking을 위해 광고의 Impression이 발생하면 .skp-mediaview 내부에 img 태그가 잠깐동안 생성되었다가 삭제됩니다.
+디자인 작업 시 해당 img 태그가 영향을 받지 않도록 고려되어야 합니다.
+img 태그의 기본 속성은 다음과 같습니다. style="display: none;" class="imp-tracker"
 
 ## 심화 기능
 
