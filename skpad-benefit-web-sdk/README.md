@@ -41,9 +41,9 @@ SKPAdBenefit WEB SDK는 광고를 웹페이지에 자연스럽게 녹아들 수 
 
 ## 설치
 웹페이지에 웹 SDK를 삽입해야 합니다.
-- 개발: [https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.0/skpad-benefit-sdk.js](https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.0/skpad-benefit-sdk.js)
-- 알파: [https://adpf-js.alp.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.0/skpad-benefit-sdk.js](https://adpf-js.alp.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.0/skpad-benefit-sdk.js)
-- 상용: [https://adpf-js.prd.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.0/skpad-benefit-sdk.js](https://adpf-js.prd.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.0/skpad-benefit-sdk.js)
+- 개발: [https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.1/skpad-benefit-sdk.js](https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.1/skpad-benefit-sdk.js)
+- 알파: [https://adpf-js.alp.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.1/skpad-benefit-sdk.js](https://adpf-js.alp.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.1/skpad-benefit-sdk.js)
+- 상용: [https://adpf-js.prd.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.1/skpad-benefit-sdk.js](https://adpf-js.prd.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.1/skpad-benefit-sdk.js)
 
 ```javascript
 <script src="https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.0/skpad-benefit-sdk.js"></script>
