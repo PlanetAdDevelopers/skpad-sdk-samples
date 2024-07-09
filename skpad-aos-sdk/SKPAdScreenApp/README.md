@@ -9,6 +9,7 @@
 - [유저 액션 리스너](#User-Action-Listener)
 - [배터리 최적화 옵션끄기](#배터리-최적화-옵션-끄기)
 - [맞춤형 광고에 대한 고지와 VOC 지원](#맞춤형-광고에-대한-고지와-VOC-지원)
+- [Android 14 Foreground Service 정책 대응](#Android-14-Foreground-Service-정책-대응)
 
 ## 기본 설정
 
@@ -602,3 +603,27 @@ Planet AD는 개인별 맞춤형 광고를 제공하며, 그에 해당하는 사
 - 커스텀으로 만들어서 사용하는 경우, 아래의 단계를 통해 해당 기능을 사용하실 수 있습니다.
    1. VOC 페이지 로드를 위한 유저 진입 Icon/ Tab을 디자인 합니다.
    2. 1번의 Icon/Tab이 클릭될 때 코드에서 `SKPAdScreen.showInquiryPage()` 호출합니다.
+
+## Android 14 Foreground Service 정책 대응
+
+[안드로이드 14부터 변경된 Foreground Service 정책](https://developer.android.com/about/versions/14/changes/fgs-types-required?hl=ko#special-use) 대응을 위한 가이드에 대해 기술합니다.
+
+### POP 기능의 Foreground Service Type 고지 관련
+Planet AD Benefit SDK에는 잠금화면 기능을 위해 Foreground Service가 포함되어 있으며, 해당 Service의 Type은는 "specialUse"로 설정되어 있습니다.
+
+앱에서 추가적으로 고지가 필요할 경우 아래의 내용에 대한 참고가 필요합니다.
+
+```
+<service android:name="com.skplanet.skpadscreen.sdk.LockerService"
+    android:foregroundServiceType="specialUse">
+    <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+        android:value="@string/explanation_for_special_use"/>
+</service>
+```
+```
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="explanation_for_special_use">- 포그라운드 서비스를 사용하는 기능은 잠금화면이며, 사용자가 기기의 화면을 키는 동작, 잠금을 해제하는 동작의 피드백으로 즉시 제공되어야 합니다.\n
+- 포그라운드 서비스는 각 동작에 대한 broadcast를 즉각적으로 받기 위해서 실행되어 있어야 하고, 적절한 포그라운드 카테고리가 없기 때문에 special use 권한을 활용합니다.</string>
+</resources>
+```

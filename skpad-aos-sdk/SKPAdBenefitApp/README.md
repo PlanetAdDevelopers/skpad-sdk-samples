@@ -3,19 +3,19 @@
 ## 목차
 - [기본 설정](#시작하기)
 - [광고 지면 - Feed](#Feed-기본설정)
-	- [Feed-기본 설정](#Feed-기본설정)
-	- [Feed-고급 설정](#Feed-고급설정)
+    - [Feed-기본 설정](#Feed-기본설정)
+    - [Feed-고급 설정](#Feed-고급설정)
 - [광고 지면 - Native](#Native-기본설정)
-	- [Native-기본 설정](#Native-기본설정)
-	- [Native-고급 설정](#Native-고급설정)
+    - [Native-기본 설정](#Native-기본설정)
+    - [Native-고급 설정](#Native-고급설정)
 - [광고 지면 - 기본 설정](#POP-기본설정)
-	- [POP-기본 설정](#POP-기본설정)
-	- [POP-고급 설정](#POP-고급설정)
-	- [POP-Customizing](#POP-Customizing)
+    - [POP-기본 설정](#POP-기본설정)
+    - [POP-고급 설정](#POP-고급설정)
+    - [POP-Customizing](#POP-Customizing)
 - [광고 지면 - Interstial](#Interstial-기본설정)
-	- [Interstial-기본 설정](#Interstial-기본설정)
-	- [Interstial-고급 설정](#Interstial-고급설정)
-	- [Interstial-Customizing](#Interstial-Customizing)
+    - [Interstial-기본 설정](#Interstial-기본설정)
+    - [Interstial-고급 설정](#Interstial-고급설정)
+    - [Interstial-Customizing](#Interstial-Customizing)
 - [디자인 커스터마이징](#디자인-커스터마이징)
 - [Web Android SDK 연동 가이드](#Web-Android-SDK-연동-가이드)
 - [광고 노출과 관련한 콜백 변화](#광고-노출-클릭-참여와-관련한-콜백-변화)
@@ -23,6 +23,7 @@
     - [맞춤형 광고를 위한 고지 추가하기](#맞춤형-광고를-위한-고지-추가하기)
     - [유저 VOC (문의하기) 사용하기](#유저-문의하기-사용하기)
     - [유저 VOC (문의하기) 관련 주의사항](#문의하기-기능-주의사항)
+- [Android 14 Foreground Service 정책 대응](#Android-14-Foreground-Service-정책-대응)
 
 
 ---
@@ -2291,7 +2292,9 @@ Planet AD는 만 14세 미만 아동에게 (맞춤형) 리워드 광고를 송�
 - 혹 제공 중일 경우, 앱에서는 고객이 만 14세 미만일 경우 Planet AD의 VOC(문의하기)로 진입할 수 있는 기능을 비활성화 혹은 숨김처리되어야 합니다.
 
 
-## [안드로이드 14부터 변경된 Foreground Service 정책](https://developer.android.com/about/versions/14/changes/fgs-types-required?hl=ko#special-use)
+## Android 14 Foreground Service 정책 대응 
+
+[안드로이드 14부터 변경된 Foreground Service 정책](https://developer.android.com/about/versions/14/changes/fgs-types-required?hl=ko#special-use) 대응을 위한 가이드에 대해 기술합니다.
 
 ### POP 기능의 Foreground Service Type 고지 관련
 Planet AD Benefit SDK에는 POP 기능을 위해 Foreground Service가 포함되어 있으며, 해당 Service의 Type은는 "specialUse"로 설정되어 있습니다.
@@ -2299,27 +2302,27 @@ Planet AD Benefit SDK에는 POP 기능을 위해 Foreground Service가 포함되
 앱에서 추가적으로 고지가 필요할 경우 아래의 내용에 대한 참고가 필요합니다.
 
 ```
-	<service android:name="com.skplanet.skpad.benefit.pop.DefaultPopControlService"
-		android:foregroundServiceType="specialUse">
-		<property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-			android:value="@string/explanation_for_special_use"/>
-	</service>
+<service android:name="com.skplanet.skpad.benefit.pop.DefaultPopControlService"
+    android:foregroundServiceType="specialUse">
+    <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+        android:value="@string/explanation_for_special_use"/>
+</service>
 ```
 ```
-	<?xml version="1.0" encoding="utf-8"?>
-	<resources>
-		<string name="explanation_for_special_use">- 포그라운드 서비스를 사용하는 기능은 Bubble이며, 사용자가 기기의 화면을 키는 동작, 잠금을 해제하는 동작의 피드백으로 즉시 제공되어야 합니다.\n
-	- 포그라운드 서비스는 각 동작에 대한 broadcast를 즉각적으로 받기 위해서 실행되어 있어야 하고, 적절한 포그라운드 카테고리가 없기 때문에 special use 권한을 활용합니다.</string>
-	</resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="explanation_for_special_use">- 포그라운드 서비스를 사용하는 기능은 Bubble이며, 사용자가 기기의 화면을 키는 동작, 잠금을 해제하는 동작의 피드백으로 즉시 제공되어야 합니다.\n
+- 포그라운드 서비스는 각 동작에 대한 broadcast를 즉각적으로 받기 위해서 실행되어 있어야 하고, 적절한 포그라운드 카테고리가 없기 때문에 special use 권한을 활용합니다.</string>
+</resources>
 ```
 
-### 불필요한 Foreground Service의 제외 POP 기능 제외
+### POP 기능 제외를 통한 불필요한 Foreground Service의 제거
 Planet AD Benefit SDK를 사용하나, POP 기능을 사용하지 않는다면, 해당 기능은 아래와 같이 Exclude함으로서 제외함으로서 불필요한 Foreground Service가 앱에 포함되는 것을 막을 수 있습니다.
 
 ```
 implementation ("com.skplanet.sdk.ad:skpad-benefit:1.10.1") {
     changing = true
-    exclude(group = "com.skplanet.sdk.ad", module = "skpad-benefit-pop")
+    exclude group: 'com.skplanet.sdk.ad', module: 'skpad-benefit-pop'
 }
 
 ```
