@@ -1,6 +1,6 @@
-// 2024.04.15 (1)
-// v1.4.1
-// Xcode 15.2
+//v1.5.6
+//2024.07.09 (1)
+//Xcode 15.2
 
 #import <Foundation/Foundation.h>
 #import <SKPAdBenefit/SABConfig.h>
@@ -65,6 +65,7 @@ extern NSString *const SABSessionRegisteredNotification;
 + (NSString *)getLogBodyData;
 + (void) removeSKPAdsLogFile;
 + (NSString*) getSDKVersion;
++ (NSString*) getSDKVDID;
 @end
 
 NS_ASSUME_NONNULL_END

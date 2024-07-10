@@ -48,7 +48,7 @@ SKPAdBenefit iOS SDK가 제공하는 기본 UI를 사용해 원하는 지면에 
 ## 기본 요건
 
 - deployment target 12 이상
-- Xcode 14 이상 사용
+- Xcode 15 이상 사용
 
 <br>
 
@@ -103,7 +103,7 @@ target 'YourApp' do
 
 ...
 
-   pod 'SKPAdBenefit', '1.4.1'
+   pod 'SKPAdBenefit', '1.5.6'
    
 ...
 
@@ -1681,13 +1681,13 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
     rewardLabel.text = "참여 확인 중"
   } else {
     if ad.totalReward > 0 && ad.isParticipated {
-      // 리워드 적립 주기 내에 이미 참여했던 광고
+      // 참여한 광고
       rewardLabel.text = "참여 완료"
     } else if ad.availableReward > 0 {
       // 리워드가 있고 아직 참여하지 않은 광고
       rewardLabel.text = ad.reward + "P"
     } else {
-      // 리워드가 없는 광고. (현재 Benefit은 리워드형 광고만 내보내고 있으므로 )
+      // 리워드가 없는 광고 or 이미 참여한 광고를 다시 받은 경우
       rewardLabel.text = "0P"
     }
   }
@@ -1695,13 +1695,14 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
   
 </p>
 </details>  
+> 기획에 따라 수정될 수 있는 예시 코드입니다.
 
 <br>
 <br>
 
 ### 한번에 여러 개의 광고 로드
 
-`SABAdLoader` 의 `loadAdsWithSize`를 사용하여 여러 개의 Native 광고를 로드할 수 있습니다. 동일한 크기의 지면에서 좌우 스크롤 방식 등으로 여러개의 광고를 확인할 수 있습니다. 최대 10개까지 가능합니다.   
+`SABAdLoader` 의 `loadAdsWithSize`를 사용하여 여러 개의 Native 광고를 로드할 수 있습니다. 동일한 크기의 지면에서 좌우 스크롤 방식 등으로 여러개의 광고를 확인할 수 있습니다.   
 
 다음은 여러 개의 광고를 로드하는 예시입니다.
   

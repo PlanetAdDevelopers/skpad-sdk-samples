@@ -10,5 +10,5 @@
 #import <SKPAdBenefit/SKPAdBenefit.h>
 #import "SKPFileLogger.h"
 
-#define SKPAdLog(format, ...) [[SKPFileLogger sharedInstance] log:(@"%s(%d) : "format), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__]
+#define SKPAdLog(format, ...) [[SKPFileLogger sharedInstance] log:(@"SKPAD %s(%d) : "format), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__]
 

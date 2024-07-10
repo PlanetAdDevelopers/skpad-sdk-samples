@@ -38,6 +38,8 @@ typedef enum {
 @property (nonatomic, readonly) NSString *unitId;
 @property (nonatomic, readonly, nullable) NSDate *fetchedAt;
 
+@property (nonatomic, assign, readonly) double rewardDelay;
+
 - (instancetype)initWithDictionary:(NSDictionary *)dic unitId:(NSString *)unitId fetchedAt:(nullable NSDate *)fetchedAt;
 
 @end

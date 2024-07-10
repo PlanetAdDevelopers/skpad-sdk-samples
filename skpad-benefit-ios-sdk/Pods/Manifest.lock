@@ -1,5 +1,5 @@
 PODS:
-  - GoogleAds-IMA-iOS-SDK (3.22.0)
+  - GoogleAds-IMA-iOS-SDK (3.22.1)
   - libwebp (1.3.2):
     - libwebp/demux (= 1.3.2)
     - libwebp/mux (= 1.3.2)
@@ -16,10 +16,10 @@ PODS:
   - SDWebImage (5.18.5):
     - SDWebImage/Core (= 5.18.5)
   - SDWebImage/Core (5.18.5)
-  - SDWebImageWebPCoder (0.14.5):
+  - SDWebImageWebPCoder (0.14.6):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.17)
-  - SKPAdBenefit (1.4.1):
+  - SKPAdBenefit (1.5.6):
     - GoogleAds-IMA-iOS-SDK (~> 3.22.0)
     - ReactiveObjC (~> 3.1.1)
     - SDWebImage (~> 5.0)
@@ -28,7 +28,7 @@ PODS:
 
 DEPENDENCIES:
   - SDWebImage (~> 5.0)
-  - SKPAdBenefit (= 1.4.1)
+  - SKPAdBenefit (= 1.5.6)
   - Toast (~> 4.0.0)
 
 SPEC REPOS:
@@ -39,18 +39,18 @@ SPEC REPOS:
     - SDWebImage
     - SDWebImageWebPCoder
     - Toast
-  https://github.com/PlanetAdDevelopers/Specs:
+  https://github.com/PlanetAdDevelopers/Specs.git:
     - SKPAdBenefit
 
 SPEC CHECKSUMS:
-  GoogleAds-IMA-iOS-SDK: e594350077f2838a335b40de079a12f0a16e1f6d
+  GoogleAds-IMA-iOS-SDK: 160c3616b8371b58016e30aaf441e71d6d9e8f7d
   libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDWebImage: 7ac2b7ddc5e8484c79aa90fc4e30b149d6a2c88f
-  SDWebImageWebPCoder: c94f09adbca681822edad9e532ac752db713eabf
-  SKPAdBenefit: 59bf519434727d87d98b6f688469361838d14e13
+  SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
+  SKPAdBenefit: 5a603b7bd9dd1c35c558dfdb2d7a6d0986e38c02
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
 
-PODFILE CHECKSUM: 4275d409c4b01306be25d3a1809b44fd7bd00594
+PODFILE CHECKSUM: 96d3596796ba1f85f4ea5176208d7116931ff891
 
 COCOAPODS: 1.15.2
