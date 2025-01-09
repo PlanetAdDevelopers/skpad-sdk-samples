@@ -103,7 +103,7 @@ target 'YourApp' do
 
 ...
 
-   pod 'SKPAdBenefit', '1.5.6'
+   pod 'SKPAdBenefit', '1.5.7'
    
 ...
 
@@ -1672,7 +1672,7 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
 
 <br>  
 
-<details open><summary>예시</summary>   
+<details open><summary>기획에 따라 수정될 수 있는 예시 코드입니다.</summary>   
 <p>    
 
   ```
@@ -2057,7 +2057,7 @@ SKPAdBenefit iOS SDK를 연동하려면 반드시 앱의 고유 식별자인 `Ap
 ### 2 단계: SDK 설치하기
 SKPAdBenefit iOS용 SDK를 설치하려면 CocoaPods을 사용하여 `Podfile`에 추가하세요.
 ```ruby
-pod 'SKPAdBenefit', '1.4.1'
+pod 'SKPAdBenefit', '1.5.7'
 ```
 <br>
 

@@ -7,7 +7,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) NSString *unitId;
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, strong) Class headerViewClass;
+@property (nonatomic, strong, nullable) Class headerViewClass;
 @property (nonatomic, strong, nullable) Class adViewHolderClass;
 @property (nonatomic, strong) Class articleViewHolderClass;
 @property (nonatomic, strong) Class errorViewHolderClass;
