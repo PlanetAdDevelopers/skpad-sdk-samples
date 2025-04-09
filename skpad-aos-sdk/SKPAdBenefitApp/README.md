@@ -8,6 +8,7 @@
 - [광고 지면 - Native](#Native-기본설정)
     - [Native-기본 설정](#Native-기본설정)
     - [Native-고급 설정](#Native-고급설정)
+    - [Native-HTML Banner](#Native-HTML-Banner)
 - [광고 지면 - 기본 설정](#POP-기본설정)
     - [POP-기본 설정](#POP-기본설정)
     - [POP-고급 설정](#POP-고급설정)
@@ -84,7 +85,7 @@ allprojects {
 dependencies {
     ...생략...
     // Planet AD Benefit SDK
-    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.10.1")
+    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.12.0")
      ...생략...
 }
 ```
@@ -1042,6 +1043,169 @@ mediaView.setVideoEventListener(new VideoEventListener() {
 });
 ```
 
+## Native HTML Banner
+
+### 개요
+본 가이드는 Native 지면에서 제공하는 HTML Banner 형태의 지면에 대하여 설명합니다.
+
+| 300x250                                                    | 320x100                                                    |
+|------------------------------------------------------------|------------------------------------------------------------|
+| ![](./doc/resources/benefit_native_htmlbanner_300x250.png) | ![](./doc/resources/benefit_native_htmlbanner_320x100.png) |
+
+### 광고 레이아웃 구성
+Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 지면입니다.<br>
+Activity 또는 Fragment 레이아웃 내에 아래 구조에 맞게 Native 광고 레이아웃을 구성합니다.
+
+
+|항목|설명|필수여부|비고|
+|-|-|-|-|
+|광고 소재|HTML 광고 소재|Mandatory|<li>com.skplanet.skpad.benefit.presentation.media.MediaView 사용 필수</li><li>종횡비 유지 필수</li><li>사이즈: 320 x 100 또는 300 x 250 (px)</li><li>여백 추가 가능</li>
+|광고 알림 문구|Sponsored image/ text view<li>광고임을 나타내는 텍스트 또는 이미지</li><li>APP 정책에 맞게 필요하다면 추가.</li>|Optional|예시) "광고", "ad", "스폰서", "Sponsored"
+
+HTML Banner 광고는 다른 광고와 달리 광고 소재를 제외하고, 다른 정보(ex.title, Description) 등은 표시하지 않습니다.
+
+광고 레이아웃의 최상위 컴포넌트는 NatvieAdView이며, 상기의 컴포넌트는 NativeAdView의 하위 컴포넌트로 구현해야 합니다.
+다음은 NativeAdView의 레이아웃 예시입니다.
+```
+
+<com.skplanet.skpad.benefit.presentation.nativead.NativeAdView
+    android:id="@+id/native_ad_view"
+    ...생략... >
+     
+    // MediaView는 NativeAdView의 하위 컴포넌트로 구현해야합니다.
+   
+    <com.skplanet.skpad.benefit.presentation.media.MediaView
+        android:id="@+id/mediaView"
+        ...생략... />
+ 
+    ...생략...
+</com.skplanet.skpad.benefit.presentation.nativead.NativeAdView>
+```
+
+### 광고 할당 요청
+광고를 표시하기 위해 광고 할당을 요청합니다.<br>
+다음은 광고 할당 요청 예시입니다. populateAd()에 대해서는 아래 광고 표시를 참고하시기 바랍니다.
+```
+final NativeAdLoader loader = new NativeAdLoader("YOUR_NATIVE_UNIT_ID");
+loader.loadAd(new NativeAdLoader.OnAdLoadedListener() {
+    @Override
+    public void onAdLoaded(@NonNull NativeAd nativeAd) {
+     
+        final Creative.Type creativeType = ad.getCreative() == null ? null : ad.getCreative().getType();
+ 
+        if (Creative.Type.HTML.equals(creativeType)) {
+            populateBannerAd(nativeAd); // HTML(Banner광고)
+        }
+        else {
+            populateAd(nativeAd);       // NATIVE(이미지), VAST(동영상),  WEBBANNER(쿠팡, 네이버 웹배너)
+       }
+    }
+ 
+    @Override
+    public void onLoadError(@NonNull AdError adError) {
+        // 할당된 광고가 없으면 호출됩니다.
+        Log.e(TAG, "Failed to load a native ad.", adError);
+    }
+});
+```
+
+### 광고 표시
+할당받은 광고 데이터를 직접 구현한 광고 레이아웃(your_native_ad_banner_view)에 추가합니다.
+```
+public void populateBannerAd(final NativeAd nativeAd) {
+ 
+ 
+    // HTML Banner Type의 Creative는 HTML타입만 전달됩니다. 
+    final Creative.Type creativeType = ad.getCreative() == null ? null : ad.getCreative().getType();
+    if (!Creative.Type.HTML.equals(creativeType)) {
+        return;
+    }
+ 
+    final Ad ad = nativeAd.getAd();
+    CreativeHtml creative = ((CreativeHtml) ad.getCreative());
+  
+    // Creative의 Size 체크 필요.
+    int layoutId = (creative.getWidth() == 320) ? R.layout.your_native_ad_banner_view_320_100 : R.layout.your_native_ad_banner_view_300_250;
+ 
+ 
+    final NativeAdView view = findViewById(layoutId);
+    final MediaView mediaView = view.findViewById(R.id.mediaView);
+ 
+    if (mediaView != null) {
+        mediaView.setCreative(ad.getCreative());
+ 
+        // Html Banner로부터 Background Color를 추출한다.(필요시 설정)
+        mediaView.setBackgroundColorListener(new MediaView.BackgroundColorExtractedListener() {
+           @Override
+           public void onBackgroundColorExtracted(int color) {
+               // 전달된 Background 색상으로 광고영역을 처리한다.
+               view.setBackgroundColor(color);
+           }
+       });
+    }
+ 
+    // 광고 콜백 이벤트를 수신할 수 있습니다.
+    // view.setNativeAd 이전에 호출해야 합니다.
+    // 중복하여 호출하면 2개 이상의 리스너가 등록됩니다.
+     
+    NativeAdView.OnNativeAdEventListener nativeAdEventListener = new NativeAdView.OnNativeAdEventListener() {
+        @Override
+        public void onImpressed(@NonNull NativeAdView view, @NonNull NativeAd nativeAd) {
+   
+        }
+ 
+        @Override
+        public void onClicked(@NonNull NativeAdView view, @NonNull NativeAd nativeAd) {
+            // 기획에 따른 추가적인 UI 처리
+        }
+ 
+        @Override
+        public void onRewardRequested(@NonNull NativeAdView view, @NonNull NativeAd nativeAd) {
+            // 기획에 따라 리워드 로딩 이미지를 보여주는 등의 처리
+        }
+ 
+        @Override
+        public void onRewarded(@NonNull NativeAdView view, @NonNull NativeAd nativeAd, @Nullable RewardResult rewardResult) {
+            // 리워드 적립의 결과 (RewardResult) SUCCESS, ALREADY_PARTICIPATED, MISSING_REWARD 등에 따라서 적절한 유저 커뮤니케이션 처리
+        }
+ 
+        @Override
+        public void onParticipated(@NonNull NativeAdView view, @NonNull NativeAd nativeAd) {
+            ctaPresenter.bind(nativeAd);
+            // 기획에 따른 추가적인 UI 처리
+        }
+    };
+ 
+    // 중복하여 addOnNativeAdEventListener를 호출하면 2개 이상의 리스너가 등록됩니다.
+    // 하나의 리스너만 등록하기 위해서는 아래와 같이 리스너를 해제하거나, addOnNativeAdEventListener를 한번만 호출하기 위한 로직을 추가해야 합니다.
+    view.removeOnNativeAdEventListener(nativeAdEventListener);
+     
+    view.addOnNativeAdEventListener(nativeAdEventListener);
+     
+    view.setMediaView(mediaView);
+    view.setNativeAd(nativeAd);
+}
+```
+
+### Background Color 추출
+Creative Type이 HTML인 경우 SDK에서는 배경 색상을 추출하여 APP에 전달할 수 있습니다.<br>
+APP에서는 해당 색상으로 Background의 색상을 조정하거나 하여, 전체 광고 영역의 디자인을 조정할 수 있습니다.
+
+Background 색상의 전달여부는 서버의 Unit설정으로 관리되며, 해당 설정이 Disable일 경우 기본 색상(흰색)이 전달됩니다.
+``` 
+final Creative.Type creativeType = ad.getCreative() == null ? null : ad.getCreative().getType();
+final MediaView mediaView = interstitialView.findViewById(R.id.ad_media_view);
+if (Creative.Type.HTML.equals(creativeType)) {
+    mediaView.setBackgroundColorListener(new MediaView.BackgroundColorExtractedListener() {
+        @Override
+        public void onBackgroundColorExtracted(int color) {
+            // 전달된 Background 색상으로 광고영역을 처리한다.
+            nativeAdView.setBackgroundColor(color);
+        }
+    });
+}
+```
+
 ## POP 기본설정
 
 ### 개요
@@ -1582,7 +1746,7 @@ public class CustomPopFeedbackHandler extends DefaultPopFeedbackHandler {
 ## Interstial 기본설정
 
 ### 개요
-![Interstitail_Basic](./doc/resources/A_07.png)
+![Interstitail_Basic](./doc/resources/iozs_21.png)
 
 Interstitial 지면은 PlanetAd Android SDK에서 제공하는 UI를 사용해 앱을 완전히 덮으면서 노출됩니다. <br>
 제공하는 UI로 쉽게 연동할 수 있으며, 광고 지면이 앱을 덮고 있어서 앱 UI 와의 조합을 고려하지 않고 노출하기 용이합니다. 
@@ -1593,8 +1757,8 @@ Interstitial 지면은 PlanetAd Android SDK에서 제공하는 UI를 사용해 �
 - Interstitial 지면에 사용할 Unit ID (이하 YOUR_INTERSTITIAL_UNIT_ID)
 
 ### 광고 표시
-Interstitial 지면을 표시합니다. PlanetAD Android SDK의 Interstitial 지면은 다이얼로그와 바텀시트의 UI를 제공합니다.<br>
-다이얼로그와 바텀시트 각각 InterstitialAdHandler.Type.Dialog 또는 InterstitialAdHandler.Type.BottomSheet으로 설정할 수 있습니다.<br>
+Interstitial 지면을 표시합니다. PlanetAD Android SDK의 Interstitial 지면은 다이얼로그와 바텀시트, 풀스크린의 UI를 제공합니다.<br>
+다이얼로그와 바텀시트, 풀스크린은 각각 InterstitialAdHandler.Type.Dialog, InterstitialAdHandler.Type.BottomSheet, InterstitialAdHandler.Type.FullScreen으로 설정할 수 있습니다.<br>
 
 다음은 다이얼로그형태의 Interstitial 지면을 표시하는 예시입니다. 
 
@@ -1611,9 +1775,11 @@ interstitialAdHandler.show(context);
 이 문서에서 가이드 하는 내용은 PlanetAD Android SDK의 Interstitial 지면 연동의 기능을 설명하고 각 기능을 사용하는 방법을 안내합니다.
 
 ### 광고 개수 설정
-![Interstitail_multi](./doc/resources/ios_22.png)
+<p align="center">
+  <img src="./doc/resources/ios_22.png" width="60%" />
+</p>
 
-바텀 시트 형태의 Interstitial 지면은 복수 개의 광고를 표시할 수 있습니다. 
+풀스크린형태와 바텀시트 형태의 Interstitial 지면은 복수 개의 광고를 표시할 수 있습니다. 
 
 다음은 3개의 광고를 할당받는 예시입니다. 
 
@@ -1664,6 +1830,28 @@ interstitialAdHandler.show(MainActivity.this, interstitialAdConfig, new Intersti
 });
 ```
 
+### 광고 사전 할당 받기
+preloadFullScreen() 를 호출하여 Full Screen 지면을 표시하기 전에 광고를 미리 할당받을 수 있으며, 광고가 존재할 경우에만 FullScreen 지면을 표시하여 사용자 경험을 높일 수 있습니다.
+
+해당 기능은 풀스크린타입에서만 제공됩니다.
+```
+
+interstitialHandler = new InterstitialAdHandlerFactory().create("YOUR_INTERSTITIAL_UNIT_ID", InterstitialAdHandler.Type.FullScreen);
+interstitialHandler.preloadFullScreen(new InterstitialAdFullScreenHandler.FullScreenPreloadListener() {
+    @Override
+    public void onPreloaded(int adsCount, int totalReward) {
+        // adsCount: 광고의 개수, totalReward:적립 가능한 총 포인트 금액
+    }
+ 
+    @Override
+    public void onError(AdError error) {
+        // 로드 실패시. error를 통해 로드 실패 이유를 알 수 있음
+    }
+});
+
+```
+
+
 ## Interstial Customizing
 
 ### 개요
@@ -1671,28 +1859,288 @@ interstitialAdHandler.show(MainActivity.this, interstitialAdConfig, new Intersti
 
 ### Interstitial 지면 UI 커스터마이징
 
-![Interstitail_area_guide](./doc/resources/ios_23.png)
+| ![](./doc/resources/ios_23.png) | ![](./doc/resources/benefit_interstitial_fullscreen.png) |
+|---|---|
 
-Interstitial 지면 UI는 2가지를 설정할 수 있습니다.
+Interstitial 지면 UI를 Config 설정으로 변경할 수 있으며, 일부 설정은 Interstitial 지면의 종류에 따라 적용되지 않습니다.
 
-Cta 버튼 UI는 테마 적용으로 변경할 수 있습니다.
+아래 내용에서 종류에 따른 설정 가능한 Config를 확인할 수 있습니다.
 
-타이틀 및 색상 및 아이콘은 InterstitialAdConfig을 설정하여 변경할 수 있습니다. 
+| Config Name | 설명 | Fullscreen | Dialog, BottomSheet |
+|-|-|-|-|
+titleText| Interstitial 광고 상단에 있는 Text (NSString)|O|O
+titleTextColor| titleText의 색깔 (UIColor)|O|O
+backgroundColor| Interstitial 광고 전체의 배경 색깔 (UIColor)|O|O
+showInquiryButton| 문의하기 버튼 노출 여부 (BOOL)<br><br>Planet AD는 만 14세 미만 아동에게 (맞춤형) 리워드 광고를 송출하지 않습니다.<br>따라서, 만 14세 미만의 고객에게는  Planet AD SDK에서 제공하는 VOC(문의하기) 기능을 제공해서는 안되며,<br>APP에서는 고객이 만 14세 미만일 경우 VOC(문의하기)로 진입할 수 있는 기능을 비활성화 혹은 숨김처리되어야 합니다.<br>제공여부는 APP 정책에 따릅니다. |O|O
+adsAdapterClass| 커스텀 광고 뷰<li>광고 UI 자체 구현 시 설정(광고 UI 자체 구현 참고)</li><li>Feed의 광고 UI 자체 구현과 유사한 기능</li> |O|X
+errorViewHolderClass| 커스텀 에러 뷰<li>보여줄 광고 없을 경우 표시되는 화면</li>  |O|X
+setEnterAnimation| 화면 진입시 사용되는 Animation 효과<li>미지정시 Animation없음</li> |O|X
+setExitAnimation| 화면 종료시 사용되는 Animation 효과<li>미지정시 Animation없음</li> |O|X
 
-다음은 타이틀 및 색상 및 아이콘을 변경하는 예시입니다.
+
+다음은 Config를 통해 UI를 변경하는 예시입니다.
 
 ```
+
 InterstitialAdConfig interstitialAdConfig = 
         new InterstitialAdConfig.Builder()
-                .topIcon(R.drawable.your_drawable)
-                .titleText("지금 바로 참여하고 포인트 받기")
-                .textColor(android.R.color.your_color)
-                .layoutBackgroundColor(R.color.your_color)
-                .build();
+            .topIcon(R.drawable.your_drawable)                                          // 좌측 상단 Icon (Intersitial Dialog, bottomSheet 타입에서만 지원)
+            .titleText("YOUR_TITLE_TEXT")                                               // Interstitial 지면 상단에 있는 Text
+            .textColor("YOUT_TITLE_COLOR")                                              // Interstitial 지면 상단에 있는 Text 색상
+            .layoutBackgroundColor("YOUT_BACKGROUND_COLOR")                             // Interstitial 지면 배경색
+            .showInquiryButton(true)                                                    // 문의하기 버튼 노출 여부
+            .adsAdapterClass(YourAdsAdapter.class)                                      // 커스텀 광고 뷰(Interstitial Fullscreen Type에서만 지원)
+            .errorViewHolderClass(YourErrorViewHolder.class)                            // 커스텀 에러 뷰(Interstitial Fullscreen Type에서만 지원)
+            .setEnterAnimation(YourEnterAnimation, YourExitAnimation)                   // 화면 진입 Animation 효과(Interstitial Fullscreen Type에서만 지원)
+            .setExitAnimation(YourEnterAnimation, YourExitAnimation)                    // 화면 종료 Animation 효과(Interstitial Fullscreen Type에서만 지원)
+            .build();
+
 
 final InterstitialAdHandler interstitialAdHandler = new InterstitialAdHandlerFactory()
-        .create("YOUR_INTERSTITIAL_UNIT_ID", InterstitialAdHandler.Type.Dialog);
+        .create("YOUR_INTERSTITIAL_UNIT_ID", Interstitial Type);
 interstitialAdHandler.show(context, interstitialAdConfig);
+```
+
+### Interstitial Fullsceen 타입 지면 UI 자체 구현
+SKPAd Android SDK에서 제공하는 FullScreen의 광고에는 중앙 컨텐츠 영역을 구성 할 수 있습니다.
+
+<p align="center">
+  <img src="./doc/resources/benefit_interstitial_fullscreen_adapter.png" width="60%" />
+</p>
+
+
+AdsAdapter의 구현 클래스를 구현하고, 구현한 FullScreen의 컨텐츠 영역을 구현합니다.<br>
+그리고 InterstitialAdConfig에 구현한 클래스를 추가합니다. (adsAdapterClass)<br>
+다음은 FullScreen의 디자인을 변경하는 방법을 설명하는 예시입니다.<br>
+
+
+|항목|설명|필수여부|비고|
+|-|-|-|-|
+|광고 소재|이미지, 동영상 등 광고 소재|Mandatory|<li>com.skplanet.skpad.benefit.presentation.media.MediaView 사용 필수</li><li>종횡비 유지 필수</li><li>여백 추가 가능</li><li>Adapter의 Item이기에 match_parent로 지정이 기본</li>|
+|CTA 버튼|광고의 참여를 유도하는 버튼|Optional|<li>com.skplanet.skpad.benefit.presentation.interstitial.fullscreen.InterstitialAdFullScreenCtaView 기본 제공</li><li>필요시, InterstitialAdFullScreenCtaView를 사용하지 않고, APP에서 구현해서 사용 가능</li>|
+|광고 문구|광고에 대한 문구|Optional|개발자 Custom으로 추가 가능|
+|광고 설명|광고에 대한 상세 설명|Optional|개발자 Custom으로 추가 가능|
+
+#### Item xml 예시
+Full Screen용 NativeAdView의 규격에 맞는 레이아웃(your_interstitial_fullscreen_ad.xml)을 구현합니다.
+```
+// your_interstitial_fullscreen_ad.xml
+<com.skplanet.skpad.benefit.presentation.nativead.NativeAdView
+    android:id="@+id/native_ad_view" ...>
+  
+    // MediaView와 CtaView는 NativeAdView의 하위 컴포넌트로 구현해야합니다.
+    <LinearLayout ... >
+        <com.skplanet.skpad.benefit.presentation.media.MediaView
+            android:id="@+id/mediaView" ... />
+        <TextView
+            android:id="@+id/textTitle" ... />
+        <TextView
+            android:id="@+id/textDescription" ... />
+        <ImageView
+            android:id="@+id/imageIcon" ... />
+        <com.skplanet.skpad.benefit.presentation.interstitial.fullscreen.InterstitialAdFullScreenCtaView
+            android:id="@+id/ctaView" ... />
+    </LinearLayout>
+  
+</com.skplanet.skpad.benefit.presentation.nativead.NativeAdView>
+```
+#### Adapter의 예시
+AdsAdapter의 상속 클래스를 구현합니다.
+
+구현한 상속 클래스의 onCreateViewHolder에서 your_interstitial_fullscreen_ad.xml을 사용하여 NativeAdView를 생성합니다.
+
+그리고 InterstitialConfig 에 구현한 YourAdsAdapter를 설정합니다.
+```
+public class YourAdsAdapter extends AdsAdapter<AdsAdapter.NativeAdViewHolder> {
+  
+    @Override
+    public NativeAdViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        final NativeAdView interstitialNativeAdView = (NativeAdView) inflater.inflate(R.layout.your_interstitial_fullscreen_ad, parent, false);
+        return new NativeAdViewHolder(interstitialNativeAdView);
+    }
+ 
+    @Override
+    public void onBindViewHolder(NativeAdViewHolder holder, NativeAd nativeAd) {
+        super.onBindViewHolder(holder, nativeAd);
+        final NativeAdView view = (NativeAdView) holder.itemView;
+ 
+        final Ad ad = nativeAd.getAd();
+         
+        // create ad component
+        final MediaView mediaView = view.findViewById(R.id.mediaView);
+        final TextView titleView = view.findViewById(R.id.textTitle);
+        final ImageView iconView = view.findViewById(R.id.imageIcon);
+        final TextView descriptionView = view.findViewById(R.id.textDescription);
+        final InterstitialAdFullScreenCtaView ctaView = view.findViewById(R.id.ctaView);
+        final InterstitialAdFullScreenCtaPresenter ctaPresenter = new InterstitialAdFullScreenCtaPresenter(ctaView); // CtaView should not be null
+ 
+        // data binding
+        ctaPresenter.bind(nativeAd);
+ 
+         
+        // mediaView.setCreative 보다 우선적으로 설정하여야 한다.
+        mediaView.setVertical(true);                                    // 필수 셋팅
+        mediaView.setImageScaleType(ImageView.ScaleType.FIT_CENTER);    // Image의 경우 화면에 표현되는 Scale 정의
+         
+        if (mediaView != null) {
+            mediaView.setCreative(ad.getCreative());
+            mediaView.setVideoEventListener(new VideoEventListener() {
+                // Override and implement methods         
+            });
+        }
+                
+        // clickableViews에 추가된 UI 컴포넌트를 클릭하면 광고 페이지로 이동합니다.
+        final Collection<View> clickableViews = new ArrayList<>();
+        clickableViews.add(mediaView);
+ 
+        // 광고 콜백 이벤트를 수신할 수 있습니다.
+        // view.setNativeAd 보다 전에 호출해야 합니다.
+        view.addOnNativeAdEventListener(new NativeAdView.OnNativeAdEventListener() {
+             
+            @Override
+            public void onImpressed(final @NonNull NativeAdView view, final @NonNull NativeAd nativeAd) {
+ 
+            }
+ 
+            @Override
+            public void onClicked(@NonNull NativeAdView view, @NonNull NativeAd nativeAd) {
+                ctaPresenter.bind(nativeAd);
+            }
+ 
+            @Override
+            public void onRewardRequested(@NonNull NativeAdView view, @NonNull NativeAd nativeAd) {
+ 
+            }
+ 
+            @Override
+            public void onRewarded(@NonNull NativeAdView nativeAdView, @NonNull NativeAd nativeAd, @Nullable RewardResult rewardResult) {
+ 
+            }
+ 
+            @Override
+            public void onParticipated(final @NonNull NativeAdView view, final @NonNull NativeAd nativeAd) {
+                ctaPresenter.bind(nativeAd);
+            }
+        });
+ 
+        view.setMediaView(mediaView);
+        view.setClickableViews(clickableViews);
+        view.setNativeAd(nativeAd);
+ 
+        // HTML의 경우 컨텐츠에 맞춰 화면 구성
+        // Background 색상의 전달여부는 서버의 Unit설정으로 관리되며, 해당 설정이 Disable일 경우 기본 색상(흰색)이 전달됩니다.
+        if (Creative.Type.HTML.equals(ad.getCreative().type)) {
+            mediaView.setBackgroundColorListener(new MediaView.BackgroundColorExtractedListener() {
+                @Override
+                public void onBackgroundColorExtracted(int color) {
+                    // 전달된 Background 색상으로 광고영역을 처리한다.
+                    view.setBackgroundColor(color);
+                }
+            });
+        }
+     }
+
+```
+#### Custom Adapter 호출
+Custom Adapter를 호출하는 예시입니다.
+```
+interstitialAdHandler.show(this,
+    new InterstitialAdConfig.Builder()
+        .adsAdapterClass(YourAdsAdapter.class)
+        .build(),
+    eventListener);
+```
+#### Full Screen Type의 UI 커스터마이징 시 필수 적용 사항
+|항목| 내용                                                                                                                                                                                                    |비고|
+|-|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-|
+|Media View 설정| MediaView를 Vertical Style로 설정되어야 합니다.<br> ```mediaView.setVertical(true); ```<br><br> Vertical Style로 설정시 아래와 같이 적용됩니다. <li>Full Screen의 경우 Video 전체화면 제거</li><li>세로로 화면이 제공되어 광고를 노출해야하가에 내부 속성을 변경</li> ||
+|Image Type 설정| Image Type의 경우 ScaleType을 지정할 수 있습니다.<li>컨텐츠를 세로로 제공하고, 단말기마다 화면의 비율이 일정하지 않기 때문에, Image 제공시 ScaleType을 변경하여 처리하기 위해 제공</li><li>기본적으로 FIT_XY로 지정되어 있으나, FullScreen에는 FIT_CENTER가 권장</li><br>``` mediaView.setImageScaleType(ImageView.ScaleType.FIT_CENTER);```||
+|광고 Click을 위한 처리| clickableViews에 추가된 UI 컴포넌트를 클릭하면 광고 페이지로 이동합니다.<br> <pre><code>Collection<View> clickableViews = new ArrayList<>();<br>clickableViews.add(mediaView);<br><br>view.setClickableViews(clickableViews);</code></pre> <li>Video의 경우 Full Screen에서 전체화면을 제공하지 않으므로 `mediaView`만 추가해야 하며, CTA, Description, Title 등은 추가해서는 안 됩니다.</li> |Click Event에 대한 처리를 위해 적용|
+|CTA 화면 구성|Interstitial FullScreen에서는 Feed와 다르게 CTAView가 아닌 InterstitialAdFullScreenCtaView가 제공됩니다.<li>Feed에서 제공하는 CTAView와는 다르게 Custom이 불가능</li><li>InterstitialAdFullScreenCtaView, InterstitialAdFullScreenCtaPresenter로 작성 필요</li><pre><code>InterstitialAdFullScreenCtaPresenter ctaPresenter = new InterstitialAdFullScreenCtaPresenter(ctaView);<br>ctaPresenter.bind(nativeAd);</code></pre> |앱에서 CTA 기능을 직접 구현하는 경우, InterstitialAdFullScreenCtaView와 InterstitialAdFullScreenCtaPresenter의 역할을 직접 구현하셔야 합니다.|
+|HTML Background 색상|<li>HTML의 경우 컨텐츠에 맞춰 화면 구성</li><li>Background 색상의 전달여부는 서버의 Unit설정으로 관리되며, 해당 설정이 Disable일 경우 기본 색상(흰색)이 전달됩니다.</li><pre><code>if (Creative.Type.HTML.equals(ad.getCreative().type)) {<br>    mediaView.setBackgroundColorListener(new MediaView.BackgroundColorExtractedListener() {<br>        @Override<br>        public void onBackgroundColorExtracted(int color) {<br>            // 전달된 Background 색상으로 광고영역을 처리한다.<br>            view.setBackgroundColor(color);<br>        } <br>    });<br>} </code></pre>| |
+
+
+### 지면 광고 미할당 안내
+<p align="center">
+  <img src="./doc/resources/fullscreen_empty.png" width="60%" />
+</p>
+
+사용자가 FullScreen 지면에 진입한 시점에 노출할 광고가 없다면 미할당 안내 UI가 노출됩니다.<br>
+미할당 안내 UI의 이미지 혹은 문구만을 변경하여 사용자 경험을 높일 수 있습니다.<br>
+InterstitialAdDefaultErrorViewHolder의 구현 클래스를 구현하여 이미지 및 문구를 변경할 수 있습니다.<br> 
+
+다음은 이미지 혹은 문구를 변경하는 예시입니다.
+
+#### Error xml 코드 예시
+Interstitial FullScreen 지면에 광고가 할당되지 않았을 때의 화면에 추가할 에러 이미지(interstitialErrorImageView), 타이틀(interstitialErrorTitle), 상세 설명(interstitialErrorDescription) 레이아웃을 작성하세요.
+```
+<!-- custom_interstitial_fullscreen_error_view.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="40dp">
+ 
+    <ImageView
+        android:id="@+id/interstitialErrorImageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+ 
+    <TextView
+        android:id="@+id/interstitialErrorTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/bz_text_emphasis"
+        android:textSize="16sp" />
+ 
+    <TextView
+        android:id="@+id/interstitialErrorDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:textAlignment="center"
+        android:textColor="@color/bz_text_description"
+        android:textSize="14sp" />
+ 
+</LinearLayout>
+```
+
+#### Error View 예시
+interstitialErrorViewHolder를 구현하는 커스텀 클래스 CustomErrorView를 새로 생성하고, 자동 완성되는 GetView() 메소드를 다음과 같이 구현하세요.
+```
+
+public class CustomErrorView extends InterstitialErrorViewHolder {
+    @NonNull
+    @Override
+    public View getErrorView(@NonNull Activity activity) {
+    
+        // TODO: 1번에서 생성한 custom_interstitial_error_view 레이아웃을 inflate
+        View errorView = activity.getLayoutInflater().inflate(R.layout.custom_view_interstitial_fullscreen_error, null, false);
+        final ImageView errorImageView = errorView.findViewById(R.id.interstitialErrorImageView);
+        final TextView errorTitle = errorView.findViewById(R.id.interstitialErrorTitle);
+        final TextView errorDescription = errorView.findViewById(R.id.interstitialErrorDescription);
+ 
+        errorImageView.setImageResource(R.drawable.bz_ic_feed_profile_coin); // 에러 이미지 설정
+        errorTitle.setText("타이틀: 광고가 없습니다. "); // 에러 타이틀 텍스트 설정
+        errorDescription.setText("디스크립션: 할당된 광고가 없습니다!"); // 에러 상세 텍스트 설정
+         
+        return errorView;
+    }
+}
+```
+
+#### Custom Error View 호출
+``` 
+interstitialAdHandler.show(this,
+    new InterstitialAdConfig.Builder()
+        .errorViewHolderClass(YourErrorViewHolder.class)
+        .build(),
+    eventListener);
 ```
 
 ## 디자인 커스터마이징
@@ -1942,7 +2390,7 @@ allprojects {
 // 모듈 레벨의 build.gradle
  
 dependencies {
-    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.10.1") { changing = true }  // SKP AD Benefit SDK 라이브러리
+    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.12.0") { changing = true }  // SKP AD Benefit SDK 라이브러리
 }
 ```
 
@@ -2320,7 +2768,7 @@ Planet AD Benefit SDK에는 POP 기능을 위해 Foreground Service가 포함되
 Planet AD Benefit SDK를 사용하나, POP 기능을 사용하지 않는다면, 해당 기능은 아래와 같이 Exclude함으로서 제외함으로서 불필요한 Foreground Service가 앱에 포함되는 것을 막을 수 있습니다.
 
 ```
-implementation ("com.skplanet.sdk.ad:skpad-benefit:1.10.1") {
+implementation ("com.skplanet.sdk.ad:skpad-benefit:1.12.0") {
     changing = true
     exclude group: 'com.skplanet.sdk.ad', module: 'skpad-benefit-pop'
 }

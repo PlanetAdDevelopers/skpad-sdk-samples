@@ -2,6 +2,7 @@
     <string name="app_name">SKPAD Benefit Sample</string>
 
     <string-array name="interstitial_ad_types">
+        <item>FullScreen</item>
         <item>Dialog</item>
         <item>BottomSheet</item>
     </string-array>

@@ -185,13 +185,23 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Spinner interstitialTypeSpinner = findViewById(R.id.interstitial_type_spinner);
                 final int selectedType = interstitialTypeSpinner.getSelectedItemPosition();
-                final InterstitialAdHandler.Type interstitialType = selectedType == 0 || selectedType == Spinner.INVALID_POSITION
-                        ? InterstitialAdHandler.Type.Dialog
-                        : InterstitialAdHandler.Type.BottomSheet;
+                final InterstitialAdHandler.Type interstitialType = getInterstitialType(selectedType);
 
                 new InterstitialAdapter(MainActivity.this).show(interstitialType);
             }
         });
+    }
+
+    private InterstitialAdHandler.Type getInterstitialType(int selectedType) {
+        switch (selectedType) {
+            case 0:
+                return InterstitialAdHandler.Type.FullScreen;
+            case 1:
+                return InterstitialAdHandler.Type.Dialog;
+            case 2:
+            default:
+                return InterstitialAdHandler.Type.BottomSheet;
+        }
     }
 
     private void initWebSDK() {

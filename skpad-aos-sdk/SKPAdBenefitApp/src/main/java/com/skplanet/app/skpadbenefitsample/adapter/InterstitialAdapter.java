@@ -37,12 +37,6 @@ public class InterstitialAdapter {
         };
 
         final InterstitialAdHandler interstitialAdHandler = new InterstitialAdHandlerFactory().create(Constants.INTERSTITIAL_UNIT_ID, interstitialType);
-//        interstitialAdHandler.show(context,
-//                new InterstitialAdConfig.Builder()
-//                        .build(),
-//                eventListener);
-
         interstitialAdHandler.show(context, null, eventListener);
-
     }
 }
