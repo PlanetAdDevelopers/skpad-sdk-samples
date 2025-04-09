@@ -11,7 +11,7 @@ Planet AD는 SK플래닛이 제공하는 리워드 광고 플랫폼입니다.
 
 - [Android Screen SDK Development Guide](./skpad-aos-sdk/SKPAdScreenApp)
 
-- [IOS Benefit SDK Development Guide](./skpad-benefit-ios-sdk)
+- [iOS Benefit SDK Development Guide](./skpad-benefit-ios-sdk)
 
 - [WEB Benefit SDK Development Guide](./skpad-benefit-web-sdk)
 
