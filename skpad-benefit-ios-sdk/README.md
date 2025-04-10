@@ -100,7 +100,7 @@ target 'YourApp' do
 
 ...
 
-   pod 'SKPAdBenefit', '1.5.9'
+   pod 'SKPAdBenefit', '1.5.10'
    
 ...
 
@@ -2365,7 +2365,7 @@ SKPAdBenefit iOS SDK를 연동하려면 반드시 앱의 고유 식별자인 `Ap
 ### 2 단계: SDK 설치하기
 SKPAdBenefit iOS용 SDK를 설치하려면 CocoaPods을 사용하여 `Podfile`에 추가하세요.
 ```ruby
-pod 'SKPAdBenefit', '1.5.9'
+pod 'SKPAdBenefit', '1.5.10'
 ```
 <br>
 
@@ -2859,7 +2859,7 @@ done
 
 ## 앱 다크모드 활성화 시 Feed 광고 뷰 설정
 
-앱에서 다크모드를 활성화하면 Feed 지면의 광고 뷰 텍스트가 보이지 않는 경우가 발생할 수 있습니다. 이를 방지하려면 [일반 광고 UI 자체 구현](#일반-광고-ui-자체-구현) 토픽을 참고하여 광고 디자인을 자체적으로 구현한 다음 텍스트를 노출하는 뷰 (예: `titleLabel`, `descriptionLabel`)의 색상을 배경색 이외의 색상으로 지정하고 다크모드에서 식별 가능한 명도를 적용하세요.
+앱에서 다크모드를 활성화하면 Feed 지면의 광고 뷰 텍스트가 보이지 않는 경우가 발생할 수 있습니다. 이를 방지하려면 [일반 광고 UI 자체 구현](#광고-ui-자체-구현) 토픽을 참고하여 광고 디자인을 자체적으로 구현한 다음 텍스트를 노출하는 뷰 (예: `titleLabel`, `descriptionLabel`)의 색상을 배경색 이외의 색상으로 지정하고 다크모드에서 식별 가능한 명도를 적용하세요.
 
 > 다크모드에 적합한 텍스트 색상의 가이드라인에 대해서는 [Apple의 공식 문서](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/dark-mode/)를 참고하세요.
 
