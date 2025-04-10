@@ -16,15 +16,12 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "WebViewController.h"
 
-@class SKPAdBenefitInternal;
-@class SKPAdServerConfig;
-
 #define kDefaultNativeUnitId @"323370048750095"
 #define kDefaultFeedUnitId   @"522571474749710"
 #define kDefaultInterstitialUnitId @"228405186298966"
 #define websdk_url @"https://m.planetad.co.kr/pages/integration/websdk.html"
 
-@interface ViewController () <SABNativeAdViewDelegate, SABNativeAdViewVideoDelegate, SABInterstitialAdHandlerDelegate>
+@interface ViewController () <SABNativeAdViewDelegate, SABNativeAdViewVideoDelegate, SABNativeAdViewUIDelegate, SABInterstitialAdHandlerDelegate>
 
 @end
 
@@ -169,7 +166,8 @@
         [self.ctaButton setTitle:@"참여 완료" forState:UIControlStateNormal];
     } else {
         [self.ctaButton setTitle:[NSString stringWithFormat:@"+%d %@", (int)(ad.reward), ad.creative.callToAction] forState:UIControlStateNormal];
-    }}
+    }
+}
 
 #pragma mark - SABNativeAdViewVideoDelegate - 네이티브 비디오 광고 리스너 등록하기
 - (void)SABNativeAdViewWillStartPlayingVideo:(SABNativeAdView *)adView {
@@ -183,6 +181,11 @@
 - (void)SABNativeAdView:(SABNativeAdView *)adView didFinishPlayingVideoAd:(SABAd *)ad {
 }
 - (void)SABNativeAdView:(SABNativeAdView *)adView didVideoError:(NSError *)error {
+}
+
+#pragma mark - SABNativeAdViewUIDelegate - 네이티브 UI 리스너 등록하기
+- (void)SABNativeAdView:(SABNativeAdView *)adView didExtractedBackgroundColor:(UIColor *)bgColor {
+    _adView.backgroundColor = bgColor;
 }
 
 #pragma mark - FeedType
@@ -210,6 +213,16 @@
     
     SABInterstitialAdHandler *adLoader = [[SABInterstitialAdHandler alloc] initWithUnitId:kDefaultInterstitialUnitId
                                                                                      type:SABInterstitialBottomSheet];
+    adLoader.delegate = self;
+    [adLoader show:self withConfig:interstitialConfig];
+}
+
+//FullScreen
+- (IBAction)loadFullScreenButtonTapped:(id)sender {
+    SABInterstitialConfig *interstitialConfig = [[SABInterstitialConfig alloc] init];
+    
+    SABInterstitialAdHandler *adLoader = [[SABInterstitialAdHandler alloc] initWithUnitId:kDefaultInterstitialUnitId
+                                                                                     type:SABInterstitialFullScreen];
     adLoader.delegate = self;
     [adLoader show:self withConfig:interstitialConfig];
 }

@@ -40,6 +40,9 @@ typedef enum {
 
 @property (nonatomic, assign, readonly) double rewardDelay;
 
+@property (nonatomic, strong, readonly) NSString *displayRewardName;
+@property (nonatomic, assign, readonly) double displayReward;
+
 - (instancetype)initWithDictionary:(NSDictionary *)dic unitId:(NSString *)unitId fetchedAt:(nullable NSDate *)fetchedAt;
 
 @end
@@ -53,8 +56,7 @@ typedef enum {
 - (double)getAvailableReward;
 
 - (BOOL)isActionType;
-
-- (BOOL)isWebBannerType;
+- (BOOL)isCPQEType;
 
 - (SKPEvent *)getEventWithType:(SKPAdEventType)type;
 

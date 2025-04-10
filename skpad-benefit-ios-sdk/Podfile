@@ -8,7 +8,7 @@ target 'SKPAdBenefitSampleApp' do
 use_frameworks!
 inhibit_all_warnings!
 
-   pod 'SKPAdBenefit', '1.5.7'
+   pod 'SKPAdBenefit', '1.5.10'
 
 # for test
    pod 'SDWebImage',   '~> 5.0'

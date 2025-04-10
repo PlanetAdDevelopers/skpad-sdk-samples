@@ -8,7 +8,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef enum {
     SABInterstitialDialog,
-    SABInterstitialBottomSheet
+    SABInterstitialBottomSheet,
+    SABInterstitialFullScreen,
 } SABInterstitialType;
 
 @protocol SABInterstitialAdHandlerDelegate <NSObject>
@@ -25,6 +26,8 @@ typedef enum {
 - (instancetype)initWithUnitId:(NSString *)unitId type:(SABInterstitialType)type;
 - (void)show:(UIViewController *)presentingViewController withConfig:(nullable SABInterstitialConfig *)config;
 
+- (void)preloadFullScreenWithConfig:(SABInterstitialConfig *)config onSuccess:(void (^)(NSUInteger adsCount, double totalReward))onSuccess onFailure:(void (^)(SABError *))onFailure;
+- (void)resetData;
 @end
 
 NS_ASSUME_NONNULL_END

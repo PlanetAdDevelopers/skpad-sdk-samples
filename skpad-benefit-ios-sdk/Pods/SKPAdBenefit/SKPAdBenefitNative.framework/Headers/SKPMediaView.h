@@ -21,11 +21,13 @@ typedef enum {
 
 @protocol SKPMediaViewDelegate <NSObject>
 - (void)SKPMediaViewDidClickURL:(NSURL*)clickUrl;
+- (void)SKPMediaViewDidExtractedBackgroundColor:(UIColor*)bgColor;
+
 @end
 
 @interface SKPMediaView : UIView  <SKPImpressionTrackableView>
 
-@property (nonatomic, weak) id<SKPMediaViewDelegate> clickDelegate;
+@property (nonatomic, weak) id<SKPMediaViewDelegate> delegate;
 
 @property (nonatomic, readonly) SKPVideoPlayer *videoPlayer;
 @property (nonatomic, assign) SKPAdMediaViewFillMode fillMode;
@@ -34,8 +36,6 @@ typedef enum {
 - (void)loadVideoAtUrl:(NSURL *)url autoPlay:(BOOL)autoPlay thumbnailImageUrl:(NSURL *)thumbnailImageUrl fromSecond:(NSTimeInterval)fromSecond mute:(BOOL)mute ad:(SABAd*)ad;
 - (void)loadVideoWithBuzzPlayer:(id<SKPPlayerProtocol>)player autoPlay:(BOOL)autoPlay thumbnailImageUrl:(NSURL *)thumbnailImageUrl ad:(SABAd*)ad;
 - (void)loadVideoAtVastTag:(NSString *)vastTag autoPlay:(BOOL)autoPlay thumbnailImageUrl:(NSURL *)thumbnailImageUrl fromSecond:(NSTimeInterval)fromSecond mute:(BOOL)mute ad:(SABAd*)ad;
-
-//jylee webjs 추가
 - (void)loadWebAtHtmlTag:(NSString *)htmltag bgImageUrl:(NSURL*)bgImageUrl bgColor:(UIColor *)bgColor ad:(SABAd*)ad;
 
 - (void)didEnterFullscreen;

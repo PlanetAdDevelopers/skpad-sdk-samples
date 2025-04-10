@@ -23,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)SABNativeAdView:(SABNativeAdView *)adView shouldClickAd:(SABAd *)ad;
 - (void)SABNativeAdView:(SABNativeAdView *)adView didClickAd:(SABAd *)ad;
 - (void)SABNativeAdView:(SABNativeAdView *)adView didWillOpenLandingPageForAd:(SABAd *)ad;
-
 @end
 
 @protocol SABNativeAdViewVideoDelegate <NSObject>
@@ -36,10 +35,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)SABNativeAdView:(SABNativeAdView *)adView didVideoError:(NSError *)error;
 @end
 
+@protocol SABNativeAdViewUIDelegate <NSObject>
+@optional
+- (void)SABNativeAdView:(SABNativeAdView *)adView didExtractedBackgroundColor:(UIColor *)bgColor;
+@end
+
+
 @interface SABNativeAdView : UIView <SABNativeAdViewProtocol, SKPImpressionTrackableView>
 
 @property (nonatomic, weak) id<SABNativeAdViewDelegate> delegate;
 @property (nonatomic, weak) id<SABNativeAdViewVideoDelegate> videoDelegate;
+@property (nonatomic, weak) id<SABNativeAdViewUIDelegate> uiDelegate;
 @property (nonatomic, strong) SABMediaView *mediaView;
 @property (nonatomic, strong) NSArray<UIView *> *clickableViews;
 @property (nonatomic, strong) SABAd *ad;

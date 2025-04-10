@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithConfig:(SABFeedConfig *)config;
 - (void)preloadWithOnSuccess:(void (^)(void))onSuccess onFailure:(void (^)(SABError *error))onFailure;
 - (SABFeedViewController *)populateViewController;
-
+- (void)resetData;
 @end
 
 NS_ASSUME_NONNULL_END

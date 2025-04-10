@@ -7,31 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D08ACF312898DE3800590752 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D08ACF302898DE3800590752 /* AppDelegate.m */; };
-		D08ACF372898DE3800590752 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D08ACF362898DE3800590752 /* ViewController.m */; };
+		D067B0152D8B9AF20085CDC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D067AFE42D8B9AF20085CDC7 /* LaunchScreen.storyboard */; };
+		D067B0162D8B9AF20085CDC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D067AFE62D8B9AF20085CDC7 /* Main.storyboard */; };
 		D08ACF3A2898DE3800590752 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D08ACF382898DE3800590752 /* Main.storyboard */; };
 		D08ACF3C2898DE3B00590752 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D08ACF3B2898DE3B00590752 /* Assets.xcassets */; };
 		D08ACF3F2898DE3B00590752 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D08ACF3D2898DE3B00590752 /* LaunchScreen.storyboard */; };
-		D08ACF422898DE3B00590752 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D08ACF412898DE3B00590752 /* main.m */; };
-		D0D29A0928D40705000AE4C8 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D29A0828D40705000AE4C8 /* WebViewController.m */; };
+		D0E36FE12D913A5A00A6C770 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E36FDE2D913A5A00A6C770 /* ViewController.m */; };
+		D0E36FE22D913A5A00A6C770 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E36FE02D913A5A00A6C770 /* WebViewController.m */; };
+		D0E36FE32D913A5A00A6C770 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E36FDC2D913A5A00A6C770 /* main.m */; };
+		D0E36FE42D913A5A00A6C770 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E36FD62D913A5A00A6C770 /* AppDelegate.m */; };
+		D0E36FE52D913A5A00A6C770 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E36FDA2D913A5A00A6C770 /* Main.storyboard */; };
+		D0E36FE62D913A5A00A6C770 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E36FD82D913A5A00A6C770 /* LaunchScreen.storyboard */; };
 		D834DFA3B5ED402F870028D9 /* Pods_SKPAdBenefitSampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 133834C80BC9041D18A5AE85 /* Pods_SKPAdBenefitSampleApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		133834C80BC9041D18A5AE85 /* Pods_SKPAdBenefitSampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKPAdBenefitSampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5310F8B3AFECB9C19562F83 /* Pods-SKPAdBenefitSampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKPAdBenefitSampleApp.release.xcconfig"; path = "Target Support Files/Pods-SKPAdBenefitSampleApp/Pods-SKPAdBenefitSampleApp.release.xcconfig"; sourceTree = "<group>"; };
+		D067AFE32D8B9AF20085CDC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D067AFE52D8B9AF20085CDC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		D08ACF2C2898DE3800590752 /* SKPAdBenefitSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKPAdBenefitSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D08ACF2F2898DE3800590752 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		D08ACF302898DE3800590752 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D08ACF352898DE3800590752 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D08ACF362898DE3800590752 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D08ACF392898DE3800590752 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D08ACF3B2898DE3B00590752 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D08ACF3E2898DE3B00590752 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D08ACF402898DE3B00590752 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D08ACF412898DE3B00590752 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D0D29A0728D40705000AE4C8 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		D0D29A0828D40705000AE4C8 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		D0E36FD52D913A5A00A6C770 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D0E36FD62D913A5A00A6C770 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D0E36FD72D913A5A00A6C770 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D0E36FD92D913A5A00A6C770 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		D0E36FDC2D913A5A00A6C770 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D0E36FDD2D913A5A00A6C770 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D0E36FDE2D913A5A00A6C770 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D0E36FDF2D913A5A00A6C770 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		D0E36FE02D913A5A00A6C770 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		E7D97D975EC3E4BBB029778E /* Pods-SKPAdBenefitSampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKPAdBenefitSampleApp.debug.xcconfig"; path = "Target Support Files/Pods-SKPAdBenefitSampleApp/Pods-SKPAdBenefitSampleApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +72,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D067AFE72D8B9AF20085CDC7 /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				D067AFE42D8B9AF20085CDC7 /* LaunchScreen.storyboard */,
+				D067AFE62D8B9AF20085CDC7 /* Main.storyboard */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
 		D08ACF232898DE3800590752 = {
 			isa = PBXGroup;
 			children = (
@@ -85,19 +102,30 @@
 		D08ACF2E2898DE3800590752 /* SKPAdBenefitSampleApp */ = {
 			isa = PBXGroup;
 			children = (
-				D08ACF2F2898DE3800590752 /* AppDelegate.h */,
-				D08ACF302898DE3800590752 /* AppDelegate.m */,
-				D08ACF352898DE3800590752 /* ViewController.h */,
-				D08ACF362898DE3800590752 /* ViewController.m */,
-				D0D29A0728D40705000AE4C8 /* WebViewController.h */,
-				D0D29A0828D40705000AE4C8 /* WebViewController.m */,
+				D0E36FD52D913A5A00A6C770 /* AppDelegate.h */,
+				D0E36FD62D913A5A00A6C770 /* AppDelegate.m */,
+				D0E36FDB2D913A5A00A6C770 /* Base.lproj */,
+				D0E36FDC2D913A5A00A6C770 /* main.m */,
+				D0E36FDD2D913A5A00A6C770 /* ViewController.h */,
+				D0E36FDE2D913A5A00A6C770 /* ViewController.m */,
+				D0E36FDF2D913A5A00A6C770 /* WebViewController.h */,
+				D0E36FE02D913A5A00A6C770 /* WebViewController.m */,
+				D067AFE72D8B9AF20085CDC7 /* Base.lproj */,
 				D08ACF382898DE3800590752 /* Main.storyboard */,
 				D08ACF3B2898DE3B00590752 /* Assets.xcassets */,
 				D08ACF3D2898DE3B00590752 /* LaunchScreen.storyboard */,
 				D08ACF402898DE3B00590752 /* Info.plist */,
-				D08ACF412898DE3B00590752 /* main.m */,
 			);
 			path = SKPAdBenefitSampleApp;
+			sourceTree = "<group>";
+		};
+		D0E36FDB2D913A5A00A6C770 /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				D0E36FD82D913A5A00A6C770 /* LaunchScreen.storyboard */,
+				D0E36FDA2D913A5A00A6C770 /* Main.storyboard */,
+			);
+			path = Base.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +161,7 @@
 				TargetAttributes = {
 					D08ACF2B2898DE3800590752 = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1620;
 					};
 				};
 			};
@@ -159,6 +188,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0E36FE52D913A5A00A6C770 /* Main.storyboard in Resources */,
+				D0E36FE62D913A5A00A6C770 /* LaunchScreen.storyboard in Resources */,
+				D067B0152D8B9AF20085CDC7 /* LaunchScreen.storyboard in Resources */,
+				D067B0162D8B9AF20085CDC7 /* Main.storyboard in Resources */,
 				D08ACF3F2898DE3B00590752 /* LaunchScreen.storyboard in Resources */,
 				D08ACF3C2898DE3B00590752 /* Assets.xcassets in Resources */,
 				D08ACF3A2898DE3800590752 /* Main.storyboard in Resources */,
@@ -214,16 +247,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D08ACF372898DE3800590752 /* ViewController.m in Sources */,
-				D08ACF312898DE3800590752 /* AppDelegate.m in Sources */,
-				D08ACF422898DE3B00590752 /* main.m in Sources */,
-				D0D29A0928D40705000AE4C8 /* WebViewController.m in Sources */,
+				D0E36FE12D913A5A00A6C770 /* ViewController.m in Sources */,
+				D0E36FE22D913A5A00A6C770 /* WebViewController.m in Sources */,
+				D0E36FE32D913A5A00A6C770 /* main.m in Sources */,
+				D0E36FE42D913A5A00A6C770 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		D067AFE42D8B9AF20085CDC7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D067AFE32D8B9AF20085CDC7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D067AFE62D8B9AF20085CDC7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D067AFE52D8B9AF20085CDC7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		D08ACF382898DE3800590752 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -238,6 +287,22 @@
 				D08ACF3E2898DE3B00590752 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D0E36FD82D913A5A00A6C770 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0E36FD72D913A5A00A6C770 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D0E36FDA2D913A5A00A6C770 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0E36FD92D913A5A00A6C770 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -361,6 +426,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4F5P54BHGY;
@@ -382,6 +448,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.skplanet.SKPAdBenefitSampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "SKPAdBenefitSampleApp/SKPAdBenefitSampleApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -392,6 +461,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4F5P54BHGY;
@@ -413,6 +483,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.skplanet.SKPAdBenefitSampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "SKPAdBenefitSampleApp/SKPAdBenefitSampleApp-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

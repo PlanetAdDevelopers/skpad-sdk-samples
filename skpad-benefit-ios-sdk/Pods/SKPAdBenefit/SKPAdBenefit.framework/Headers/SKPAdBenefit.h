@@ -1,5 +1,5 @@
-//v1.5.7
-//2025.01.02 (1)
+//pad v1.5.10
+//2025.04.10 (1)
 //Xcode 16.2
 
 #import <Foundation/Foundation.h>
@@ -66,6 +66,7 @@ extern NSString *const SABSessionRegisteredNotification;
 + (void) removeSKPAdsLogFile;
 + (NSString*) getSDKVersion;
 + (NSString*) getSDKVDID;
+- (BOOL)isLoggedIn;
 @end
 
 NS_ASSUME_NONNULL_END

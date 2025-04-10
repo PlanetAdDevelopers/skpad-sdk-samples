@@ -15,6 +15,8 @@ typedef enum {
     SABCreativeVideo,
     SABCreativeVast,
     SABCreativeWebBanner,
+    SABCreativeHtml,
+    SABCreativeImage,
 } SABCreativeType;
 
 typedef enum {
@@ -59,12 +61,16 @@ typedef enum {
 @property (nonatomic, strong, nullable) NSString *encodedClickUrlAfterRewarded;
 @property (nonatomic, strong, nullable) SABVideoAdMetadata *videoAdMetadata;
 
-//jylee webjs 추가
 @property (nonatomic, copy, readonly, nullable) NSString *bgImageUrl; //webbanner는 사용안함. (추후 banner타입일 때 사용할 수 있어서 남겨둠)
 @property (nonatomic, copy, readonly, nullable) NSString *htmlTag;
 
+@property (nonatomic, assign, readonly) BOOL setBgColor;
+
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
 
+- (BOOL)isWebBannerType;
+- (BOOL)isHtmlType;
+- (BOOL)isVideoType;
 @end
 
 NS_ASSUME_NONNULL_END

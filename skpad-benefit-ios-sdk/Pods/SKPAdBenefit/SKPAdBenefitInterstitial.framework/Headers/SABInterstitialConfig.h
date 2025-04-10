@@ -15,12 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) SABStateValue<UIColor *> *ctaViewBackgroundColor;
 @property (nonatomic, strong) SABStateValue<UIColor *> *ctaViewTextColor;
 
-// Dialog only
-@property (nonatomic, strong) NSString *closeText;
-
 // BottomSheet only
 @property (nonatomic, assign) NSUInteger adCount;
 
+//fullscreen only
+@property (nonatomic, strong, nullable) Class adViewHolderClass;
+@property (nonatomic, strong, nullable) Class errorViewHolderClass;
+@property (nonatomic, assign) BOOL useNavigationPush; //default : present
 @end
 
 NS_ASSUME_NONNULL_END
