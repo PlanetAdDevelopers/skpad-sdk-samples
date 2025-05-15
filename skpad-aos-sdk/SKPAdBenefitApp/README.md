@@ -85,7 +85,7 @@ allprojects {
 dependencies {
     ...생략...
     // Planet AD Benefit SDK
-    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.13.0")
+    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.13.2")
      ...생략...
 }
 ```
@@ -2390,7 +2390,7 @@ allprojects {
 // 모듈 레벨의 build.gradle
  
 dependencies {
-    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.13.0") { changing = true }  // SKP AD Benefit SDK 라이브러리
+    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.13.2") { changing = true }  // SKP AD Benefit SDK 라이브러리
 }
 ```
 
@@ -2768,7 +2768,7 @@ Planet AD Benefit SDK에는 POP 기능을 위해 Foreground Service가 포함되
 Planet AD Benefit SDK를 사용하나, POP 기능을 사용하지 않는다면, 해당 기능은 아래와 같이 Exclude함으로서 제외함으로서 불필요한 Foreground Service가 앱에 포함되는 것을 막을 수 있습니다.
 
 ```
-implementation ("com.skplanet.sdk.ad:skpad-benefit:1.13.0") {
+implementation ("com.skplanet.sdk.ad:skpad-benefit:1.13.2") {
     changing = true
     exclude group: 'com.skplanet.sdk.ad', module: 'skpad-benefit-pop'
 }
