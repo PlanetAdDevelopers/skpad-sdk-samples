@@ -13,10 +13,10 @@
     - [POP-기본 설정](#POP-기본설정)
     - [POP-고급 설정](#POP-고급설정)
     - [POP-Customizing](#POP-Customizing)
-- [광고 지면 - Interstial](#Interstial-기본설정)
-    - [Interstial-기본 설정](#Interstial-기본설정)
-    - [Interstial-고급 설정](#Interstial-고급설정)
-    - [Interstial-Customizing](#Interstial-Customizing)
+- [광고 지면 - Interstitial](#Interstitial-기본설정)
+    - [Interstitial-기본 설정](#Interstitial-기본설정)
+    - [Interstitial-고급 설정](#Interstitial-고급설정)
+    - [Interstitial-Customizing](#Interstitial-Customizing)
 - [디자인 커스터마이징](#디자인-커스터마이징)
 - [Web Android SDK 연동 가이드](#Web-Android-SDK-연동-가이드)
 - [광고 노출과 관련한 콜백 변화](#광고-노출-클릭-참여와-관련한-콜백-변화)
@@ -179,7 +179,7 @@ Feed Type
 #### Interstitial
 ![interstitial_default](./doc/resources/A_07.png)
 
-[Interstitial 연동하기](#Interstial-기본설정)
+[Interstitial 연동하기](#Interstitial-기본설정)
 전면 광고 지면입니다.
 
 ## Feed 기본설정
@@ -1743,7 +1743,7 @@ public class CustomPopFeedbackHandler extends DefaultPopFeedbackHandler {
 ```
 
 
-## Interstial 기본설정
+## Interstitial 기본설정
 
 ### 개요
 ![Interstitail_Basic](./doc/resources/iozs_21.png)
@@ -1769,7 +1769,7 @@ interstitialAdHandler.show(context);
 ```
 
 
-## Interstial 고급설정
+## Interstitial 고급설정
 
 ### 개요
 이 문서에서 가이드 하는 내용은 PlanetAD Android SDK의 Interstitial 지면 연동의 기능을 설명하고 각 기능을 사용하는 방법을 안내합니다.
@@ -1852,7 +1852,7 @@ interstitialHandler.preloadFullScreen(new InterstitialAdFullScreenHandler.FullSc
 ```
 
 
-## Interstial Customizing
+## Interstitial Customizing
 
 ### 개요
 본 가이드에서는 PlanetAD Android SDK에서 제공하는 Interstitial 지면 UI의 구성을 지키며 디자인을 변경하기 위한 방법을 안내합니다. 
