@@ -241,7 +241,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="SDK Version 1.13.2"
+                android:text="SDK Version 1.13.3"
                 android:textSize="16sp" />
 
         </LinearLayout>
