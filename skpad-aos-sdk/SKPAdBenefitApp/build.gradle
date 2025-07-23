@@ -38,7 +38,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    implementation ('com.skplanet.sdk.ad:skpad-benefit:1.13.3') { changing = true }
+    implementation ('com.skplanet.sdk.ad:skpad-benefit:1.14.0') { changing = true }
 
     implementation ("com.github.bumptech.glide:glide:4.8.0") {
         exclude group: 'com.android.support'
