@@ -80,7 +80,7 @@ PlanetAD 광고는 참여 시 포인트를 지급하는 보상형 광고와 지�
 |--|--|--|
 | 지급하지 않음 |- |비보상형 광고로 연동합니다.<br>서버 간 연동은 불필요합니다. |
 | 지급을 원함 |없음 | `네이버페이 포인트` 등 제 3의 포인트 시스템을 이용하여 포인트를 부여할 수 있습니다.<br>PlanetAD 담당자에게 문의하시기 바랍니다. |
-| 지급을 원함 | 있음 |포스트백 연동 가이드을 참고하여 서버간 연동을 진행할 수 있습니다. | 
+| 지급을 원함 | 있음 |포스트백 연동 가이드를 참고하여 서버간 연동을 진행할 수 있습니다. | 
 
 <br>
 <br>
@@ -100,7 +100,7 @@ target 'YourApp' do
 
 ...
 
-   pod 'SKPAdBenefit', '1.5.10'
+   pod 'SKPAdBenefit', '1.14.0'
    
 ...
 
@@ -311,6 +311,22 @@ SKPAdBenefit iOS SDK 연동을 위한 기본적인 설정은 완료하였습니�
 > 지면 구현 시 준비 사항
 >   - [2. 시작하기](#2-시작하기) 적용 완료
 >   - 지면에 사용할 Unit ID (이하 `YOUR_지면_UNIT_ID`)
+
+<br>
+<br>
+
+## 광고 소재 정보
+
+| 광고 소재(Creative) Type | Description | 연관 Unit Type | 기타 |
+|--------------------------|-------------|----------------|------|
+| **Native** | 가로형 이미지 타입 소재<br>• 1200x627 | AOS - Native, Feed, Interstitial(BottomSheet, Dialog), POP<br>IOS - Native, Feed, Interstitial(BottomSheet, Dialog)<br>WEB - Native | |
+| **Image** | 세로형 이미지 소재<br>• 1080x2340<br>• 720x1230<br>• 320x480 | AOS - LockScreen, Interstitial(FullScreen)<br>IOS - Interstitial(FullScreen)<br>WEB - Native | |
+| **TOPDA** | 최상단 DA를 위한 이미지 소재<br>• 1200x700<br>• 360x210 | AOS - Native, Feed, Interstitial(BottomSheet, Dialog), POP<br>IOS - Native, Feed<br>WEB - Native | v1.14.0부터 지원 |
+| **VAST** | 동영상 소재<br>• 가로형인 경우<br>&nbsp;&nbsp;- 16:9, 4:3 비율<br>• 세로형인 경우<br>&nbsp;&nbsp;- 9:16, 3:4 비율 | AOS - Native, Feed, Interstitial, POP<br>IOS - Native, Feed, Interstitial<br>WEB - Native | |
+| **VIDEO** | 동영상 소재<br>• 가로형인 경우<br>&nbsp;&nbsp;- 16:9, 4:3 비율<br>• 세로형인 경우<br>&nbsp;&nbsp;- 9:16, 3:4 비율 | AOS - 미지원<br>IOS - Native, Feed, Interstitial<br>WEB - Native | |
+| **HTML** | HTML 형태의 소재<br>• 320x100<br>• 300x250<br>• 320x480 - | AOS - Native(320x100, 300x250), Interstitial-FullScreen(320x480)<br>IOS - Native(320x100, 300x250), Interstitial-FullScreen(320x480)<br>WEB - 미지원 | 확대 축소 미지원<br>배경색상 추출 기능 제공 |
+| **WEB BANNER** | P.AD에서 사전 정의된 HTML 형태의 소재<br>• 1200x627<br>• Coupang, Naver 광고만 지원 | AOS - Native, Feed, Interstitial(BottomSheet, Dialog)<br>IOS - Native, Feed, Interstitial(BottomSheet, Dialog) | 확대 축소 미지원 |
+
 
 <br>
 <br>
@@ -648,11 +664,11 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
 
 |Component |Description |Size |제약 사항 |비고 |
 |--|--|--|--|--|
-|`필수` Media view |이미지, 동영상 등 광고 소재 |1200x627 px |종횡비 유지 |여백 추가 가능 |
+|`필수` Media view |이미지, 동영상 등 광고 소재 |1200x627 px<br>Html배너 : 320x100 px (또는 320 x 250 px)<br>최상단DA : 1200x700 px (또는 360x210 px) |종횡비 유지 |여백 추가 가능 |
 |`필수` Title view |광고의 제목 |최대 10자 |- |생략 부호로 일정 길이 이상은 생략 가능 |
 |`필수` Description view |광고에 대한 상세 설명 |최대 40자 |- |생략 부호로 일정 길이 이상은 생략 가능 |
 |`필수` CTA view |광고 참여를 유도하는 문구 |최대 7자 |- |- 생략 부호로 일정 길이 이상은 생략 가능<br>- 보상형 광고에는 포인트 정보도 포함해야 합니다. |
-|`필수` Icon image view |광고주 아이콘 이미지 |80x80 px |종횡비 유지 |- |
+|`선택` Icon image view |광고주 아이콘 이미지 |80x80 px |종횡비 유지 |- |
 |`필수` AdInfo view |사용자에게 광고임을 알리는 버튼 |26x26 px |종횡비 유지 |- |  
 <br>
 
@@ -1231,14 +1247,18 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 
 |Component |Description |Size |제약 사항 |비고 |
 |--|--|--|--|--|
-|`필수` Media view |이미지, 동영상 등 광고 소재 |1200x627 px |종횡비 유지 |여백 추가 가능 |
+|`필수` Media view |이미지, 동영상 등 광고 소재 |1200x627 px<br>Html배너 : 320x100 px (또는 320 x 250 px)<br>최상단DA : 1200x700 px (또는 360x210 px) |종횡비 유지 |여백 추가 가능 |
 |`필수` Title view |광고의 제목 |최대 10자 |- |생략 부호로 일정 길이 이상은 생략 가능 |
 |`필수` Description view |광고에 대한 상세 설명 |최대 40자 |- |생략 부호로 일정 길이 이상은 생략 가능 |
 |`필수` CTA view |광고 참여를 유도하는 문구 |최대 7자 |- |- 생략 부호로 일정 길이 이상은 생략 가능<br>- 보상형 광고에는 포인트 정보도 포함해야 합니다. |
-|`필수` Icon image view |광고주 아이콘 이미지 |80x80 px |종횡비 유지 |- |
+|`선택` Icon image view |광고주 아이콘 이미지 |80x80 px |종횡비 유지 |- |
 |`필수` AdInfo view |사용자에게 광고임을 알리는 버튼 |26x26 px |종횡비 유지 |- |
-|`권장` Inquiry view |광고 참여 및 보상에 대한 문의 접수 버튼 ([FAQ 문의하기](#문의하기-기능) 참고) |26x26 px |종횡비 유지 | `!Planet AD는 만 14세 미만 아동에게 (맞춤형) 리워드 광고를 송출하지 않습니다. 따라서, APP에서는 만 14세 미만의 고객에게는 Planet AD SDK에서 제공하는 VOC(문의하기) 기능을 제공해서는 안됩니다. 혹 제공 중일 경우, 앱에서는 고객이 만 14세 미만일 경우 Planet AD의 VOC(문의하기)로 진입할 수 있는 기능을 비활성화 혹은 숨김처리되어야 합니다.`    |
+|`권장` Inquiry view |광고 참여 및 보상에 대한 문의 접수 버튼 ([FAQ 문의하기](#문의하기-기능) 참고) |26x26 px |종횡비 유지 | -   |
 
+`Inquiry view`
+> Planet AD는 만 14세 미만 아동에게 (맞춤형) 리워드 광고를 송출하지 않습니다.   
+> 따라서, APP에서는 만 14세 미만의 고객에게는 Planet AD SDK에서 제공하는 VOC(문의하기) 기능을 제공해서는 안됩니다.   
+> 혹 제공 중일 경우, 앱에서는 고객이 만 14세 미만일 경우 Planet AD의 VOC(문의하기)로 진입할 수 있는 기능을 비활성화 혹은 숨김처리되어야 합니다.  
 <br>
 
 #### Banner 광고 (HTML 타입)
@@ -1417,11 +1437,10 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 
 1. `광고 레이아웃 구성` 에서 생성한 광고 뷰에 `Ad` 의 각 요소를 설정합니다. 
 
-2. `NativeAdView` 에 `MediaView`, `AdInfoView`, `Ad`, `InquiryView` 를 설정합니다.   
-  - _HTML 타입의 경우, mediaView의 width, height를 ad.creative.width, ad.creative.height로 설정 후, adView의 가운데 정렬을 권장합니다.    
-  (HTML 타입 여부는 [ad.creative isHtmlType]로 확인 가능합니다.)_
+2. `NativeAdView` 에 `MediaView`, `AdInfoView`, `Ad`, `InquiryView` 를 설정합니다.      
 
-3. `clickableViews` List 를 생성하여 광고 클릭이 가능한 영역을 지정합니다. 해당 뷰 영역을 클릭 할 경우, 광고 랜딩 페이지로 이동하게 됩니다.   
+3. `clickableViews` List 를 생성하여 광고 클릭이 가능한 영역을 지정합니다. 해당 뷰 영역을 클릭 할 경우, 광고 랜딩 페이지로 이동하게 됩니다.  
+  
 
 <br>
 
@@ -1447,7 +1466,7 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
     self.adView.inquiryView = self.inquiryView;    
 
     // (3) 광고 클릭이 가능한 영역을 지정합니다.
-    self.adView.clickableViews = @[self.ctaButton, self.iconImageView];
+    self.adView.clickableViews = @[self.adView, self.mediaView, self.ctaButton, self.iconImageView];
   }
   ```
   
@@ -1476,7 +1495,7 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
     self.adView.inquiryView = self.inquiryView
 
     // (3) 광고 클릭이 가능한 영역을 지정합니다.
-    self.adView.clickableViews = [self.ctaButton, self.iconImageView]
+    self.adView.clickableViews = [self.adView, self.mediaView, self.ctaButton, self.iconImageView]
 }
   ```
   
@@ -1655,10 +1674,9 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
 - `SABNativeAdViewVideoDelegate`: 동영상 광고
 - `SABNativeAdViewUIDelegate`: UI 관련 _(v1.5.8부터 지원)_
   - -(void)SABNativeAdView:(SABNativeAdView *)adView didExtractedBackgroundColor:(UIColor *)bgColor
-    - HTML 타입의 경우 mediaView가 adView 비율과 다를 수 있어서 여백이 발생할 수 있기 때문에, 여백에 색상을 추가할 수 있는 이벤트가 추가되었습니다.
-    - 서버 설정에 따라 adView의 색상을 변경할 지 여부를 체크하여 YES로 설정된 경우 webView의 배경색을 추출하여 전달하며, NO로 설정된 경우 whiteColor를 반환합니다.
-    - HTML 타입의 경우에만 이벤트 전달됩니다.
-
+    - HTML 타입의 경우 mediaView가 adView 비율과 다를 수 있어서 여백이 발생할 수 있기 때문에, 여백에 색상을 추가할 수 있는 이벤트가 추가되었습니다.   
+    - 서버 설정에 따라 adView의 색상을 변경할 지 여부를 체크하여 YES로 설정된 경우 webView의 배경색을 추출하여 전달하며, NO로 설정된 경우 whiteColor를 반환합니다.   
+    - HTML 타입의 경우에만 이벤트가 전달됩니다.   
 <br>
 
 이벤트의 정의 및 동작을 [APPENDIX 광고 노출/클릭/참여와 관련한 콜백 변화](#광고-노출클릭참여와-관련한-콜백-변화) 문서를 참고하여 확인할 수 있습니다.   
@@ -1724,7 +1742,7 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
 
   #pragma mark - SABNativeAdViewUIDelegate //UI관련 Delegate (v1.5.8 부터 지원)
    - (void)SABNativeAdView:(SABNativeAdView *)adView didExtractedBackgroundColor:(UIColor *)bgColor {
-    //adView.backgroundColor = bgColor
+    adView.backgroundColor = bgColor
   }
   @end
   ```
@@ -1788,8 +1806,8 @@ SKPAdBenefit iOS SDK 에서 제공하는 CTA 버튼의 UI 및 처리 로직을 �
 
   extension SampleViewController: SABNativeAdViewUIDelegate { 
   //UI관련 Delegate (v1.5.8 부터 지원)
-    func sabNativeAdView(_ adView: SABNativeAdView, didExtractedBackgroundColor bgColor: UIColor) {
-    //adView.backgroundColor = bgColor
+    func sabNativeAdView(_ adView: SABNativeAdView, didExtractedBackgroundColor bgColor: UIColor) {
+      adView.backgroundColor = bgColor
    }
   }
   ```
@@ -1822,7 +1840,7 @@ Interstitial 지면은 SKPAdBenefit iOS SDK에서 제공하는 UI를 사용해 �
 
 <br>
 
-Interstitial 지면을 표시합니다. SKPAdBenefit iOS SDK의 Interstitial 지면은 `다이얼로그`, `바텀 시트` 그리고 `풀스크린 (v1.5.9부터 지원)` 의 UI를 제공합니다.   
+Interstitial 지면을 표시합니다. SKPAdBenefit iOS SDK의 Interstitial 지면은 `다이얼로그`, `바텀 시트` 그리고 `풀스크린` _(v1.5.9부터 지원)_ 의 UI를 제공합니다.   
 다이얼로그, 바텀 시트 그리고 풀스크린 각각 `SABInterstitialDialog`, `SABInterstitialBottomSheet` 그리고 `SABInterstitialFullScreen` 으로 설정할 수 있습니다.
 
 다음은 다이얼로그 형태의 Interstitial 지면을 표시하는 예시입니다.
@@ -2030,7 +2048,7 @@ Interstitial 지면 UI를 Config 설정으로 변경할 수 있습니다. 일부
 |titleText |Interstitial 광고 상단에 있는 Text (NSString) |O |O |O |
 |titleTextColor |titleText의 색깔 (UIColor)  |O |O |O |
 |backgroundColor |Interstitial 광고 전체의 배경 색깔 (UIColor)  |O |O |O |
-|showInquiryButton <br>([FAQ 문의하기](#문의하기-기능) 참고) |문의하기 버튼 노출 여부 (BOOL) <br> `Planet AD는 만 14세 미만 아동에게 (맞춤형) 리워드 광고를 송출하지 않습니다. 따라서, 만 14세 미만의 고객에게는  Planet AD SDK에서 제공하는 VOC(문의하기) 기능을 제공해서는 안되며, APP에서는 고객이 만 14세 미만일 경우 VOC(문의하기)로 진입할 수 있는 기능을 비활성화 혹은 숨김처리되어야 합니다.` |O |O |O |
+|showInquiryButton <br>([FAQ 문의하기](#문의하기-기능) 참고) |문의하기 버튼 노출 여부 (BOOL)  |O |O |O |
 |topIcon |Interstitial 광고 상단에 있는 아이콘 (UIImage) |O |O |- |
 |ctaViewBackgroundColor |CTA의 배경 색깔 (SABStateValue<UIColor *>) |O |O |- |
 |ctaViewIcon |CTA에 포함된 기본 아이콘 (SABStateValue<UIImage *>)  |O |O |- |
@@ -2039,6 +2057,12 @@ Interstitial 지면 UI를 Config 설정으로 변경할 수 있습니다. 일부
 |adViewHolderClass |커스텀 광고 뷰 |- |- |O |
 |errorViewHolderClass |커스텀 에러 뷰 |- |- |O |
 |useNavigationPush | FullScreen 화면 노출 방식 (default : false) <br> - true : push 우 -> 좌 <br> - false : present 아래 -> 위 |- |- |O | 
+
+`showInquiryButton`
+> Planet AD는 만 14세 미만 아동에게 (맞춤형) 리워드 광고를 송출하지 않습니다.   
+> 따라서, APP에서는 만 14세 미만의 고객에게는 Planet AD SDK에서 제공하는 VOC(문의하기) 기능을 제공해서는 안됩니다.   
+> 혹 제공 중일 경우, 앱에서는 고객이 만 14세 미만일 경우 Planet AD의 VOC(문의하기)로 진입할 수 있는 기능을 비활성화 혹은 숨김처리되어야 합니다.  
+<br>
 
 
 다음은 Interstitial 지면 UI를 변경하는 예시입니다.
@@ -2187,13 +2211,7 @@ Interstitial 지면 UI를 Config 설정으로 변경할 수 있습니다. 일부
 
 <br>
 
-2. Banner 타입 (HTML 타입)    
-    HTML 타입의 경우 mediaView의 width, height는 ad.creative.width, ad.creative.height로 설정 후 adView의 가운데 위치 권장 (그 외는 adView에 꽉차게 노출 권장) 됩니다.   
-    [Native 지면 Banner 광고 (HTML 타입) 참고](#banner-광고-html-타입)
-
-<br>
-
-3. 비디오 플레이어 overlay   
+2. 비디오 플레이어 overlay   
     FullScreen 타입의 경우 비디오 전체화면을 제공하지 않기 때문에, 비디오 플레이어의 전체화면 버튼이 제거되어야 합니다.
     
     <details open><summary>Objective-C</summary>   
@@ -2218,7 +2236,7 @@ Interstitial 지면 UI를 Config 설정으로 변경할 수 있습니다. 일부
 
 <br>
 
-4. clickableView 설정
+3. clickableView 설정
     FullScreen 타입의 경우 비디오 전체화면을 제공하지 않기 때문에, clickableView는 mediaView만 설정되어야 합니다.    
 
     <details open><summary>Objective-C</summary>   
@@ -2365,7 +2383,7 @@ SKPAdBenefit iOS SDK를 연동하려면 반드시 앱의 고유 식별자인 `Ap
 ### 2 단계: SDK 설치하기
 SKPAdBenefit iOS용 SDK를 설치하려면 CocoaPods을 사용하여 `Podfile`에 추가하세요.
 ```ruby
-pod 'SKPAdBenefit', '1.5.10'
+pod 'SKPAdBenefit', '1.14.0'
 ```
 <br>
 

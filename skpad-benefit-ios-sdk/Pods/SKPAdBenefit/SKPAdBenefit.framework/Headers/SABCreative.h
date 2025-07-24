@@ -6,6 +6,7 @@ typedef enum {
     SABCreativeLandingDefaultBrowser = 1,
     SABCreativeLandingOverlay,
     SABCreativeLandingInApp,
+    SABCreativeLandingAppScheme = 5,
     SABCreativeLandingYoutubePlayer = 10
 } SABCreativeLandingType;
 
@@ -17,6 +18,7 @@ typedef enum {
     SABCreativeWebBanner,
     SABCreativeHtml,
     SABCreativeImage,
+    SABCreativeTopDA,
 } SABCreativeType;
 
 typedef enum {
@@ -37,7 +39,7 @@ typedef enum {
 @property (nonatomic, assign, readonly) double width;
 @property (nonatomic, assign, readonly) double height;
 @property (nonatomic, copy, readonly, nullable) NSString *clickUrl;
-//jylee remove pub_id : new reward api
+@property (nonatomic, copy, readonly, nullable) NSString *appUrl; //app scheme url
 @property (nonatomic, copy, readonly, nullable) NSString *pbUrl;
 @property (nonatomic, copy, readonly, nullable) NSString *title;
 @property (nonatomic, copy, readonly, nullable) NSString *body;

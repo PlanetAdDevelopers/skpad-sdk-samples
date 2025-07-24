@@ -19,4 +19,5 @@ typedef enum {
     SABRevenueTypeVCPA,
     SABRevenueTypeCPF,
     SABRevenueTypeCPQE,
+    SABRevenueTypeCPCA,
 } SABRevenueType;

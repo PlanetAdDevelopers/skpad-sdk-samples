@@ -35,6 +35,7 @@
     
     _adView.delegate = self;
     _adView.videoDelegate = self;
+    _adView.uiDelegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sessionRegistered:) name:SABSessionRegisteredNotification object:nil];
 }
@@ -72,11 +73,11 @@
 #pragma mark - NativeType
 //Native Type 광고 할당 및 표시하기
 - (IBAction)loadNativeButtonTapped:(id)sender {
-    self.adView.hidden = NO;
-    [self.container bringSubviewToFront:self.adView];
-    
     SABAdLoader *adLoader = [[SABAdLoader alloc] initWithUnitId:kDefaultNativeUnitId];
     [adLoader loadAdWithOnSuccess:^(SABAd * _Nonnull ad) {
+        self.adView.hidden = NO;
+        [self.container bringSubviewToFront:self.adView];
+
         //할당된 광고가 있으면 호출됩니다.
         //광고를 바인딩 합니다.
         self.titleLabel.text = ad.creative.title;
@@ -95,6 +96,8 @@
         self.adView.adInfoView = self.adInfoView;
         
     } onFailure:^(SABError *error) {
+        self.adView.hidden = YES;
+
         //할당된 광고가 없으면 호출됩니다.
         NSString *errorMsg;
         switch(error.code) {
