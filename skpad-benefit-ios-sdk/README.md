@@ -314,22 +314,6 @@ SKPAdBenefit iOS SDK 연동을 위한 기본적인 설정은 완료하였습니�
 
 <br>
 <br>
-
-## 광고 소재 정보
-
-| 광고 소재(Creative) Type | Description | 연관 Unit Type | 기타 |
-|--------------------------|-------------|----------------|------|
-| **Native** | 가로형 이미지 타입 소재<br>• 1200x627 | AOS - Native, Feed, Interstitial(BottomSheet, Dialog), POP<br>IOS - Native, Feed, Interstitial(BottomSheet, Dialog)<br>WEB - Native | |
-| **Image** | 세로형 이미지 소재<br>• 1080x2340<br>• 720x1230<br>• 320x480 | AOS - LockScreen, Interstitial(FullScreen)<br>IOS - Interstitial(FullScreen)<br>WEB - Native | |
-| **TOPDA** | 최상단 DA를 위한 이미지 소재<br>• 1200x700<br>• 360x210 | AOS - Native, Feed, Interstitial(BottomSheet, Dialog), POP<br>IOS - Native, Feed<br>WEB - Native | v1.14.0부터 지원 |
-| **VAST** | 동영상 소재<br>• 가로형인 경우<br>&nbsp;&nbsp;- 16:9, 4:3 비율<br>• 세로형인 경우<br>&nbsp;&nbsp;- 9:16, 3:4 비율 | AOS - Native, Feed, Interstitial, POP<br>IOS - Native, Feed, Interstitial<br>WEB - Native | |
-| **VIDEO** | 동영상 소재<br>• 가로형인 경우<br>&nbsp;&nbsp;- 16:9, 4:3 비율<br>• 세로형인 경우<br>&nbsp;&nbsp;- 9:16, 3:4 비율 | AOS - 미지원<br>IOS - Native, Feed, Interstitial<br>WEB - Native | |
-| **HTML** | HTML 형태의 소재<br>• 320x100<br>• 300x250<br>• 320x480 - | AOS - Native(320x100, 300x250), Interstitial-FullScreen(320x480)<br>IOS - Native(320x100, 300x250), Interstitial-FullScreen(320x480)<br>WEB - 미지원 | 확대 축소 미지원<br>배경색상 추출 기능 제공 |
-| **WEB BANNER** | P.AD에서 사전 정의된 HTML 형태의 소재<br>• 1200x627<br>• Coupang, Naver 광고만 지원 | AOS - Native, Feed, Interstitial(BottomSheet, Dialog)<br>IOS - Native, Feed, Interstitial(BottomSheet, Dialog) | 확대 축소 미지원 |
-
-
-<br>
-<br>
 <br>
 
 
@@ -664,7 +648,7 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
 
 |Component |Description |Size |제약 사항 |비고 |
 |--|--|--|--|--|
-|`필수` Media view |이미지, 동영상 등 광고 소재 |1200x627 px<br>Html배너 : 320x100 px (또는 320 x 250 px)<br>최상단DA : 1200x700 px (또는 360x210 px) |종횡비 유지 |여백 추가 가능 |
+|`필수` Media view |이미지, 동영상 등 광고 소재 |1200x627 px |종횡비 유지 |여백 추가 가능 |
 |`필수` Title view |광고의 제목 |최대 10자 |- |생략 부호로 일정 길이 이상은 생략 가능 |
 |`필수` Description view |광고에 대한 상세 설명 |최대 40자 |- |생략 부호로 일정 길이 이상은 생략 가능 |
 |`필수` CTA view |광고 참여를 유도하는 문구 |최대 7자 |- |- 생략 부호로 일정 길이 이상은 생략 가능<br>- 보상형 광고에는 포인트 정보도 포함해야 합니다. |
@@ -1247,7 +1231,7 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 
 |Component |Description |Size |제약 사항 |비고 |
 |--|--|--|--|--|
-|`필수` Media view |이미지, 동영상 등 광고 소재 |1200x627 px<br>Html배너 : 320x100 px (또는 320 x 250 px)<br>최상단DA : 1200x700 px (또는 360x210 px) |종횡비 유지 |여백 추가 가능 |
+|`필수` Media view |이미지, 동영상 등 광고 소재 |1200x627 px |종횡비 유지 |여백 추가 가능 |
 |`필수` Title view |광고의 제목 |최대 10자 |- |생략 부호로 일정 길이 이상은 생략 가능 |
 |`필수` Description view |광고에 대한 상세 설명 |최대 40자 |- |생략 부호로 일정 길이 이상은 생략 가능 |
 |`필수` CTA view |광고 참여를 유도하는 문구 |최대 7자 |- |- 생략 부호로 일정 길이 이상은 생략 가능<br>- 보상형 광고에는 포인트 정보도 포함해야 합니다. |
