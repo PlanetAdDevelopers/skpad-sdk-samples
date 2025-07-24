@@ -1,4 +1,4 @@
-## Interstial-기본설정
+## Interstitial-기본설정
 
 ### 개요
 ![Interstitail_Basic](./resources/insterstital_default.png)

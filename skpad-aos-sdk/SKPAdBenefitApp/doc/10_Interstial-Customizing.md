@@ -1,4 +1,4 @@
-## Interstial-Customizing
+## Interstitial-Customizing
 
 ### 개요
 본 가이드에서는 PlanetAD Android SDK에서 제공하는 Interstitial 지면 UI의 구성을 지키며 디자인을 변경하기 위한 방법을 안내합니다. 
