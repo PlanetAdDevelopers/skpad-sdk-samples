@@ -8,7 +8,7 @@
   - [SKPAdBenefit 초기화](#skpadbenefit-초기화)
 - [광고 요청 및 처리](#광고-요청-및-처리)
   - [Step 1 광고 지면 결정](#step-1-광고-지면-결정)
-  - [Step 2 Benefit 로그인 상태 확인](#step-2-Benefit-로그인-상태-확인)
+  - [Step 2 Benefit 로그인 상태 확인](#step-2-benefit-로그인-상태-확인)
   - [Step 3 YOUR_UNIT_ID 로 광고 요청](#step-3-your_unit_id-로-광고-요청)
   - [Step 4 받아온 광고를 사용하기 위한 등록](#step-4-받아온-광고를-사용하기-위한-등록)
   - [Step 5 광고 레이아웃 구성하기](#step-5-광고-레이아웃-구성하기)
@@ -46,7 +46,7 @@ SKPAdBenefit WEB SDK는 광고를 웹페이지에 자연스럽게 녹아들 수 
 - 상용: [https://adpf-js.prd.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.1/skpad-benefit-sdk.js](https://adpf-js.prd.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.1/skpad-benefit-sdk.js)
 
 ```javascript
-<script src="https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.0/skpad-benefit-sdk.js"></script>
+<script src="https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.1/skpad-benefit-sdk.js"></script>
 ```
 
 - SDK 스크립트의 로드가 완료되면 전역 변수로 SKPAdBenefit 객체가 생성됩니다. 이 객체가 생성되었는지 체크하는 것으로, SDK 초기화 코드를 실행할지 여부를 결정할 수 있습니다.
@@ -126,9 +126,9 @@ SKPAdBenefit.init({
 
 ```javascript
 SKPAdBenefit.ensureAuthenticated
-    .then(function() => {
+    .then(() => {
         // Benefit 로그인 완료. 광고 요청 가능
-    }).catch(function(e) => {
+    }).catch((e) => {
         // 에러 발생. 광고 요청 불가능
     });
 ```
