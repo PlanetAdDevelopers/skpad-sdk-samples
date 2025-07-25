@@ -8,7 +8,7 @@
   - [SKPAdBenefit 초기화](#skpadbenefit-초기화)
 - [광고 요청 및 처리](#광고-요청-및-처리)
   - [Step 1 광고 지면 결정](#step-1-광고-지면-결정)
-  - [Step 2 Benefit 로그인 상태 확인](#step-2-Benefit-로그인-상태-확인)
+  - [Step 2 Benefit 로그인 상태 확인](#step-2-benefit-로그인-상태-확인)
   - [Step 3 YOUR_UNIT_ID 로 광고 요청](#step-3-your_unit_id-로-광고-요청)
   - [Step 4 받아온 광고를 사용하기 위한 등록](#step-4-받아온-광고를-사용하기-위한-등록)
   - [Step 5 광고 레이아웃 구성하기](#step-5-광고-레이아웃-구성하기)
@@ -41,9 +41,9 @@ SKPAdBenefit WEB SDK는 광고를 웹페이지에 자연스럽게 녹아들 수 
 
 ## 설치
 웹페이지에 웹 SDK를 삽입해야 합니다.
-- 개발: [https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.1/skpad-benefit-sdk.js](https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.1/skpad-benefit-sdk.js)
-- 알파: [https://adpf-js.alp.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.1/skpad-benefit-sdk.js](https://adpf-js.alp.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.1/skpad-benefit-sdk.js)
-- 상용: [https://adpf-js.prd.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.1/skpad-benefit-sdk.js](https://adpf-js.prd.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.1/skpad-benefit-sdk.js)
+- 개발: [https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.14.1/skpad-benefit-sdk.js](https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.14.1/skpad-benefit-sdk.js)
+- 알파: [https://adpf-js.alp.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.14.1/skpad-benefit-sdk.js](https://adpf-js.alp.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.14.1/skpad-benefit-sdk.js)
+- 상용: [https://adpf-js.prd.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.14.1/skpad-benefit-sdk.js](https://adpf-js.prd.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.14.1/skpad-benefit-sdk.js)
 
 ```javascript
 <script src="https://adpf-js.dev.planetad.co.kr/sdk/benefit/skpad-benefit-sdk/1.1.0/skpad-benefit-sdk.js"></script>
@@ -126,9 +126,9 @@ SKPAdBenefit.init({
 
 ```javascript
 SKPAdBenefit.ensureAuthenticated
-    .then(function() => {
+    .then(() => {
         // Benefit 로그인 완료. 광고 요청 가능
-    }).catch(function(e) => {
+    }).catch((e) => {
         // 에러 발생. 광고 요청 불가능
     });
 ```
@@ -292,7 +292,7 @@ function updateCtaView(ctaView, nativeAd) {
           ctaText =
             nativeAd.isActionType && nativeAd.conversionChecking
               ? '참여 확인 중'
-              : `+${nativeAd.reward} ${nativeAd.callToAction}`;
+              : `+${nativeAd.display_reward} ${nativeAd.display_reward_name} ${nativeAd.callToAction}`;
           */
         }
  
@@ -308,7 +308,7 @@ img 태그의 기본 속성은 다음과 같습니다. style="display: none;" cl
 ## 심화 기능
 
 ### 웹페이지에서 사용자의 프로필 정보 설정
-
+_이 기능은 01. SKPAd-Benefit Web SDK 연동 가이드를 통해 App SDK와 정상적으로 인터페이스가 연결 되어 UserProfile을 넘겨 받고 있다면 추가로 구현하지 않아도 됩니다._
 다음은 유저의 로그인 정보를 웹페이지에서 알지만 앱에서 알 수 없는 경우, 웹페이지에서 사용자의 프로필 정보를 설정하는 방법입니다.  
 유저가 매체사 앱에 로그인한 시점에 아래와 같이 UserProfile 을 세팅합니다. 단, Web SDK가 초기화된 후에 setUserProfile이 호출되어야 합니다.  
 User ID와 타게팅 정보 (성별, 연령)는 원활한 서비스 운영을 위해 제공해야 할 필수 항목입니다. 해당 값을 입력하는 setUserProfile 함수를 호출하지 않으면 광고가 제공되지 않습니다.
@@ -337,7 +337,7 @@ SKPAdBenefit.setUserProfile({
 ### 복수 개의 광고 로드하기
 
 loadAds method를 사용하여 여러 개의 광고를 로드할 수 있습니다. 성공 시에는 NativeAd 객체 여러 개가 담긴 배열을 돌려주고 객체의 수는 count 값보다 작을 수 있습니다. 실패 시에는 loadAd와 동일한 에러를 돌려줍니다.
-
+_단, count를 0으로 설정 시, 해당 Unit의 Target Fill 설정값을 따릅니다._
 ```javascript
 SKPAdBenefit.ensureAuthenticated
 .then(() => {
