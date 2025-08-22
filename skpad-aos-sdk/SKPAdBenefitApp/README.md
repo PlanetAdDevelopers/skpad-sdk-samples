@@ -2406,7 +2406,7 @@ android {
 }
 ```
 
-##### 주의할 점
+#### 주의할 점
 동영상 Library호환 관련
 Planet AD SDK는 아래와 같이 Exoplayer Library v2.14.2로 고정해서 사용 중입니다.
 APP에 그 외의 버전이 포함시에는 Planet AD SDK를 통해 동영상 광고(CPV) 송출 시 미노출 혹은 Crash 등의  이슈가 발생합니다.
