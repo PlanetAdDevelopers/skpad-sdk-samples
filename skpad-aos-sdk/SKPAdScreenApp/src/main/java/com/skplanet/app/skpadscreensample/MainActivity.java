@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 setActivationListener();
 
                 SKPAdScreen.getInstance().setAutoplayType(SKPAdScreen.AutoplayType.ON_WIFI);
-                // 버즈스크린 활성화
+                // 스크린 SDK 활성화
                 SKPAdScreen.getInstance().activate();
             }
         });

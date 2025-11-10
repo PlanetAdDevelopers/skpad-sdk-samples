@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:background="@android:color/black"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text= "정상적인 포인트 적립이 아닌 부정적인 방법으로 적립하게 되는 경우 적립 대상에서 제외됩니다.\n\n동영상 광고의 경우 재생 완료 시 포인트 적립이 되며, 데이터 요금이 추가 발생할 수 있습니다.\n\n광고 및 제휴 문의 : 고객센터 1:1 문의하기 알려드려요!"
+        android:layout_gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:textColor="@android:color/white"
+        android:singleLine="false"/>
+    <TextView
+        android:id="@+id/total_reward_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="16dp"
+        android:textColor="@android:color/white"
+        android:text="적립 가능한 포인트" />
+</LinearLayout>
