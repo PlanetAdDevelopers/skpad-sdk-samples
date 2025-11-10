@@ -11,23 +11,23 @@ Feed 지면은 광고를 리스트 형식으로 제공하는 지면입니다.
 
 
 ### Feed 지면 초기화
-<p>BuzzAdBenefitConfig에 FeedConfig를 추가합니다.</p>
+<p>SKPAdBenefitConfig에 FeedConfig를 추가합니다.</p>
 
 ```java
 public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        
+
         final FeedConfig feedConfig = new FeedConfig.Builder(context, "YOUR_FEED_UNIT_ID")
-            .feedHeaderViewAdapterClass(DefaultFeedHeaderViewAdapter.class)
-            .build();
-            
-        final BuzzAdBenefitConfig buzzAdBenefitConfig = new BuzzAdBenefitConfig.Builder(context)
-            .setFeedConfig(feedConfig)
-            .build();
-            
-        BuzzAdBenefit.init(this, buzzAdBenefitConfig);
+                .feedHeaderViewAdapterClass(DefaultFeedHeaderViewAdapter.class)
+                .build();
+
+        final SKPAdBenefitConfig SKPAdBenefitConfig = new SKPAdBenefitConfig.Builder(getApplicationContext())
+                .setFeedConfig(feedConfig)
+                .build();
+
+        SKPAdBenefit.init(getApplicationContext(), SKPAdBenefitConfig);
 
         ...
     }
