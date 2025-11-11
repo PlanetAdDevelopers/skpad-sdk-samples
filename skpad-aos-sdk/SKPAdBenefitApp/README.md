@@ -226,9 +226,18 @@ FeedConfig를 사용하여 Feed 지면의 기능과 디자인을 변경할 수 �
 
 바텀시트 형태의 Feed지면을 표시합니다. 광고를 할당 받지 않은 상태에서는 Feed 지면이 사용자에게 노출된 후에 자동으로 할당받습니다.
 - 단, 할당 받는 도중에는 "참여할 수 있는 광고가 없습니다." 라는 이미지가 보일 수 있습니다.
+
 ```java
 final FeedHandler feedHandler = new FeedHandler(context, "YOUR_FEED_UNIT_ID");
 feedHandler.startFeedActivity(this);
+```
+
+```java
+FeedConfig.Builder builder = new FeedConfig.Builder(context, Constants.FEED_UNIT_ID);
+FeedConfig feedConfig = builder.build();
+
+final FeedHandler feedHandler = new FeedHandler(feedConfig);
+        feedHandler.startFeedActivity(context);
 ```
 
 startFeedActivity()를 반복해서 호출하더라도 광고는 갱신되지 않고 동일한 광고가 보입니다. 새로운 광고를 할당하기 위해서는 FeedHandler 인스턴스를 다시 생성하거나, preload() 를 다시 호출해야합니다.
