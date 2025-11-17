@@ -1,8 +1,24 @@
 # Changelog
 
+## 1.14.5(2025-08-21)
+### Features
+- TOP DA Creative Type 추가
+- CPCA 광고 타입 추가
+- Landing Type - App Link 추가
+- ExoPlayer Library 버전 변경 (2.11.8 -> 2.14.2)
+
+## 1.13.3(2025-06-26)
+### Features
+- Interstitial FullScreen Type 기능 추가
+- Target SDK 35 대응 
+
+### Bug Fixes
+- 맞춤형광고 UI표시시 동영상 멈추지 않는 현상 수정
+
+
 ## 1.10.1(2024-07-09)
 ### Features
-- WEB SDK 퀴즈형 광고 지원
+- WEB CPQE를 위한 WEB SDK 연동 규격 반영
 
 ## 1.9.0(2024-04-30)
 ### Feature
