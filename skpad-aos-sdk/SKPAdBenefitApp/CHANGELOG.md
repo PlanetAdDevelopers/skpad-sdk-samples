@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.14.6(2025-11-17)
+### Features
+- Feed UI Type BottomSheet Deprecate
+
+
 ## 1.14.5(2025-08-21)
 ### Features
 - TOP DA Creative Type 추가
