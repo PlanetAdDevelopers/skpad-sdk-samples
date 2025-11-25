@@ -2,7 +2,7 @@
 
 ## 1.14.6(2025-11-17)
 ### Features
-- Feed UI 기본타입을 변견(BottomSheet -> FullScreen)
+- Feed UI 기본타입을 변경(BottomSheet -> FullScreen)
 - Feed UI BottomSheet 타입 지원 종료 예정(Deprecated)
 
 
