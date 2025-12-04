@@ -18,6 +18,7 @@
     - [Interstitial-고급 설정](#Interstitial-고급설정)
     - [Interstitial-Customizing](#Interstitial-Customizing)
 - [디자인 커스터마이징](#디자인-커스터마이징)
+- [동영상 자동재생에 대한 설정](#동영상-자동재생에-대한-설정)
 - [Web Android SDK 연동 가이드](#Web-Android-SDK-연동-가이드)
 - [광고 노출과 관련한 콜백 변화](#광고-노출-클릭-참여와-관련한-콜백-변화)
 - [맞춤형 광고에 대한 고지와 VOC 지원](#맞춤형-광고에-대한-고지와-VOC-지원)
@@ -2365,6 +2366,22 @@ public class MyLauncher implements Launcher {
     }
 }
 ```
+
+## 동영상 자동재생에 대한 설정
+동영상 광고의 재생 방식을 변경할 수 있습니다.
+다음은 동영상 광고를 자동재생으로 설정하는 예시입니다.
+
+* AutoplayType.ENABLED: 동영상 광고가 Wifi, LTE 환경 모두에서 항상 자동재생됨
+* AutoplayType.ON_WIFI: 동영상 광고가 Wifi 네트워크 환경에서만 자동재생됨
+* AutoplayType.DISABLED: 동영상 광고가 자동재생되지 않음
+
+```
+final UserPreferences userPreferences = new UserPreferences.Builder(SKPAdBenefit.getUserPreferences())
+        .autoplayType(AutoplayType.ON_WIFI)
+        .build();
+SKPAdBenefit.setUserPreferences(userPreferences);
+```
+설정하지 않으면 서버 설정에 따라 재생 방식이 결정됩니다. (서버 설정의 기본 값은 WiFi 환경에서만 자동 재생하도록 되어 있습니다.)
 
 ## Web Android SDK 연동 가이드
 
