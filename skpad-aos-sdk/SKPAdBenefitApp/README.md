@@ -341,7 +341,6 @@ public class YourFeedToolbarHolder extends DefaultFeedToolbarHolder {
         toolbar.setIconResource(R.drawable.your_icon);
         toolbar.setBackgroundColor(Color.parseColor("#123456"));
         addInquiryMenuItemView(activity); // 문의하기 버튼은 이 함수를 통해 간단하게 추가 가능합니다.
-        addSettingsMenuItemView(activity); // 세팅 버튼은 이 함수를 통해 간단하게 추가 가능합니다.
         addRightMenuItemView1(activity); // custom 버튼 추가
         return toolbar;
     }

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.14.7(2025-12-04)
+### Features
+- FeedToolbar의 Title 색상을 지정할 수 있는 인터페이스 추가
+  - FeedToolbar.setTitleColor(int : color)
+
 ## 1.14.6(2025-11-17)
 ### Features
 - Feed UI 기본타입을 변경(BottomSheet -> FullScreen)
