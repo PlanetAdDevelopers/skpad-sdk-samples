@@ -2221,7 +2221,7 @@ Interstitial 지면 UI를 Config 설정으로 변경할 수 있습니다. 일부
 <br>
 
 3. clickableView 설정
-    FullScreen 타입의 경우 비디오 전체화면을 제공하지 않기 때문에, clickableView는 mediaView만 설정되어야 합니다.    
+    clickableView는 mediaView만 설정되어야 합니다.    
 
     <details open><summary>Objective-C</summary>   
     <p>    
