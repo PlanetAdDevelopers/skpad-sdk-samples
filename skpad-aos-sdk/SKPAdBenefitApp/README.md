@@ -34,12 +34,10 @@
 
 
 ### 기본요건
-- Android 4.1 Jellybean (API 레벨 16) 이상
-- Android Studio 3.2 이상
-- Gradle 4.0.1 이상
+- Android 6.0 (API 레벨 23) 이상
+- Gradle 8.0.1 이상
 - compileSdkVersion 34 이상
 - AndroidX
-- JDK 8
 
 ### 준비사항
 ![Planet AD APP Id/UnitID](./doc/resources/A_03.png)

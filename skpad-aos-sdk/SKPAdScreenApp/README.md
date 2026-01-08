@@ -31,8 +31,8 @@
 
 || 항목                                                                                                            | 세부내용                                                                                |비고|
 | :- |---------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------| - |
-|1| 안드로이드 지원 버전                                                                                                   | Android 4.0.3 (API Level 15) 이상 Android 10 정식 지원                                    ||
-|2| [Google Play의 대상 API 레벨 요구사항을 충족](https://developer.android.com/distribute/best-practices/develop/target-sdk) | <p>SKPADScreen SDK의 대응:</p><p>targetSdkVersion 35 사용 compileSdkVersion 34 이상 사용</p> |<p>정책 적용 시점</p><p>신규 앱: 2019년 8월 1일 기존 앱: 2019년 11월 1일</p>|
+|1| 안드로이드 지원 버전                                                                                                   | Android 6.0 (API Level 23) 이상                                                       ||
+|2| [Google Play의 대상 API 레벨 요구사항을 충족](https://developer.android.com/distribute/best-practices/develop/target-sdk) | <p>SKPADScreen SDK의 대응:</p><p>targetSdkVersion 35 사용</p><p> compileSdkVersion 34 이상 사용</p> |<p>정책 적용 시점</p><p>신규 앱: 2019년 8월 1일 기존 앱: 2019년 11월 1일</p>|
 |3| AndroidX 적용                                                                                                   | [AndroidX 사용하기](https://developer.android.com/jetpack/androidx/migrate?hl=ko) 참조    ||
 |4| targetSdkVersion 35 지원                                                                                        | SKP AD screen SDK 최신 버전에서는 targetSdkVersion 35 사용 가능                                ||
 |5| Kotlin 버전                                                                                                     | 1\.7 이상 사용                                                                          ||
