@@ -72,7 +72,6 @@
                 android:background="@drawable/border_layout"
                 android:orientation="vertical"
                 >
-
                 <include
                     android:id="@+id/skp_ad_native_layout"
                     layout="@layout/skp_ad_native"
@@ -106,8 +105,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0" />
-
             </LinearLayout>
+
+            <Switch
+                android:id="@+id/enable_customised_ui"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Enable Customised UI" />
 
             <LinearLayout
                 android:layout_width="match_parent"

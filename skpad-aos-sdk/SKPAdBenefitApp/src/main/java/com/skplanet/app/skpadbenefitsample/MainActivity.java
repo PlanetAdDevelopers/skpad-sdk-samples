@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowInsets;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
@@ -120,6 +119,15 @@ public class MainActivity extends AppCompatActivity {
 
         initFeedHandler();
 
+        Switch enableCustomUISwitch = findViewById(R.id.enable_customised_ui);
+        enableCustomUISwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                feedAdapter.createFeedHandler(isChecked);
+            }
+        });
+
+
         Button preload = findViewById(R.id.feed_preload);
         preload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,8 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(AdError error) {
-                        Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(MainActivity.this, "Failed to prereload! ErrorType:" + error.getErrorType() + " " + error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Failed to preload! ErrorType:" + error.getErrorType() + " " + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -146,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         showFeedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new FeedAdapter(MainActivity.this).show();
+                feedAdapter.show();
             }
         });
 

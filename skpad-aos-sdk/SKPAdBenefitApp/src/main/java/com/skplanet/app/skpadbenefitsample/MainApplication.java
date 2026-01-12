@@ -28,11 +28,7 @@ public class MainApplication extends Application {
     public void initBenefit(Context context) {
 
         FeedConfig feedConfig = new FeedConfig.Builder(context, Constants.FEED_UNIT_ID)
-                .feedHeaderViewAdapterClass(DefaultFeedHeaderViewAdapter.class)
-                .adsAdapterClass(CustomFeedAdsAdapter.class)
-                .articlesEnabled(true)
                 .showInquiryButton(Constants.OLDER_14YEAR) // // 만 14세 이상인 경우에만 VOC(문의하기) 기능을 노출해야합니다.
-                .feedFeedbackHandlerClass(CustomFeedFeedbackHandler.class)
                 .build();
 
 

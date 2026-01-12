@@ -15,7 +15,7 @@ public class CustomFeedToolbarHolder extends DefaultFeedToolbarHolder {
     @Override
     public View getView(Activity activity, @NonNull final String unitId) {
         toolbar = new FeedToolbar(activity); // FeedToolbar 에서 제공하는 기본 Template 사용
-        toolbar.setTitle("YourFeedToolbarHolder");
+        toolbar.setTitle("Custom Toolbar Title");
         toolbar.setTitleColor(Color.parseColor("#FFFFFF"));
 //        toolbar.setIconTint(Color.parseColor("#008577"));
 
