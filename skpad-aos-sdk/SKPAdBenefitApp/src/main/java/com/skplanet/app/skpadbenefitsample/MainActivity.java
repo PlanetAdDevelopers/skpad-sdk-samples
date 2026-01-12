@@ -1,8 +1,11 @@
 package com.skplanet.app.skpadbenefitsample;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowInsets;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
@@ -12,6 +15,10 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.skplanet.app.skpadbenefitsample.adapter.FeedAdapter;
 import com.skplanet.app.skpadbenefitsample.adapter.InterstitialAdapter;
@@ -21,6 +28,7 @@ import com.skplanet.skpad.benefit.SKPAdBenefit;
 import com.skplanet.skpad.benefit.core.ad.AdError;
 import com.skplanet.skpad.benefit.core.js.SKPAdBenefitJavascriptInterface;
 import com.skplanet.skpad.benefit.core.models.UserProfile;
+import com.skplanet.skpad.benefit.core.utils.AppUtils;
 import com.skplanet.skpad.benefit.pop.SKPAdPop;
 import com.skplanet.skpad.benefit.presentation.DefaultLauncher;
 import com.skplanet.skpad.benefit.presentation.feed.FeedHandler;
@@ -38,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        applyInsetsArea(this, findViewById(android.R.id.content));
 
         initCommon();
 
@@ -264,5 +274,26 @@ public class MainActivity extends AppCompatActivity {
 
     private void initFeedHandler() {
         feedAdapter = new FeedAdapter(MainActivity.this);
+    }
+
+    private void applyInsetsArea(Context context, View view) {
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            return;
+        }
+
+        if (!AppUtils.checkTargetAOS15(context)) {
+            return;
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(view.getRootView(), new OnApplyWindowInsetsListener() {
+                    @Override
+                    public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat windowInsets) {
+                        Insets insets = windowInsets.getSystemWindowInsets();
+                        view.setPadding(insets.left, insets.top, insets.right, insets.bottom);
+                        return windowInsets;
+                    }
+                }
+        );
     }
 }
