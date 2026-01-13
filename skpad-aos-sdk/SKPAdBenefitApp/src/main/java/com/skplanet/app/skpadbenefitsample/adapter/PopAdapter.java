@@ -12,14 +12,14 @@ import com.skplanet.skpad.benefit.pop.SKPAdPop;
 
 import io.mattcarroll.hover.overlay.OverlayPermission;
 
-public class PopAdapger {
+public class PopAdapter {
 
     public static final int REQUEST_CODE_SHOW_POP = 100;
 
     private SKPAdPop skpAdPop;
     private Activity activity;
 
-    public PopAdapger(Activity activity) {
+    public PopAdapter(Activity activity) {
         this.activity = activity;
         createPop(activity);
     }

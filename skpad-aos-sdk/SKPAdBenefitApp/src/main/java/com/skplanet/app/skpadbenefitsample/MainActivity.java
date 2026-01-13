@@ -22,7 +22,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.skplanet.app.skpadbenefitsample.adapter.FeedAdapter;
 import com.skplanet.app.skpadbenefitsample.adapter.InterstitialAdapter;
 import com.skplanet.app.skpadbenefitsample.adapter.NativeAdAdapter;
-import com.skplanet.app.skpadbenefitsample.adapter.PopAdapger;
+import com.skplanet.app.skpadbenefitsample.adapter.PopAdapter;
 import com.skplanet.skpad.benefit.SKPAdBenefit;
 import com.skplanet.skpad.benefit.core.ad.AdError;
 import com.skplanet.skpad.benefit.core.js.SKPAdBenefitJavascriptInterface;
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private static String TAG = "SKPAdBenefit";
 
     private FeedAdapter feedAdapter;
-    private PopAdapger popAdapger;
+    private PopAdapter popAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PopAdapger.REQUEST_CODE_SHOW_POP) {
+        if (requestCode == PopAdapter.REQUEST_CODE_SHOW_POP) {
             if (SKPAdPop.hasPermission(this)) {
-                popAdapger.showPopOrRequestOverlayPermissionIfNeeded();
+                popAdapter.showPopOrRequestOverlayPermissionIfNeeded();
             }
         }
     }
@@ -168,13 +168,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void initPop() {
 
-        popAdapger = new PopAdapger(MainActivity.this);
+        popAdapter = new PopAdapter(MainActivity.this);
 
         Button showPopButon = findViewById(R.id.pop_show_button);
         showPopButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popAdapger.showPopOrRequestOverlayPermissionIfNeeded();
+                popAdapter.showPopOrRequestOverlayPermissionIfNeeded();
             }
         });
 
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         unregisterPopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popAdapger.remove();
+                popAdapter.remove();
             }
         });
     }

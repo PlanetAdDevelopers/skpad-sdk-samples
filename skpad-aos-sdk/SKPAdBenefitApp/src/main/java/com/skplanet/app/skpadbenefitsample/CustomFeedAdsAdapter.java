@@ -128,6 +128,7 @@ public class CustomFeedAdsAdapter extends AdsAdapter<AdsAdapter.NativeAdViewHold
 
         final CtaPresenter ctaPresenter = new CtaPresenter(ctaView);
         ctaPresenter.bind(nativeAd);
+        ctaView.setCtaTextSize(10);
 
         final Collection<View> clickableViews = new ArrayList<>();
         clickableViews.add(ctaView);
