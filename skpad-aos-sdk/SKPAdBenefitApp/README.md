@@ -19,15 +19,16 @@
     - [Interstitial-Customizing](#Interstitial-Customizing)
 - [디자인 커스터마이징](#디자인-커스터마이징)
     - [테마 적용](#테마-적용)
-    - [커스텀 런처 설정](#커스텀-런처-설정)
-- [동영상 자동재생에 대한 설정](#동영상-자동재생에-대한-설정)
 - [Web Android SDK 연동 가이드](#Web-Android-SDK-연동-가이드)
-- [광고 노출과 관련한 콜백 변화](#광고-노출-클릭-참여와-관련한-콜백-변화)
-- [맞춤형 광고에 대한 고지와 VOC 지원](#맞춤형-광고에-대한-고지와-VOC-지원)
-    - [맞춤형 광고를 위한 고지 추가하기](#맞춤형-광고를-위한-고지-추가하기)
-    - [유저 VOC (문의하기) 사용하기](#유저-문의하기-사용하기)
-    - [유저 VOC (문의하기) 관련 주의사항](#문의하기-기능-주의사항)
-- [Android 14 Foreground Service 정책 대응](#Android-14-Foreground-Service-정책-대응)
+- [FAQ](#FAQ)
+	- [커스텀 런처 설정](#커스텀-런처-설정)
+	- [동영상 자동재생에 대한 설정](#동영상-자동재생에-대한-설정)
+	- [광고 노출과 관련한 콜백 변화](#광고-노출-클릭-참여와-관련한-콜백-변화)
+	- [맞춤형 광고에 대한 고지와 VOC 지원](#맞춤형-광고에-대한-고지와-VOC-지원)
+    	- [맞춤형 광고를 위한 고지 추가하기](#맞춤형-광고를-위한-고지-추가하기)
+    	- [유저 VOC (문의하기) 사용하기](#유저-문의하기-사용하기)
+    	- [유저 VOC (문의하기) 관련 주의사항](#문의하기-기능-주의사항)
+	- [Android 14 Foreground Service 정책 대응](#Android-14-Foreground-Service-정책-대응)
 
 
 ---
@@ -2248,152 +2249,6 @@ Cta 배경 예시
 </selector>
 ```
 
-
-### 커스텀 런처 설정
-
-#### Custom In-App Browser 사용법
-- 현재 Custom Launcher 를 사용하지 않을 경우 아래 가이드는 아무 영향이 없습니다.
-- Custome Launcher 사용할 예정이거나, 1.X 버전에서 이미 사용하고 있을 경우, 아래의 항목을 필수로 적용해야 합니다.
-
-Custom launcher 사용시, 광고를 클릭했을 때 랜딩되는 In-App Browser를 Customize 할 수 있습니다. 예를 들어, 광고 랜딩 페이지 로드 등을 매체사가 지정하는 Class에서 구현할 수 있습니다.
-
-##### 구현시 주의사항 :
-
-- SKPAdBrowser에서 제공하는 Fragment를 사용하여 In-App Browser를 구현해야 합니다. 사용하지 않을 경우, 일부 광고(액션형 광고, 체류 리워드 광고)가 제대로 동작하지 않을 수 있습니다.
-- Launcher에서 제공하는 LandingInfo 의 URL을 임의로 변경해서 사용하면 안됩니다. 이 경우 웹 페이지가 제대로 로드되지 않을 수 있습니다.
-
-1. CustomBrowserActivity 를 구현합니다.
-```
-public class CustomBrowserActivity extends AppCompatActivity {
-    public static final String KEY_URL = "com.sample.KEY_URL";
-    private SKPAdBrowserFragment fragment;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_custom_browser);
-
-        // URL을 KEY로 하여 WebView를 가지고있는 Fragment를 받아와 사용합니다.
-        Intent intent = getIntent();
-        fragment = SKPAdBrowser.getInstance(this).getFragment(intent.getStringExtra(KEY_URL));
-        getSupportFragmentManager().beginTransaction().replace(R.id.browserContainer, fragment).commit();
-        final SKPAdWebView webView = fragment.getWebView();
-
-        // Browser의 이벤트를 받을 수 있습니다. DeepLink가 열렸을 경우, Browser를 닫아주어야 빈 페이지가 보여지는 현상을 방지할 수 있습니다.
-        SKPAdBrowser.getInstance(this).setOnBrowserEventListener(new SKPAdBrowser.OnBrowserEventListener() {
-        
-        // 기존에 사용하던 isDeepLink 를 아래로 대체
-            @Override
-            public void onDeepLinkOpened() {
-                finish();
-            }
-        });
-    }
-
-    // Optional - BackButton을 눌렀을때 뒤로가기 기능
-    @Override
-    public void onBackPressed() {
-    final SKPAdWebView webView = fragment.getWebView();
-        if (webView != null && webView.canGoBack()) {
-            webView.goBack();
-        } else {
-            super.onBackPressed();
-        }
-    }
-}
-```
-
-2. activity_custom_browser.xml
-```
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <FrameLayout
-        android:id="@+id/browserContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</FrameLayout>
-```
-
-3. Launcher 를 구현
-```
-public class MyLauncher implements Launcher {
-
-    @Override
-    public void launch(@NonNull Context context, @NonNull LaunchInfo launchInfo) {
-        launch(context, launchInfo, null);
-    }
-
-    @Override
-    public void launch(@NonNull final Context context, @NonNull final LaunchInfo launchInfo, @Nullable final LauncherEventListener listener) {
-        launch(context, launchInfo, listener, null);
-    }
-
-    @Override
-    public void launch(@NonNull final Context context, @NonNull final LaunchInfo launchInfo, @Nullable final LauncherEventListener listener, @Nullable List<Class<? extends SKPAdJavascriptInterface>> javascriptInterfaces) {
-                 
-        // Custom Browser 실행
-        final Intent intent = new Intent(context, CustomBrowserActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(CustomBrowserActivity.KEY_URL, launchInfo.getUri().toString()); // URI는 변경 하면 안 됨
-        context.startActivity(intent);
-    }
-}
-```
-4. SKPAdBenefit.init 호출 이후에 생성한 Launcher를 세팅
-```
-SKPAdBenefit.setLauncher(new MyLauncher());
-```
-
-##### Custom launcher 사용시 Article의 sourceUrl 사용법
-```
-public class MyLauncher implements Launcher {
-    @Override
-    public void launch(@NonNull final Context context, @NonNull final LaunchInfo launchInfo, @Nullable final LauncherEventListener listener, @Nullable List<Class<? extends SKPAdJavascriptInterface>> javascriptInterfaces) {
-        if (launchInfo.getArticle() != null) {
-            String sourceUrl = launchInfo.getArticle().getSourceUrl();
-        }
-    }
-}
-```
-컨텐츠의 경우 url scheme에 따라 랜딩 방식을 다르게 처리하고 싶다면 (ex. 앱 안에서 브라우저 오픈 없이 다른 화면으로 이동되는 컨텐츠) 다음과 같은 방법으로 NativeArticle 객체의 sourceUrl을 가져와 분기 처리를 할 수 있습니다.
-
-#####  Custom launcher 사용시 광고 또는 컨텐츠인지 미리 판단하고 싶을 경우
-```
-public class MyLauncher implements Launcher {
-    ...
-    @Override
-    public void launch(@NonNull final Context context, @NonNull final LaunchInfo launchInfo, @Nullable final LauncherEventListener listener, @Nullable List<Class<? extends SKPAdJavascriptInterface>> javascriptInterfaces) {
-        
-        // 광고 또는 컨텐츠인지 미리 판단하고 싶을 경우, 다음을 이용하여 확인
-        if (launchInfo.getAd() != null) {
-            // 광고
-        } else if (launchInfo.getArticle() != null) {
-            // 컨텐츠
-        } 
-          
-        ...// Custom Browser 실행
-    }
-}
-```
-
-## 동영상 자동재생에 대한 설정
-동영상 광고의 재생 방식을 변경할 수 있습니다.
-다음은 동영상 광고를 자동재생으로 설정하는 예시입니다.
-
-* AutoplayType.ENABLED: 동영상 광고가 Wifi, LTE 환경 모두에서 항상 자동재생됨
-* AutoplayType.ON_WIFI: 동영상 광고가 Wifi 네트워크 환경에서만 자동재생됨
-* AutoplayType.DISABLED: 동영상 광고가 자동재생되지 않음
-
-```
-final UserPreferences userPreferences = new UserPreferences.Builder(SKPAdBenefit.getUserPreferences())
-        .autoplayType(AutoplayType.ON_WIFI)
-        .build();
-SKPAdBenefit.setUserPreferences(userPreferences);
-```
-설정하지 않으면 서버 설정에 따라 재생 방식이 결정됩니다. (서버 설정의 기본 값은 WiFi 환경에서만 자동 재생하도록 되어 있습니다.)
-
 ## Web Android SDK 연동 가이드
 
 ### 개요
@@ -2530,15 +2385,163 @@ webView.loadUrl(MY_WEB_PAGE);
 #### 8 단계: 앱 빌드하기
 Planet AD Android SDK를 사용하기 위한 모든 설정이 완료되었습니다. 앱을 빌드하고 정상적으로 실행되는지 확인하세요.
 
-## 광고 노출 클릭 참여와 관련한 콜백 변화
 
-### 순서 (AOS/iOS는 이름만 다를 뿐 동작은 동일하기 때문에 아래에서는 AOS의 이름을 기준으로 설명함)
+## FAQ
+
+### 커스텀 런처 설정
+
+#### Custom In-App Browser 사용법
+- 현재 Custom Launcher 를 사용하지 않을 경우 아래 가이드는 아무 영향이 없습니다.
+- Custome Launcher 사용할 예정이거나, 1.X 버전에서 이미 사용하고 있을 경우, 아래의 항목을 필수로 적용해야 합니다.
+
+Custom launcher 사용시, 광고를 클릭했을 때 랜딩되는 In-App Browser를 Customize 할 수 있습니다. 예를 들어, 광고 랜딩 페이지 로드 등을 매체사가 지정하는 Class에서 구현할 수 있습니다.
+
+##### 구현시 주의사항 :
+
+- SKPAdBrowser에서 제공하는 Fragment를 사용하여 In-App Browser를 구현해야 합니다. 사용하지 않을 경우, 일부 광고(액션형 광고, 체류 리워드 광고)가 제대로 동작하지 않을 수 있습니다.
+- Launcher에서 제공하는 LandingInfo 의 URL을 임의로 변경해서 사용하면 안됩니다. 이 경우 웹 페이지가 제대로 로드되지 않을 수 있습니다.
+
+1. CustomBrowserActivity 를 구현합니다.
+```
+public class CustomBrowserActivity extends AppCompatActivity {
+    public static final String KEY_URL = "com.sample.KEY_URL";
+    private SKPAdBrowserFragment fragment;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_custom_browser);
+
+        // URL을 KEY로 하여 WebView를 가지고있는 Fragment를 받아와 사용합니다.
+        Intent intent = getIntent();
+        fragment = SKPAdBrowser.getInstance(this).getFragment(intent.getStringExtra(KEY_URL));
+        getSupportFragmentManager().beginTransaction().replace(R.id.browserContainer, fragment).commit();
+        final SKPAdWebView webView = fragment.getWebView();
+
+        // Browser의 이벤트를 받을 수 있습니다. DeepLink가 열렸을 경우, Browser를 닫아주어야 빈 페이지가 보여지는 현상을 방지할 수 있습니다.
+        SKPAdBrowser.getInstance(this).setOnBrowserEventListener(new SKPAdBrowser.OnBrowserEventListener() {
+        
+        // 기존에 사용하던 isDeepLink 를 아래로 대체
+            @Override
+            public void onDeepLinkOpened() {
+                finish();
+            }
+        });
+    }
+
+    // Optional - BackButton을 눌렀을때 뒤로가기 기능
+    @Override
+    public void onBackPressed() {
+    final SKPAdWebView webView = fragment.getWebView();
+        if (webView != null && webView.canGoBack()) {
+            webView.goBack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+}
+```
+
+2. activity_custom_browser.xml
+```
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/browserContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>
+```
+
+3. Launcher 를 구현
+```
+public class MyLauncher implements Launcher {
+
+    @Override
+    public void launch(@NonNull Context context, @NonNull LaunchInfo launchInfo) {
+        launch(context, launchInfo, null);
+    }
+
+    @Override
+    public void launch(@NonNull final Context context, @NonNull final LaunchInfo launchInfo, @Nullable final LauncherEventListener listener) {
+        launch(context, launchInfo, listener, null);
+    }
+
+    @Override
+    public void launch(@NonNull final Context context, @NonNull final LaunchInfo launchInfo, @Nullable final LauncherEventListener listener, @Nullable List<Class<? extends SKPAdJavascriptInterface>> javascriptInterfaces) {
+                 
+        // Custom Browser 실행
+        final Intent intent = new Intent(context, CustomBrowserActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(CustomBrowserActivity.KEY_URL, launchInfo.getUri().toString()); // URI는 변경 하면 안 됨
+        context.startActivity(intent);
+    }
+}
+```
+4. SKPAdBenefit.init 호출 이후에 생성한 Launcher를 세팅
+```
+SKPAdBenefit.setLauncher(new MyLauncher());
+```
+
+##### Custom launcher 사용시 Article의 sourceUrl 사용법
+```
+public class MyLauncher implements Launcher {
+    @Override
+    public void launch(@NonNull final Context context, @NonNull final LaunchInfo launchInfo, @Nullable final LauncherEventListener listener, @Nullable List<Class<? extends SKPAdJavascriptInterface>> javascriptInterfaces) {
+        if (launchInfo.getArticle() != null) {
+            String sourceUrl = launchInfo.getArticle().getSourceUrl();
+        }
+    }
+}
+```
+컨텐츠의 경우 url scheme에 따라 랜딩 방식을 다르게 처리하고 싶다면 (ex. 앱 안에서 브라우저 오픈 없이 다른 화면으로 이동되는 컨텐츠) 다음과 같은 방법으로 NativeArticle 객체의 sourceUrl을 가져와 분기 처리를 할 수 있습니다.
+
+#####  Custom launcher 사용시 광고 또는 컨텐츠인지 미리 판단하고 싶을 경우
+```
+public class MyLauncher implements Launcher {
+    ...
+    @Override
+    public void launch(@NonNull final Context context, @NonNull final LaunchInfo launchInfo, @Nullable final LauncherEventListener listener, @Nullable List<Class<? extends SKPAdJavascriptInterface>> javascriptInterfaces) {
+        
+        // 광고 또는 컨텐츠인지 미리 판단하고 싶을 경우, 다음을 이용하여 확인
+        if (launchInfo.getAd() != null) {
+            // 광고
+        } else if (launchInfo.getArticle() != null) {
+            // 컨텐츠
+        } 
+          
+        ...// Custom Browser 실행
+    }
+}
+```
+
+### 동영상 자동재생에 대한 설정
+동영상 광고의 재생 방식을 변경할 수 있습니다.
+다음은 동영상 광고를 자동재생으로 설정하는 예시입니다.
+
+* AutoplayType.ENABLED: 동영상 광고가 Wifi, LTE 환경 모두에서 항상 자동재생됨
+* AutoplayType.ON_WIFI: 동영상 광고가 Wifi 네트워크 환경에서만 자동재생됨
+* AutoplayType.DISABLED: 동영상 광고가 자동재생되지 않음
+
+```
+final UserPreferences userPreferences = new UserPreferences.Builder(SKPAdBenefit.getUserPreferences())
+        .autoplayType(AutoplayType.ON_WIFI)
+        .build();
+SKPAdBenefit.setUserPreferences(userPreferences);
+```
+설정하지 않으면 서버 설정에 따라 재생 방식이 결정됩니다. (서버 설정의 기본 값은 WiFi 환경에서만 자동 재생하도록 되어 있습니다.)
+
+### 광고 노출 클릭 참여와 관련한 콜백 변화
+
+#### 순서 (AOS/iOS는 이름만 다를 뿐 동작은 동일하기 때문에 아래에서는 AOS의 이름을 기준으로 설명함)
 - AOS : onImpressed → onClicked → (onRewardRequested) → onRewarded → onParticipated
 - iOS : didImpressAd → didClickAd → willRequestRewardForAd → didRewardForAd → didParticipateAd
 
 
 
-### onImpressed
+#### onImpressed
 - 정의
   - 광고가 유저에게 노출 되었음 (=NativeAdView의 광고 레이아웃의 50%가 유저에게 보여짐)
 - 중복 호출 여부
@@ -2546,7 +2549,7 @@ Planet AD Android SDK를 사용하기 위한 모든 설정이 완료되었습니
 - 추천 대응
   - X
 
-### onClicked
+#### onClicked
 - 정의
   - 광고가 유저에 의해 클릭됨 (=clickableViews로 지정한 component들이 클릭됨)
   -일반/비디오 광고 모두 onClickEvent/shouldClickAd (AOS/iOS)를 통한 click 이벤트 intercept가 가능함 (아래 참조)
@@ -2559,7 +2562,7 @@ Planet AD Android SDK를 사용하기 위한 모든 설정이 완료되었습니
 - 추천 대응
   - X
 
-### onRewardRequested
+#### onRewardRequested
 - 정의
   - 광고에 대한 리워드 지급 조건을 만족해서 리워드가 지급 요청 되었음
   - 일반 광고의 경우 click 후 너무 빠르게 (1초) back-button을 눌러 돌아오지 않았고, 비디오 광고의 경우 최소 재생 시간이 지남
@@ -2571,7 +2574,7 @@ Planet AD Android SDK를 사용하기 위한 모든 설정이 완료되었습니
   - 리워드 지급 완료에 대한 Response를 받기까지 시간이 걸릴 수 있으므로 로딩 이미지 등을 보여줌
   - 비디오의 경우 최소 재생 시간을 Play 한 후 리워드가 지급되고 onClicked 콜백이 여러번 호출되기 때문에 onClicked 콜백이 아닌 onRewardRequested 콜백에서 로딩 이미지를 보여주는 것을 추천함
 
-### onRewarded
+#### onRewarded
 - 정의
   - 리워드 관련한 처리가 완료됨
 - 중복 호출 여부
@@ -2596,7 +2599,7 @@ Planet AD Android SDK를 사용하기 위한 모든 설정이 완료되었습니
   - TOO_SHORT_TO_PARTICIPATE에서 광고를 더 보시면 리워드가 지급된다는 메시지 보여줌
   - 그 외의 경우 일반 에러메시지 보여줌
 
-### onParticipated
+#### onParticipated
 - 정의
   - 광고 참여가 완료됨
 - 중복 호출 여부
@@ -2619,9 +2622,9 @@ AOS: onClickEvent / iOS : shouldClickAd method를 사용한 클릭 Hooking
 비디오/일반 광고 구분 없이, 그리고 비디오 광고 내에서도 inline으로 video가 재생될 때와 fullscreen 재생될 때 구분 없이 모두 onClickEvent/shouldClickAd method로 클릭시의 이벤트 Hooking 가능함
 각각의 method는 각각 NativeAdView 객체 (AOS)와 Adview 객체 (iOS) 하에 속함
 
-## 맞춤형 광고에 대한 고지와 VOC 지원
+### 맞춤형 광고에 대한 고지와 VOC 지원
 
-### 맞춤형 광고를 위한 고지 추가하기
+#### 맞춤형 광고를 위한 고지 추가하기
 Planet AD는 개인별 맞춤형 광고를 제공하며, 그에 해당하는 사항을 필수적으로 사용자에게 고지해야합니다.
 
 이러한 맞춤형 광고 고지를 위해 미리 만들어진 UI를 제공하고 있으며, 해당 UI로 진입하기 위한 방법은 아래와 같습니다.
@@ -2677,7 +2680,7 @@ public void populateAd(final NativeAd nativeAd) {
 ```
 
 
-### 유저 문의하기 사용하기
+#### 유저 문의하기 사용하기
 종종 리워드 미적립을 이유로 유저가 문의(VOC)를 보내기도 합니다.
 
 이러한 유저 VOC에 대한 접수 및 처리를 자동화 하기 위해 SDK에서는 미리 만들어 놓은 웹 페이지를 제공하고 있습니다.
@@ -2770,17 +2773,17 @@ public void populateAd(final NativeAd nativeAd) {
 
 }
 ```
-### 문의하기 기능 주의사항
+#### 문의하기 기능 주의사항
 Planet AD는 만 14세 미만 아동에게 (맞춤형) 리워드 광고를 송출하지 않습니다.
 - 따라서, APP에서는 만 14세 미만의 고객에게는  Planet AD SDK에서 제공하는 VOC(문의하기) 기능을 제공해서는 안됩니다.
 - 혹 제공 중일 경우, 앱에서는 고객이 만 14세 미만일 경우 Planet AD의 VOC(문의하기)로 진입할 수 있는 기능을 비활성화 혹은 숨김처리되어야 합니다.
 
 
-## Android 14 Foreground Service 정책 대응 
+### Android 14 Foreground Service 정책 대응 
 
 [안드로이드 14부터 변경된 Foreground Service 정책](https://developer.android.com/about/versions/14/changes/fgs-types-required?hl=ko#special-use) 대응을 위한 가이드에 대해 기술합니다.
 
-### POP 기능의 Foreground Service Type 고지 관련
+#### POP 기능의 Foreground Service Type 고지 관련
 Planet AD Benefit SDK에는 POP 기능을 위해 Foreground Service가 포함되어 있으며, 해당 Service의 Type은는 "specialUse"로 설정되어 있습니다.
 
 앱에서 추가적으로 고지가 필요할 경우 아래의 내용에 대한 참고가 필요합니다.
@@ -2800,7 +2803,7 @@ Planet AD Benefit SDK에는 POP 기능을 위해 Foreground Service가 포함되
 </resources>
 ```
 
-### POP 기능 제외를 통한 불필요한 Foreground Service의 제거
+#### POP 기능 제외를 통한 불필요한 Foreground Service의 제거
 Planet AD Benefit SDK를 사용하나, POP 기능을 사용하지 않는다면, 해당 기능은 아래와 같이 Exclude함으로서 제외함으로서 불필요한 Foreground Service가 앱에 포함되는 것을 막을 수 있습니다.
 
 ```
