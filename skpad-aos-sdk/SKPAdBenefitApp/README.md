@@ -100,6 +100,20 @@ android {
 
 이 단계에서 문제가 발생했다면 PlanetAD 담당 매니저에 문의하시기 바랍니다.
 
+#### 주의할 점
+동영상 Library호환 관련
+Planet AD SDK는 아래와 같이 Exoplayer Library v2.14.2로 고정해서 사용 중입니다.
+APP에 그 외의 버전이 포함시에는 Planet AD SDK를 통해 동영상 광고(CPV) 송출 시 미노출 혹은 Crash 등의  이슈가 발생합니다.
+따라서 다른 버전을 사용하고자 하는 경우 담당자와 논의가 필요합니다.
+
+```
+implementation "com.google.android.exoplayer:exoplayer-core:2.14.2"
+implementation "com.google.android.exoplayer:exoplayer-hls:2.14.2"
+implementation "com.google.android.exoplayer:exoplayer-ui:2.14.2"
+implementation "com.google.android.exoplayer:extension-ima:2.14.2"
+```
+
+
 ### SDK 초기화
 #### APP ID 추가
 <p>AndroidManifest.xml에 APP_ID 를 추가합니다.</p>
@@ -2425,22 +2439,6 @@ android {
     }
 }
 ```
-
-#### 주의할 점
-동영상 Library호환 관련
-Planet AD SDK는 아래와 같이 Exoplayer Library v2.14.2로 고정해서 사용 중입니다.
-APP에 그 외의 버전이 포함시에는 Planet AD SDK를 통해 동영상 광고(CPV) 송출 시 미노출 혹은 Crash 등의  이슈가 발생합니다.
-따라서 다른 버전을 사용하고자 하는 경우 담당자와 논의가 필요합니다.
-
-```
-implementation "com.google.android.exoplayer:exoplayer-core:2.14.2"
-implementation "com.google.android.exoplayer:exoplayer-hls:2.14.2"
-implementation "com.google.android.exoplayer:exoplayer-ui:2.14.2"
-implementation "com.google.android.exoplayer:extension-ima:2.14.2"
-```
-
-
-
 
 #### 3 단계: App ID 설정하기
 AndroidManifest.xml 파일에서 다음과 같이 <meta-data> 요소를 추가하고, app-pub-{YOUR_APP_ID}의 {YOUR_APP_ID}를 SKP 광고 담당자로부터 발급받은 App ID로 교체하세요.<br>
