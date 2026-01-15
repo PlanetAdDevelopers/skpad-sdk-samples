@@ -940,8 +940,8 @@ public void populateAd(final NativeAd nativeAd) {
 
 PlanetAD Android SDK 에서 기본으로 제공하는 CtaView UI 및 처리 로직을 사용하지 않고 구현할 수 있습니다.<br>
 버튼에 표기하는 문구는 사용자에게 광고 참여 상태를 알려야합니다.<br>
-다음과 같은 상황에 적절한 문구를 표기해야 사용자에게 생기는 오해를 방지할 수 있습니다.<br>
-- 참여한 광고에 대해서는 “참여 완료“로 표기
+다음과 같은 상황에 적절한 문구 혹은 이미지 등을 이용하여 상태정보를 표기해야 사용자에게 생기는 오해를 방지할 수 있습니다.<br>
+- 참여한 광고에 대해서는 “참여 완료“를 의미하는 문구 혹은 이미지등으로 표기
 - 리워드가 없는 광고(과거에 참여한 광고를 다시 할당 받음 등)는 포인트가 부여되지 않기 때문에 “0P“ 혹은 포인트를 표기하지 않음
 - 참여형 광고에 대해서는 리워드 부여까지 시간이 소요되므로 “참여 확인 중“으로 표기
 
@@ -998,12 +998,12 @@ void updateCtaStatus(YourCtaView ctaView, NativeAd nativeAd) {
     } else {
         
         if (totalReward > 0 && participated) {
-            // 리워드가 있고, 참여완료 상태 인 경우, "참여 완료"로 표기
+            // 리워드가 있고, 참여완료 상태 인 경우, 참여 완료 상태로 표기
             ctaView.setRewardIcon(R.drawable.your_reward_received_icon); // 참여 완료 아이콘 노출
             ctaView.setRewardText(null);
             ctaView.setCtaText("참여 완료");
         } else if (reward > 0) {
-            // 리워드가 있는 경우, 포인트를 표시하고, CTA 문구를 표기
+            // 리워드가 있는 경우, 포인트를 표시
             ctaView.showRewardImage(R.drawable.your_reward_icon);              // 리워드 아이콘 노출
             ctaView.setRewardText(String.format(Locale.US, "+%,d", reward)); // 적립 가능한 포인트 표기
             ctaView.setCallToActionText(callToAction);                       // CTA 문구 표기
