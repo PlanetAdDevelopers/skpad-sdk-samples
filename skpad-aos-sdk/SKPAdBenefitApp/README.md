@@ -542,7 +542,7 @@ Feed 지면에서는 사용자가 UI를 변경하는 방법을 제공합니다.
 
 AdsAdapter의 상속 클래스를 구현합니다. 구현한 상속 클래스의 onCreateViewHolder에서 your_feed_ad.xml을 사용하여 NativeAdView를 생성합니다.<br>
 그리고 FeedConfig에 구현한 YourAdsAdapter를 설정합니다. <br>
-CTA 버튼 커스터마이징은 CTA 변경을 참고하시기 바랍니다. (아래 예시에서 아이콘을 그리기 위해 ImageLoader 라이브러리를 사용하였습니다.)
+CTA 버튼 커스터마이징 방법은 [CTA 변경](#Cta-버튼-커스터마이징)을 참고하시기 바랍니다. (아래 예시에서 아이콘을 그리기 위해 ImageLoader 라이브러리를 사용하였습니다.)
 
 ```
 public class YourAdsAdapter extends AdsAdapter<AdsAdapter.NativeAdViewHolder> {
@@ -935,10 +935,17 @@ public void populateAd(final NativeAd nativeAd) {
 ### 개요
 본 가이드는 Native 지면에서 추가적으로 제공하는 기능에 대하여 추가적으로 설명합니다. 필요에 따라 가이드를 참고하시어 더욱 고도화할 수 있습니다.
 
-#### CtaView버튼 커스터마이징
+#### Cta 버튼 커스터마이징
 ![CTAView button Customizing](./doc/resources/A_24.png)
 
-PlanetAD Android SDK 에서 기본으로 제공하는 CtaView UI 및 처리 로직을 사용하지 않고 구현을 원하는 경우에는 다음과 같이 수정할 수 있습니다.
+PlanetAD Android SDK 에서 기본으로 제공하는 CtaView UI 및 처리 로직을 사용하지 않고 구현할 수 있습니다.<br>
+버튼에 표기하는 문구는 사용자에게 광고 참여 상태를 알려야합니다.<br>
+다음과 같은 상황에 적절한 문구를 표기해야 사용자에게 생기는 오해를 방지할 수 있습니다.<br>
+- 참여한 광고에 대해서는 “참여 완료“로 표기
+- 리워드가 없는 광고(과거에 참여한 광고를 다시 할당 받음 등)는 포인트가 부여되지 않기 때문에 “0P“ 혹은 포인트를 표기하지 않음
+- 참여형 광고에 대해서는 리워드 부여까지 시간이 소요되므로 “참여 확인 중“으로 표기
+
+다음은 광고의 상태에 따라 CTA 문구를 수정하는 예시입니다. 광고 참여 상태를 확인하는데 필요한 API는 하단에 기재하였습니다.
 
 ```
 public void populateAd(final NativeAd nativeAd) {
@@ -950,7 +957,7 @@ public void populateAd(final NativeAd nativeAd) {
     ...생략...
      
     final YourCtaView ctaView = view.findViewById(R.id.your_cta_view);
-    updateCtaStatus(ctaView, nativeAd);
+    updateCtaStatus(ctaView, nativeAd); // CTA 상태 초기화
      
     ...생략...
  
@@ -964,43 +971,47 @@ public void populateAd(final NativeAd nativeAd) {
  
         @Override
         public void onClicked(@NonNull NativeAdView view, @NonNull NativeAd nativeAd) {
-            updateCtaStatus(ctaView, nativeAd);;
+            updateCtaStatus(ctaView, nativeAd); // CTA 상태 업데이트
         }
          
         @Override
         public void onParticipated(@NonNull NativeAdView view, @NonNull NativeAd nativeAd) {
-            updateCtaStatus(ctaView, nativeAd);
+            updateCtaStatus(ctaView, nativeAd); // CTA 상태 업데이트
         }
     });
 }
  
 // 기획에 따라 수정될 수 있는 예시 코드입니다.
 void updateCtaStatus(YourCtaView ctaView, NativeAd nativeAd) {
-    final String callToAction = nativeAd.getAd().getCallToAction();
-    final int reward = nativeAd.getAvailableReward();
+    final String callToAction = nativeAd.getAd().getCallToAction(); // CTA 문구
+    final int reward = nativeAd.getAvailableReward();               // 사용자가 적립 가능한 리워드
     final int totalReward = nativeAd.getAd().getReward();
     final boolean participated = nativeAd.isParticipated();
     final boolean isClicked = nativeAd.isClicked();
     final boolean isActionType = nativeAd.getAd().isActionType();
- 
- 
+
+    // 참여형 광고인 경우, 사용자가 클릭은 했지만 아직 참여 보상이 지급되지 않은 상태라면 "참여 확인 중"으로 표기
     if (isClicked && isActionType && !participated) {
-        ctaView.setCtaText("참여 확인 중");
-        ctaView.setRewardIcon(null);
+        ctaView.setCallToActionText(ctaView.getContext().getString(R.string.skpad_action_ad_participating));
+        ctaView.showRewardImage(null);
         ctaView.setRewardText(null);
     } else {
+        
         if (totalReward > 0 && participated) {
-            ctaView.setRewardIcon(R.drawable.your_reward_received_icon);
+            // 리워드가 있고, 참여완료 상태 인 경우, "참여 완료"로 표기
+            ctaView.setRewardIcon(R.drawable.your_reward_received_icon); // 참여 완료 아이콘 노출
             ctaView.setRewardText(null);
             ctaView.setCtaText("참여 완료");
         } else if (reward > 0) {
-            ctaView.showRewardImage(R.drawable.your_reward_icon);
-            ctaView.setRewardText(String.format(Locale.US, "+%,d", reward));
-            ctaView.setCtaText(callToAction);
+            // 리워드가 있는 경우, 포인트를 표시하고, CTA 문구를 표기
+            ctaView.showRewardImage(R.drawable.your_reward_icon);              // 리워드 아이콘 노출
+            ctaView.setRewardText(String.format(Locale.US, "+%,d", reward)); // 적립 가능한 포인트 표기
+            ctaView.setCallToActionText(callToAction);                       // CTA 문구 표기
         } else {
+            // 리워드가 없는 광고(과거에 참여한 광고를 다시 할당 받음 등)는 포인트가 부여되지 않기 때문에 “0P“ 혹은 포인트를 표기하지 않음
             ctaView.showRewardImage(null);
             ctaView.setRewardText(null);
-            ctaView.setCtaText(callToAction);
+            ctaView.setCallToActionText(callToAction);
         }
     }
 }
@@ -1696,7 +1707,7 @@ rewardReadyIconResId: 적립 가능한 포인트가 있을 때 기본 아이콘�
 
 Pop 활성화 버튼의 디자인은 아래 가이드에 따라 수정할 수 있습니다.
 
-활성화 버튼의 색상과 아이콘은 [테마 적용](#커스터마이징)을 통해 변경할 수 있습니다.
+활성화 버튼의 색상과 아이콘은 [테마 적용](#테마-적용)을 통해 변경할 수 있습니다.
 
 활성화 버튼의 문구는 DefaultOptInAndShowPopButtonHandler의 상속 클래스에서 설정합니다. 상속 클래스를 작성하고 FeedConfig에 설정합니다.
 
@@ -2170,7 +2181,9 @@ interstitialAdHandler.show(this,
 
 ![Theme 적용](./doc/resources/A_41.png)
 
-PlanetAD Benefit에서 제공하는 광고지면의 CTA 테마를 변경할 수 있습니다. 이 단계는 선택사항이긴 하지만 원하는 색상, 아이콘을 적용하는 단계이므로 적용하는 것을 권장합니다. 앱에서 사용중인 application theme에 PlanetAD에서 제공하는 attribute를 정의하여 간편하게 PlanetAD Benefit SDK의 CTA UI를 커스터마이징 할 수 있습니다. 
+PlanetAD Benefit에서 제공하는 광고지면의 CTA 테마를 변경할 수 있습니다. <br>
+이 단계는 선택사항이긴 하지만 원하는 색상, 아이콘을 적용하는 단계이므로 적용하는 것을 권장합니다.<br> 
+앱에서 사용중인 application theme에 PlanetAD에서 제공하는 attribute를 정의하여 간편하게 PlanetAD Benefit SDK의 CTA UI를 커스터마이징 할 수 있습니다. 
 
 |attribute (type)|child attribute (type)|커스터마이징 되는 UI|
 |-|-|-|
