@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         namespace "com.skplanet.app.skpadbenefitsample"
         minSdk 23
-        targetSdk 35
+        targetSdk 36
         versionCode 1
         versionName "1.0"
 
