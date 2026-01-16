@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.14.9(2026-01-16)
+### Features
+- Target API Level 36 대응
+
 ## 1.14.7(2025-12-04)
 ### Features
 - FeedToolbar의 Title 색상을 지정할 수 있는 인터페이스 추가
