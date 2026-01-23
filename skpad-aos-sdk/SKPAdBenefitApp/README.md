@@ -280,7 +280,6 @@ feedHandler.preload(new FeedHandler.FeedPreloadListener() {
     @Override
     public void onError(AdError error) {
         // 광고가 없을 경우 호출됩니다. error를 통해 원인을 알 수 있습니다
-        // 광고가 없을 경우, Feed호출 메뉴를 노출합니다.
     }
 });
 ```
