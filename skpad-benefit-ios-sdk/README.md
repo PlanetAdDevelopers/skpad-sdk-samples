@@ -951,7 +951,7 @@ SDK에서 제공하는 UI의 이미지 혹은 문구만을 변경하여 사용�
   
   ```objective-c
   SABFeedConfig *config = [[SABFeedConfig alloc] initWithUnitId:@"YOUR_FEED_UNIT_ID"];
-  config.errorViewClass = [CustomErrorView class];
+  config.errorViewHolderClass = [CustomErrorView class];
   ```
   
 </p>
@@ -979,7 +979,7 @@ SDK에서 제공하는 UI의 이미지 혹은 문구만을 변경하여 사용�
   
   ```swift
   let config = SABFeedConfig(unitId: "FEED_UNIT_ID")
-  config.errorViewClass = CustomErrorView.self
+  config.errorViewHolderClass = CustomErrorView.self
   ```
   
 </p>
@@ -1069,7 +1069,7 @@ SDK에서 제공하는 UI의 이미지 혹은 문구만을 변경하여 사용�
 
   ```swift
   let config = SABFeedConfig(unitId: FEED_UNIT_ID)
-  config.errorViewClass = CustomErrorView.self
+  config.errorViewHolderClass = CustomErrorView.self
   ```
   
 </p>
@@ -2281,7 +2281,7 @@ Interstitial 지면 UI를 Config 설정으로 변경할 수 있습니다. 일부
   
   ```objective-c
   SABInterstitialConfig *config = [[SABInterstitialConfig alloc] initWithUnitId:@"YOUR_INTERSTITIAL_UNIT_ID"];
-  config.errorViewClass = [CustomErrorView class];
+  config.errorViewHolderClass = [CustomErrorView class];
   ```
   
 </p>
@@ -2309,7 +2309,7 @@ Interstitial 지면 UI를 Config 설정으로 변경할 수 있습니다. 일부
   
   ```swift
   let config = SABInterstitialConfig(unitId: "YOUR_INTERSTITIAL_UNIT_ID")
-  config.errorViewClass = CustomErrorView.self
+  config.errorViewHolderClass = CustomErrorView.self
   ```
   
 </p>
@@ -2337,7 +2337,7 @@ Interstitial 지면 UI를 Config 설정으로 변경할 수 있습니다. 일부
 
   ```swift
   let config = SABInterstitialConfig(unitId: YOUR_INTERSTITIAL_UNIT_ID)
-  config.errorViewClass = CustomErrorView.self
+  config.errorViewHolderClass = CustomErrorView.self
   ```
   
 </p>
