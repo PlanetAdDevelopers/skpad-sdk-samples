@@ -23,6 +23,7 @@
   - [앱 다크모드 활성화 시 Feed 광고 뷰 설정](#앱-다크모드-활성화-시-feed-광고-뷰-설정)
   - [광고 로드 실패 시 에러 정보 확인하기](#광고-로드-실패-시-에러-정보-확인하기)  
   - [문의하기 기능](#문의하기-기능)
+  - [맞춤형 광고에 대한 고지](#맞춤형-광고에-대한-고지)
 - [APPENDIX](#appendix)
   - [광고 노출/클릭/참여와 관련한 콜백 변화](#광고-노출클릭참여와-관련한-콜백-변화)
 ---  
@@ -653,7 +654,7 @@ SKPAdBenefit iOS SDK에서 제공하는 일반 광고의 UI의 자체 구현 방
 |`필수` Description view |광고에 대한 상세 설명 |최대 40자 |- |생략 부호로 일정 길이 이상은 생략 가능 |
 |`필수` CTA view |광고 참여를 유도하는 문구 |최대 7자 |- |- 생략 부호로 일정 길이 이상은 생략 가능<br>- 보상형 광고에는 포인트 정보도 포함해야 합니다. |
 |`선택` Icon image view |광고주 아이콘 이미지 |80x80 px |종횡비 유지 |- |
-|`필수` AdInfo view |사용자에게 광고임을 알리는 버튼 |26x26 px |종횡비 유지 |- |  
+|`필수` AdInfo view |사용자에게 광고임을 알리는 버튼 |26x26 px |종횡비 유지 | [맞춤형 광고에 대한 고지](#맞춤형-광고에-대한-고지) 참고 |  
 <br>
 
 광고 레이아웃을 생성한 후, `SABAdViewHolder`의 구현 클래스를 구현합니다. `SABAdViewHolder`의 구현 클래스는 `SABFeedConfig`에 설정합니다.   
@@ -951,7 +952,7 @@ SDK에서 제공하는 UI의 이미지 혹은 문구만을 변경하여 사용�
   
   ```objective-c
   SABFeedConfig *config = [[SABFeedConfig alloc] initWithUnitId:@"YOUR_FEED_UNIT_ID"];
-  config.errorViewClass = [CustomErrorView class];
+  config.errorViewHolderClass = [CustomErrorView class];
   ```
   
 </p>
@@ -979,7 +980,7 @@ SDK에서 제공하는 UI의 이미지 혹은 문구만을 변경하여 사용�
   
   ```swift
   let config = SABFeedConfig(unitId: "FEED_UNIT_ID")
-  config.errorViewClass = CustomErrorView.self
+  config.errorViewHolderClass = CustomErrorView.self
   ```
   
 </p>
@@ -1069,7 +1070,7 @@ SDK에서 제공하는 UI의 이미지 혹은 문구만을 변경하여 사용�
 
   ```swift
   let config = SABFeedConfig(unitId: FEED_UNIT_ID)
-  config.errorViewClass = CustomErrorView.self
+  config.errorViewHolderClass = CustomErrorView.self
   ```
   
 </p>
@@ -1236,7 +1237,7 @@ Native 지면은 광고 레이아웃을 자유롭게 구성하여 노출하는 �
 |`필수` Description view |광고에 대한 상세 설명 |최대 40자 |- |생략 부호로 일정 길이 이상은 생략 가능 |
 |`필수` CTA view |광고 참여를 유도하는 문구 |최대 7자 |- |- 생략 부호로 일정 길이 이상은 생략 가능<br>- 보상형 광고에는 포인트 정보도 포함해야 합니다. |
 |`선택` Icon image view |광고주 아이콘 이미지 |80x80 px |종횡비 유지 |- |
-|`필수` AdInfo view |사용자에게 광고임을 알리는 버튼 |26x26 px |종횡비 유지 |- |
+|`필수` AdInfo view |사용자에게 광고임을 알리는 버튼 |26x26 px |종횡비 유지 | [맞춤형 광고에 대한 고지](#맞춤형-광고에-대한-고지) 참고 |
 |`권장` Inquiry view |광고 참여 및 보상에 대한 문의 접수 버튼 ([FAQ 문의하기](#문의하기-기능) 참고) |26x26 px |종횡비 유지 | -   |
 
 `Inquiry view`
@@ -2281,7 +2282,7 @@ Interstitial 지면 UI를 Config 설정으로 변경할 수 있습니다. 일부
   
   ```objective-c
   SABInterstitialConfig *config = [[SABInterstitialConfig alloc] initWithUnitId:@"YOUR_INTERSTITIAL_UNIT_ID"];
-  config.errorViewClass = [CustomErrorView class];
+  config.errorViewHolderClass = [CustomErrorView class];
   ```
   
 </p>
@@ -2309,7 +2310,7 @@ Interstitial 지면 UI를 Config 설정으로 변경할 수 있습니다. 일부
   
   ```swift
   let config = SABInterstitialConfig(unitId: "YOUR_INTERSTITIAL_UNIT_ID")
-  config.errorViewClass = CustomErrorView.self
+  config.errorViewHolderClass = CustomErrorView.self
   ```
   
 </p>
@@ -2337,7 +2338,7 @@ Interstitial 지면 UI를 Config 설정으로 변경할 수 있습니다. 일부
 
   ```swift
   let config = SABInterstitialConfig(unitId: YOUR_INTERSTITIAL_UNIT_ID)
-  config.errorViewClass = CustomErrorView.self
+  config.errorViewHolderClass = CustomErrorView.self
   ```
   
 </p>
@@ -2930,6 +2931,47 @@ done
 <br>
 <br>
 
+
+### 맞춤형 광고에 대한 고지
+
+Planet AD는 개인별 맞춤형 광고를 제공하며, 그에 해당하는 사항을 필수적으로 사용자에게 고지해야합니다.
+
+이러한 맞춤형 광고 고지를 위해 미리 만들어진 UI를 제공하고 있으며, 해당 UI로 진입하기 위한 방법은 아래와 같습니다.
+
+<img src="./images/ios_28.png" alt="Image" style="width:60%; height:auto;">      
+ 
+- AdInfoView 추가하기
+
+   - SDK에서는 SABAdInfoView 제공하며, APP에서는 해당 View를 광고 영역에 추가함으로서 맞춤형 광고에 대한 고지 기능을 제공할 수 있습니다.
+ 
+
+<details open><summary>Objective-C</summary>   
+<p>    
+
+  ```objective-c
+  SABAdInfoView *_adInfoView;
+  _adInfoView = [[SABAdInfoView alloc] initWithFrame:CGRectZero]; // layout 설정 필요
+  [_adView addSubView:_adInfoView];
+  self.adView.adInfoView = self.adInfoView;
+  ```
+  
+</p>
+</details>  
+  
+<details open><summary>Swift</summary>   
+<p>    
+
+  ```swift
+private var adInfoView = SABAdInfoView() // layout 설정 필요
+adView.addSubView(self.adInfoView)
+self.adView.adInfoView = self.adInfoView
+  ```
+  
+</p>
+</details> 
+
+<br>
+<br>
 
 # APPENDIX
 
