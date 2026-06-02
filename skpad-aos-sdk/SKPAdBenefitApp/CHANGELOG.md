@@ -3,7 +3,7 @@
 
 ## 1.15.0(2026-06-02)
 ### Features
-- Target API Level 36 대응
+- Interstitial No-Edge기능 추가
 
 
 ## 1.14.9(2026-01-16)
