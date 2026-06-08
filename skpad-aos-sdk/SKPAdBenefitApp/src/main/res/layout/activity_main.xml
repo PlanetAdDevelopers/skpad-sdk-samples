@@ -198,25 +198,39 @@
                 android:text="InterstitialAd" />
 
 
+xml
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <Spinner
                     android:id="@+id/interstitial_type_spinner"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="4dp"
+                    android:layout_height="40dp"
                     android:layout_weight="2"
+                    android:layout_marginEnd="8dp"
                     android:entries="@array/interstitial_ad_types" />
+
+                <CheckBox
+                    android:id="@+id/interstitial_noedge_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:minHeight="40dp"
+                    android:gravity="center_vertical"
+                    android:text="No Edge"
+                    android:visibility="gone"
+                    />
 
                 <Button
                     android:id="@+id/interstitial_ad_button"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
+                    android:minWidth="72dp"
                     android:text="Show"
                     android:textAllCaps="false" />
             </LinearLayout>

@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 import com.skplanet.app.skpadbenefitsample.Constants;
 import com.skplanet.skpad.benefit.core.ad.AdError;
+import com.skplanet.skpad.benefit.presentation.interstitial.InterstitialAdConfig;
 import com.skplanet.skpad.benefit.presentation.interstitial.InterstitialAdHandler;
 import com.skplanet.skpad.benefit.presentation.interstitial.InterstitialAdHandlerFactory;
 
@@ -18,7 +19,7 @@ public class InterstitialAdapter {
         this.context = context;
     }
 
-    public void show(InterstitialAdHandler.Type interstitialType) {
+    public void show(InterstitialAdHandler.Type interstitialType, boolean noEdge) {
         final InterstitialAdHandler.OnInterstitialAdEventListener eventListener = new InterstitialAdHandler.OnInterstitialAdEventListener() {
             @Override
             public void onAdLoadFailed(@NonNull AdError adError) {
@@ -37,6 +38,10 @@ public class InterstitialAdapter {
         };
 
         final InterstitialAdHandler interstitialAdHandler = new InterstitialAdHandlerFactory().create(Constants.INTERSTITIAL_UNIT_ID, interstitialType);
-        interstitialAdHandler.show(context, null, eventListener);
+        InterstitialAdConfig config = new InterstitialAdConfig.Builder()
+                .setUiType(noEdge ? InterstitialAdConfig.UiType.NoEdge : InterstitialAdConfig.UiType.Default)
+                .build();
+
+        interstitialAdHandler.show(context, config, eventListener);
     }
 }

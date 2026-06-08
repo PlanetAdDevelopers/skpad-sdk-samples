@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -195,6 +196,26 @@ public class MainActivity extends AppCompatActivity {
 
     private void initInterstital() {
 
+        Spinner interstitialTypeSpinner = findViewById(R.id.interstitial_type_spinner);
+        // Spinner 설정
+        interstitialTypeSpinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
+                InterstitialAdHandler.Type selectedInterstitialType = getInterstitialType(position);
+                if (selectedInterstitialType == InterstitialAdHandler.Type.FullScreen) {
+                    findViewById(R.id.interstitial_noedge_check).setVisibility(View.VISIBLE);
+                } else {
+                    findViewById(R.id.interstitial_noedge_check).setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(android.widget.AdapterView<?> parent) {
+                findViewById(R.id.interstitial_noedge_check).setVisibility(View.GONE);
+                // 선택 없음
+            }
+        });
+
         Button showInsterstitialButton = findViewById(R.id.interstitial_ad_button);
         showInsterstitialButton.setOnClickListener(new View.OnClickListener() {
 
@@ -203,8 +224,9 @@ public class MainActivity extends AppCompatActivity {
                 Spinner interstitialTypeSpinner = findViewById(R.id.interstitial_type_spinner);
                 final int selectedType = interstitialTypeSpinner.getSelectedItemPosition();
                 final InterstitialAdHandler.Type interstitialType = getInterstitialType(selectedType);
+                final boolean noEdge = ((CheckBox)findViewById(R.id.interstitial_noedge_check)).isChecked();
 
-                new InterstitialAdapter(MainActivity.this).show(interstitialType);
+                new InterstitialAdapter(MainActivity.this).show(interstitialType, noEdge);
             }
         });
     }
