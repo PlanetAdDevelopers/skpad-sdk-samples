@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 닫기 아이콘 -->
+    <item android:drawable="@drawable/icon_pop_custom_selected" android:state_selected="true" />
+    <!-- 적립 가능 포인트가 있을 때 팝 아이콘 -->
+    <item android:drawable="@drawable/icon_pop_custom_reward_ready"/>
+</selector>
+

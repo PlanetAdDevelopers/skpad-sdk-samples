@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.skplanet.skpad.benefit.presentation.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#E3F2FD"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
+
+        <!-- 커스텀 Simple 라벨 (상단 좌측) -->
+        <TextView
+            android:id="@+id/custom_label_simple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📱 CUSTOM SIMPLE ADAPTER"
+            android:textColor="#1976D2"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:background="#FFFFFF"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="16dp"
+            android:elevation="4dp"/>
+
+        <com.skplanet.skpad.benefit.presentation.media.MediaView
+            android:id="@+id/ad_media_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent" />
+
+        <LinearLayout
+            android:id="@+id/ad_no_edge_bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/skpad_no_edge_media_gradient"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="32dp"
+            android:paddingTop="32dp"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/ad_text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:lineSpacingExtra="4sp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textStyle="bold"
+                android:shadowColor="#33000000"
+                android:translationY="-1.8sp"
+                android:shadowDx="0"
+                android:shadowDy="1"
+                android:shadowRadius="0"
+                android:text="@string/skpad_fullscreen_reward_title" />
+
+            <TextView
+                android:id="@+id/ad_text_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="4dp"
+                android:textSize="15sp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:shadowColor="#33000000"
+                android:lineSpacingExtra="2sp"
+                android:translationY="-1.21sp"
+                android:shadowDx="0"
+                android:shadowDy="1"
+                android:shadowRadius="0"
+                android:text="@string/skpad_fullscreen_reward_subtitle" />
+        </LinearLayout>
+
+        <com.skplanet.skpad.benefit.presentation.media.PointBulletView
+            android:id="@+id/ad_point_bullet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="38dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginLeft="19dp" />
+
+        <com.skplanet.skpad.benefit.presentation.guide.AdInfoView
+            android:id="@+id/ad_information"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:minHeight="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="2dp"
+            android:layout_below="@id/ad_point_bullet" />
+    </RelativeLayout>
+
+</com.skplanet.skpad.benefit.presentation.nativead.NativeAdView>
+

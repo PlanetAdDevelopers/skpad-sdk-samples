@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- 런처 아이콘 배경 -->
+    <color name="ic_launcher_background">#42A5F5</color>
 
-    <color name="samplePrimaryDark">#E4BA4E</color>
-    <color name="samplePrimary">#E9C46A</color>
-    <color name="samplePrimaryLight">#99E9C46A</color>
-    <color name="samplePrimaryLighter">#2EE9C46A</color>
-    <color name="samplePrimaryLightest">#1AE9C46A</color>
+    <!-- Interstitial 커스터마이징 옵션(BG Color, Title Color, CTA BG Color)에서 SDK에 넘기는 데모 색상 -->
+    <color name="demo_ad_background">#E1F5FE</color>
+    <color name="demo_ad_text">#64B5F6</color>
+    <color name="demo_ad_cta">#64B5F6</color>
+    <color name="demo_ad_cta_pressed">#42A5F5</color>
+    <color name="demo_ad_cta_text">#1A237E</color>
 
-    <color name="sampleCtaTextColor">#FFFFFF</color>
-    <color name="colorPrimary">#008577</color>
-
+    <!-- POP Foreground Service 알림 색상 -->
+    <color name="demo_pop_notification">#F48FB1</color>
 </resources>

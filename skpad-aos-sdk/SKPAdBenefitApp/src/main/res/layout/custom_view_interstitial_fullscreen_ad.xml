@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.skplanet.skpad.benefit.presentation.nativead.NativeAdView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3E5F5">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <!-- 눈에 띄는 커스텀 라벨 -->
+        <TextView
+            android:id="@+id/custom_ad_title_view"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="💜 CUSTOM FULLSCREEN ADAPTER"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:background="#9C27B0"
+            android:elevation="4dp"/>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:cardBackgroundColor="@android:color/transparent"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/custom_ad_title_view"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="8dp">
+
+            <com.skplanet.skpad.benefit.presentation.media.MediaView
+                android:id="@+id/custom_ad_media_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <com.skplanet.skpad.benefit.presentation.interstitial.fullscreen.InterstitialAdFullScreenCtaView
+            android:id="@+id/custom_ad_cta_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="15dp"
+            android:layout_below="@id/custom_ad_title_view"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+</com.skplanet.skpad.benefit.presentation.nativead.NativeAdView>

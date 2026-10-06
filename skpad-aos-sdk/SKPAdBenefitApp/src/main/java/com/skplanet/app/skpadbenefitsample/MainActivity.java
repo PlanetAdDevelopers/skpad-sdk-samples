@@ -1,328 +1,76 @@
 package com.skplanet.app.skpadbenefitsample;
 
-import android.content.Context;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.Spinner;
-import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.OnApplyWindowInsetsListener;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
-import com.skplanet.app.skpadbenefitsample.adapter.FeedAdapter;
-import com.skplanet.app.skpadbenefitsample.adapter.InterstitialAdapter;
-import com.skplanet.app.skpadbenefitsample.adapter.NativeAdAdapter;
-import com.skplanet.app.skpadbenefitsample.adapter.PopAdapter;
-import com.skplanet.skpad.benefit.SKPAdBenefit;
-import com.skplanet.skpad.benefit.core.ad.AdError;
-import com.skplanet.skpad.benefit.core.js.SKPAdBenefitJavascriptInterface;
-import com.skplanet.skpad.benefit.core.models.UserProfile;
-import com.skplanet.skpad.benefit.core.utils.AppUtils;
-import com.skplanet.skpad.benefit.pop.SKPAdPop;
-import com.skplanet.skpad.benefit.presentation.DefaultLauncher;
-import com.skplanet.skpad.benefit.presentation.feed.FeedHandler;
-import com.skplanet.skpad.benefit.presentation.interstitial.InterstitialAdHandler;
-import com.skplanet.skpad.browser.SKPAdBrowser;
+import com.skplanet.app.skpadbenefitsample.data.LoginPreferences;
+import com.skplanet.skpad.benefit.core.utils.LayoutUtils;
 
+/**
+ * 앱의 첫 진입점 - 로그인 Activity
+ *
+ * 이미 로그인 상태라면 AdSelectorActivity로 바로 이동하고,
+ * 그렇지 않으면 로그인 화면(MainFragment)을 표시합니다.
+ *
+ * Android 13+ 에서는 POP(Foreground Service) 알림 표시를 위해 POST_NOTIFICATIONS 권한을 요청합니다.
+ */
 public class MainActivity extends AppCompatActivity {
 
-    private static String TAG = "SKPAdBenefit";
+    /** MainFragment 식별용 태그 */
+    private static final String FRAGMENT_TAG = "main_fragment";
 
-    private FeedAdapter feedAdapter;
-    private PopAdapter popAdapter;
+    /** 알림 권한 요청 코드 (Android 13+) */
+    private static final int REQUEST_CODE_POST_NOTIFICATIONS = 1001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        LayoutUtils.applyStatusBarMode(this, getWindow());
+        LayoutUtils.applyInsetsArea(this);
+
         setContentView(R.layout.activity_main);
 
-        applyInsetsArea(this, findViewById(android.R.id.content));
-
-        initCommon();
-
-        initNativeAd();
-
-        initFeed();
-
-        initPop();
-
-        initInterstital();
-
-        initWebSDK();
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PopAdapter.REQUEST_CODE_SHOW_POP) {
-            if (SKPAdPop.hasPermission(this)) {
-                popAdapter.showPopOrRequestOverlayPermissionIfNeeded();
+        // 이미 로그인 상태면 AdSelectorActivity로 바로 이동
+        if (new LoginPreferences(this).isLoggedIn()) {
+            Intent adSelectorIntent = new Intent(this, AdSelectorActivity.class);
+            // navigate_to extra를 AdSelectorActivity로 전달 (POP 재시작 후 POP 화면 자동 진입)
+            String navigateTo = getIntent().getStringExtra("navigate_to");
+            if (navigateTo != null) {
+                adSelectorIntent.putExtra("navigate_to", navigateTo);
             }
-        }
-    }
-
-
-    private void initCommon() {
-        Button logIn = findViewById(R.id.login_button);
-        logIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setUserProfile();
-            }
-        });
-
-        Button logOut = findViewById(R.id.logout_button);
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearUserProfile();
-            }
-        });
-
-        // 앱 내 Custom Launcher를 설정 시 사용.
-        Switch inAppBrowserSwitch = findViewById(R.id.inapp_browser_switch);
-        inAppBrowserSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    SKPAdBenefit.setLauncher(new CustomLauncher());
-                } else {
-                    SKPAdBenefit.setLauncher(new DefaultLauncher());
-                }
-            }
-        });
-    }
-
-    private void initNativeAd() {
-        Button showNativeButton = findViewById(R.id.native_ad_button);
-        showNativeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final View nativeAdLayout = findViewById(R.id.skp_ad_native_layout);
-                new NativeAdAdapter(MainActivity.this).loadAds(nativeAdLayout);
-            }
-        });
-    }
-
-    private void initFeed() {
-
-        initFeedHandler();
-
-        Switch enableCustomUISwitch = findViewById(R.id.enable_customised_ui);
-        enableCustomUISwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                feedAdapter.createFeedHandler(isChecked);
-            }
-        });
-
-
-        Button preload = findViewById(R.id.feed_preload);
-        preload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                feedAdapter.preload(new FeedHandler.FeedPreloadListener() {
-                    @Override
-                    public void onPreloaded() {
-                        syncTotalRewardText();
-                        Toast.makeText(MainActivity.this, "Success to prereload feed data!", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(AdError error) {
-                        Toast.makeText(MainActivity.this, "Failed to preload! ErrorType:" + error.getErrorType() + " " + error.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }
-        });
-
-        Button showFeedButton = findViewById(R.id.feed_button);
-        showFeedButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                feedAdapter.show();
-            }
-        });
-
-        Button resetFeedButton = findViewById(R.id.feed_reset_button);
-        resetFeedButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initFeedHandler();
-            }
-        });
-    }
-
-    private void initPop() {
-
-        popAdapter = new PopAdapter(MainActivity.this);
-
-        Button showPopButon = findViewById(R.id.pop_show_button);
-        showPopButon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popAdapter.showPopOrRequestOverlayPermissionIfNeeded();
-            }
-        });
-
-        Button unregisterPopButton = findViewById(R.id.pop_unregister_button);
-        unregisterPopButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popAdapter.remove();
-            }
-        });
-    }
-
-    private void syncTotalRewardText() {
-        TextView feedTotalRewardText = findViewById(R.id.total_reward_text);
-        feedTotalRewardText.setText("" + feedAdapter.getTotalReward());
-    }
-
-
-    private void initInterstital() {
-
-        Spinner interstitialTypeSpinner = findViewById(R.id.interstitial_type_spinner);
-        // Spinner 설정
-        interstitialTypeSpinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
-                InterstitialAdHandler.Type selectedInterstitialType = getInterstitialType(position);
-                if (selectedInterstitialType == InterstitialAdHandler.Type.FullScreen) {
-                    findViewById(R.id.interstitial_noedge_check).setVisibility(View.VISIBLE);
-                } else {
-                    findViewById(R.id.interstitial_noedge_check).setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(android.widget.AdapterView<?> parent) {
-                findViewById(R.id.interstitial_noedge_check).setVisibility(View.GONE);
-                // 선택 없음
-            }
-        });
-
-        Button showInsterstitialButton = findViewById(R.id.interstitial_ad_button);
-        showInsterstitialButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Spinner interstitialTypeSpinner = findViewById(R.id.interstitial_type_spinner);
-                final int selectedType = interstitialTypeSpinner.getSelectedItemPosition();
-                final InterstitialAdHandler.Type interstitialType = getInterstitialType(selectedType);
-                final boolean noEdge = ((CheckBox)findViewById(R.id.interstitial_noedge_check)).isChecked();
-
-                new InterstitialAdapter(MainActivity.this).show(interstitialType, noEdge);
-            }
-        });
-    }
-
-    private InterstitialAdHandler.Type getInterstitialType(int selectedType) {
-        switch (selectedType) {
-            case 0:
-                return InterstitialAdHandler.Type.FullScreen;
-            case 1:
-                return InterstitialAdHandler.Type.Dialog;
-            case 2:
-            default:
-                return InterstitialAdHandler.Type.BottomSheet;
-        }
-    }
-
-    private void initWebSDK() {
-
-        Button webBrowserButton = findViewById(R.id.launch_browser_button);
-        webBrowserButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SKPAdBrowser.getInstance(MainActivity.this)
-                        .addJavascriptInterface(SKPAdBenefitJavascriptInterface.class)
-                        .addBrowserEventListener(new SKPAdBrowser.OnBrowserEventListener() {
-                            @Override
-                            public void onBrowserClosed() {
-                                Toast.makeText(MainActivity.this, "onBrowserClosed", Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onBrowserOpened() {
-                                Toast.makeText(MainActivity.this, "onBrowserOpened", Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onLanding() {
-                                Toast.makeText(MainActivity.this, "onLanding", Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onPageLoaded(String url) {
-                                Toast.makeText(MainActivity.this, "onPageLoaded", Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onPageLoadError() {
-                                Toast.makeText(MainActivity.this, "onPageLoadError", Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onUrlLoading(String url) {
-                                Toast.makeText(MainActivity.this, "onUrlLoading", Toast.LENGTH_SHORT).show();
-                            }
-                        }).open(Constants.WEB_SDK_TEST_URL);
-            }
-        });    }
-
-
-    private void setUserProfile() {
-        // 사용자 정보 설정
-        final UserProfile userProfile = new UserProfile.Builder(SKPAdBenefit.getUserProfile())
-                .userId(Constants.USER_ID)
-                .gender(Constants.GENDER)
-                .birthYear(Constants.BIRTHDAY)
-                .build();
-        SKPAdBenefit.setUserProfile(userProfile);
-    }
-
-    private void clearUserProfile() {
-        // 사용자 정보 초기화
-        SKPAdBenefit.setUserProfile(null);
-    }
-
-    private void initFeedHandler() {
-        feedAdapter = new FeedAdapter(MainActivity.this);
-    }
-
-    private void applyInsetsArea(Context context, View view) {
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            startActivity(adSelectorIntent);
+            finish();
             return;
         }
 
-        if (!AppUtils.checkTargetAOS15(context)) {
-            return;
-        }
+        // Android 13+ (API 33) 알림 권한 요청 - Foreground Service(POP) 정상 동작에 필요
+        requestPostNotificationsPermissionIfNeeded();
 
-        ViewCompat.setOnApplyWindowInsetsListener(view.getRootView(), new OnApplyWindowInsetsListener() {
-                    @Override
-                    public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat windowInsets) {
-                        Insets insets = windowInsets.getSystemWindowInsets();
-                        view.setPadding(insets.left, insets.top, insets.right, insets.bottom);
-                        return windowInsets;
-                    }
-                }
-        );
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new MainFragment(), FRAGMENT_TAG)
+                    .commit();
+        }
+    }
+
+    private void requestPostNotificationsPermissionIfNeeded() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(
+                        this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                        REQUEST_CODE_POST_NOTIFICATIONS
+                );
+            }
+        }
     }
 }

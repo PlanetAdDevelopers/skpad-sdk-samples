@@ -7,6 +7,8 @@ public class Constants {
     public static final String APP_KEY = "263145199717132";
 
     public static final String NATIVEAD_UNIT_ID = "443067018104046";
+    // Banner(NativeAdBannerView)는 Native Unit ID를 함께 사용합니다.
+    public static final String BANNER_UNIT_ID = NATIVEAD_UNIT_ID;
     public static final String INTERSTITIAL_UNIT_ID = "187488886283457";
     public static final String FEED_UNIT_ID = "80276338026190";
     public static final String POP_UNIT_ID = "133807838388589";

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/bottom_sheet_background_layout"
+    android:layout_height="wrap_content"
+    android:background="#80000000"
+    android:clickable="true">
+
+    <LinearLayout
+        android:id="@+id/bottom_sheet_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/skpad_bg_bottom_sheet"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:clickable="true">
+
+        <RelativeLayout
+            android:id="@+id/top_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/top_icon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/skpad_native_ad_top_icon"
+                android:padding="8dp"
+                android:src="@drawable/skpad_ic_gift" />
+
+            <LinearLayout
+                android:id="@+id/linkViewContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="@dimen/skpad_interstitial_bottom_sheet_link_view_container_margin_horizontal"
+                android:layout_toRightOf="@+id/top_icon"
+                android:layout_toLeftOf="@+id/close_image"
+                android:layout_alignTop="@+id/top_icon"
+                android:layout_alignBottom="@+id/top_icon"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/card_title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="@string/skpad_interstitial_title"
+                    android:textAppearance="@style/skpad_h5"
+                    android:textColor="@color/skpad_text_base"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/close_image"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/skpad_ic_noedge_close_btn"
+                android:layout_centerVertical="true"
+                app:tint="@color/skpad_text_assistive" />
+
+        </RelativeLayout>
+
+        <!-- MaxHeightBottomSheetViewPager: 화면 높이 60%로 제한하여 하단 dot/inquiry 표시 보장 -->
+        <com.skplanet.app.skpadbenefitsample.ui.interstitial.bottomsheet.MaxHeightBottomSheetViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout_dots"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_centerInParent="true"
+                app:tabBackground="@drawable/skpad_bg_tab_selector"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+

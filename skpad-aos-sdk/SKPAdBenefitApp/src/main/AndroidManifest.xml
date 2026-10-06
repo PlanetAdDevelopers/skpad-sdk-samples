@@ -1,34 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <!-- Android 13+ (API 33) 이상에서 알림(Foreground Service 포함)을 표시하기 위해 필요 -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
+        android:name=".MainApplication"
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name="com.skplanet.app.skpadbenefitsample.MainApplication"
-        tools:targetApi="31">
+        android:theme="@style/Theme.SKPADBenefitSample">
 
         <meta-data
             android:name="com.skplanet.APP_KEY"
             android:value="app-pub-263145199717132" />
 
-        <activity
-            android:name="com.skplanet.app.skpadbenefitsample.MainActivity"
+        <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CustomInAppBrowserActivity"/>
+        <activity android:name=".AdSelectorActivity" android:exported="false" />
+        <activity android:name=".ui.nativead.NativeAdActivity" android:exported="false" />
+        <activity android:name=".ui.carousel.CarouselAdActivity" android:exported="false" />
+        <activity android:name=".ui.feed.FeedAdActivity" android:exported="false" />
+        <activity android:name=".ui.interstitial.dialog.InterstitialDialogActivity" android:exported="false" />
+        <activity android:name=".ui.interstitial.bottomsheet.InterstitialBottomSheetActivity" android:exported="false" />
+        <activity android:name=".ui.interstitial.fullscreen.InterstitialFullscreenActivity" android:exported="false" />
+        <activity android:name=".ui.interstitial.noedge.InterstitialNoEdgeActivity" android:exported="false" />
+        <activity android:name=".ui.web.WebSdkActivity" android:exported="false" />
+        <activity android:name=".ui.pop.PopActivity" android:exported="false" />
+        <activity android:name=".ui.banner.NativeAdBannerActivity" android:exported="false" />
     </application>
-
 </manifest>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 선택된 상태 아이콘 (닫기 버튼) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- 원형 배경 (어두운 회색) -->
+    <path
+        android:fillColor="#424242"
+        android:pathData="M24,4C12.95,4 4,12.95 4,24C4,35.05 12.95,44 24,44C35.05,44 44,35.05 44,24C44,12.95 35.05,4 24,4Z"/>
+
+    <!-- X 아이콘 (닫기) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M32,16.41L30.59,15L24,21.59L17.41,15L16,16.41L22.59,23L16,29.59L17.41,31L24,24.41L30.59,31L32,29.59L25.41,23Z"/>
+</vector>
+

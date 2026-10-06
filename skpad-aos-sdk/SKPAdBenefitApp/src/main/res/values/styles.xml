@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Android 기본 Material3 테마. 단말의 다크 모드 설정을 따릅니다. -->
+    <style name="Theme.SKPADBenefitSample" parent="Theme.Material3.DayNight.NoActionBar" />
+</resources>
