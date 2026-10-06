@@ -86,7 +86,7 @@ allprojects {
 dependencies {
     ...생략...
     // Planet AD SDK
-    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.17.0") { changing = true }
+    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.18.0") { changing = true }
     ...생략...
 }
 ```

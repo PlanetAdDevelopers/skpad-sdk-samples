@@ -47,7 +47,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.17.0") { changing = true } // SKP AD Benefit SDK 라이브러리
+    implementation ("com.skplanet.sdk.ad:skpad-benefit:1.18.0") { changing = true } // SKP AD Benefit SDK 라이브러리
 }
 ```
 
