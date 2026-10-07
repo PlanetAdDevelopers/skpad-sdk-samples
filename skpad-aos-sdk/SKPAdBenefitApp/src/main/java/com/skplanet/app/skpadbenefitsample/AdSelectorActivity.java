@@ -2,12 +2,9 @@ package com.skplanet.app.skpadbenefitsample;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -27,8 +24,6 @@ import com.skplanet.app.skpadbenefitsample.ui.nativead.NativeAdActivity;
 import com.skplanet.app.skpadbenefitsample.ui.pop.PopActivity;
 import com.skplanet.app.skpadbenefitsample.ui.web.WebSdkActivity;
 import com.skplanet.skpad.benefit.SKPAdBenefit;
-import com.skplanet.skpad.benefit.core.models.AutoplayType;
-import com.skplanet.skpad.benefit.core.models.UserPreferences;
 import com.skplanet.skpad.benefit.core.utils.LayoutUtils;
 
 import java.util.Arrays;
@@ -37,7 +32,7 @@ import java.util.List;
 /**
  * 광고 타입 선택 메인 Activity
  *
- * 테스트하고 싶은 광고 타입 목록과 공통 옵션(동영상 자동재생, 옵션 초기화, 로그아웃)을 제공합니다.
+ * 테스트하고 싶은 광고 타입 목록과 공통 버튼(옵션 초기화, 로그아웃)을 제공합니다.
  */
 public class AdSelectorActivity extends AppCompatActivity {
 
@@ -56,9 +51,6 @@ public class AdSelectorActivity extends AppCompatActivity {
     );
 
     private OptionsPreferences optionsPrefs;
-
-    /** Spinner 초기 콜백 방지 플래그 (setSelection 후 첫 콜백 무시) */
-    private boolean isAutoplaySpinnerInitialized = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,24 +73,6 @@ public class AdSelectorActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-        });
-
-        // Video AutoPlay 스피너 - 저장된 값 로드
-        Spinner spinnerAutoplay = findViewById(R.id.spinner_video_autoplay);
-        spinnerAutoplay.setSelection(optionsPrefs.getVideoAutoplay());
-        spinnerAutoplay.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (!isAutoplaySpinnerInitialized) {
-                    isAutoplaySpinnerInitialized = true;
-                    return;
-                }
-                handleAutoplaySelection(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
         });
 
         ListView listView = findViewById(R.id.list_ad_types);
@@ -155,40 +129,8 @@ public class AdSelectorActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void handleAutoplaySelection(int position) {
-        optionsPrefs.setVideoAutoplay(position);
-        AutoplayType autoplayType;
-        switch (position) {
-            case 1:
-                autoplayType = AutoplayType.DISABLED;
-                break;
-            case 2:
-                autoplayType = AutoplayType.ENABLED;
-                break;
-            case 3:
-                autoplayType = AutoplayType.ON_WIFI;
-                break;
-            default:
-                autoplayType = null;
-                break;
-        }
-        SKPAdBenefit.setUserPreferences(
-                autoplayType == null
-                        ? null
-                        : new UserPreferences.Builder(SKPAdBenefit.getUserPreferences())
-                        .autoplayType(autoplayType)
-                        .build()
-        );
-    }
-
     private void resetOptions() {
         optionsPrefs.resetToDefault();
-
-        // UI 업데이트
-        ((Spinner) findViewById(R.id.spinner_video_autoplay)).setSelection(OptionsPreferences.DEFAULT_VIDEO_AUTOPLAY);
-
-        // UserPreferences 초기화
-        SKPAdBenefit.setUserPreferences(null);
 
         Toast.makeText(this, "옵션이 초기화되었습니다.", Toast.LENGTH_SHORT).show();
     }

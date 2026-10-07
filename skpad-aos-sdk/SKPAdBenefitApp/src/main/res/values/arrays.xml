@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="video_autoplay_types">
-        <item>Not Set</item>
-        <item>Disabled</item>
-        <item>Enabled</item>
-        <item>On WiFi</item>
-    </string-array>
-
     <string-array name="pop_idle_modes">
         <item>Invisible</item>
         <item>Translucent</item>

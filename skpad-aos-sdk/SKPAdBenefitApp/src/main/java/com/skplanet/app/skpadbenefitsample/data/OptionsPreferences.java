@@ -14,7 +14,6 @@ import android.content.SharedPreferences;
 public class OptionsPreferences {
 
     private static final String PREFS_NAME = "benefit_compact_options";
-    private static final String KEY_VIDEO_AUTOPLAY = "video_autoplay";
     private static final String KEY_POP_IDLE_MODE = "pop_idle_mode";
     private static final String KEY_POP_IDLE_TIME = "pop_idle_time";
     private static final String KEY_POP_PREVIEW_INTERVAL = "pop_preview_interval";
@@ -52,7 +51,6 @@ public class OptionsPreferences {
     private static final String KEY_FULLSCREEN_TITLE_COLOR = "fullscreen_title_color";
     private static final String KEY_FULLSCREEN_CUSTOM_ADAPTER = "fullscreen_custom_adapter";
     private static final String KEY_FULLSCREEN_ERROR_VIEW = "fullscreen_error_view";
-    public static final int DEFAULT_VIDEO_AUTOPLAY = 0;
     public static final int DEFAULT_POP_IDLE_MODE = 0;
     public static final long DEFAULT_POP_IDLE_TIME = 5000L;
     public static final long DEFAULT_POP_PREVIEW_INTERVAL = 5000L;
@@ -117,14 +115,6 @@ public class OptionsPreferences {
                 .putBoolean(KEY_POP_CUSTOM_ICON, customIcon)
                 .putBoolean(KEY_POP_UTILITY_HANDLER, utilityHandler)
                 .commit(); // commit() = 동기 저장, apply() = 비동기
-    }
-
-    public int getVideoAutoplay() {
-        return prefs.getInt(KEY_VIDEO_AUTOPLAY, DEFAULT_VIDEO_AUTOPLAY);
-    }
-
-    public void setVideoAutoplay(int value) {
-        prefs.edit().putInt(KEY_VIDEO_AUTOPLAY, value).apply();
     }
 
     public int getPopIdleMode() {
@@ -433,7 +423,6 @@ public class OptionsPreferences {
     /** 모든 옵션을 기본값으로 초기화합니다. */
     public void resetToDefault() {
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt(KEY_VIDEO_AUTOPLAY, DEFAULT_VIDEO_AUTOPLAY);
         editor.putInt(KEY_POP_IDLE_MODE, DEFAULT_POP_IDLE_MODE);
         editor.putLong(KEY_POP_IDLE_TIME, DEFAULT_POP_IDLE_TIME);
         editor.putLong(KEY_POP_PREVIEW_INTERVAL, DEFAULT_POP_PREVIEW_INTERVAL);
