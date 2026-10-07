@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.18.0(2026-10-07)
+### Features
+- Native AD Banner View 기능 추가
+
+
+## 1.17.0(2026-08-30)
+### Features
+- Feed Grid UI Type 추가
+
+
+## 1.16.0(2026-07-15)
+### Features
+- Natiove Carousell View 추가
+
 
 ## 1.15.0(2026-06-02)
 ### Features
